@@ -1,0 +1,8 @@
+name = "Footer sitemap"
+description = "Simple sitemap displayed in the footer area"
+core = "6.x"
+
+version = "6.x-0.1"
+project = "footer_sitemap"
+
+dependencies[] = menu

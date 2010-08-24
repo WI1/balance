@@ -1,0 +1,121 @@
+<?php
+function ur_mutualfriends_get_mutual_friends($user1, $user2){
+  if($user1 == $user2) return array();
+  /*
+  $relationships1  = user_relationships_load(array('user' => $user1));
+  $mutualFriends = array();
+  foreach($relationships1 as $relationship1){
+    $rels = user_relationships_load(array("between" => array($relationship1->requestee_id, $user2)));
+    if(count($rels)>0){
+      $mutualFriends[$relationship1->requestee_id] = $relationship1->requestee_id;
+    }
+  }
+  */
+  $query = 'SELECT requestee_id FROM {user_relationships}
+            where requester_id = %s and requestee_id in (
+              SELECT requestee_id FROM {user_relationships}
+              where requester_id = %s
+            )';
+  $result = db_query($query,$user1,$user2);
+  $mutualFriends = array();
+  while($id = db_fetch_object($result)){
+    $mutualFriends[] = $id->requestee_id;
+  }
+  return $mutualFriends;
+}
+function ur_mutualfriends_get_current_user_profile_id(){
+  $profileId = 0;
+  if(strpos($_REQUEST['q'], 'user/') === FALSE){
+    $e = explode('/',$_REQUEST['q']);
+    $path = drupal_lookup_path('source',$e[0].'/'.$e[1]);
+  }else{
+    $path = $_REQUEST['q'];
+  }
+  if(strpos($path, 'user/') !== FALSE){
+    $q = explode('/', $path);
+    $profileId = $q[1];
+  }
+  return $profileId;
+}
+function ur_mutualfriends_get_block_html(){
+  global $user;
+  if($user->uid == 0) return false;
+  $profileId = ur_mutualfriends_get_current_user_profile_id();
+  if($profileId == 0) return false;
+  $friends = ur_mutualfriends_get_mutual_friends($profileId, $user->uid);
+  if(count($friends) == 0) return false;
+  $html = '<table class="views-view-grid">';
+  $i = 1;
+  $moreLink = false;
+  foreach($friends as $friendId){
+    if($i > 3){
+     $moreLink = true;
+     break;
+    }
+    $friend = user_load($friendId);
+    if($i%3 === 1) $html .= '<tr>';
+    $html .= '<td>'.
+              theme('user_picture', $friend).
+              '<p>'.l($friend->profile_firstname . ' ' . $friend->profile_lastname, 'user/' . $friend->uid).'</p>
+             </td>';
+    if($i%3 === 0) $html .= '</tr>';
+    $i++;
+  }
+  $html .= '</table>';
+  if($moreLink) $html .= '<div class="more-link"><a href="/'.drupal_get_path_alias('user/'.$profileId.'/mutualfriends').'">'.t('Mehr').'</a></div>';
+  return $html;
+}
+function ur_mutualfriends_menu() {
+ 	$items =array();
+
+ 	$items['user/%user/mutualfriends']=array(
+ 	'title'=> t('Gemeinsame Freunde'),
+ 	'page callback'=>'ur_mutualfriends_show',
+ 	'type'=> MENU_CALLBACK,
+ 	'weight'=> 100
+ 	,'access arguments' => array(1)
+ 	);
+ 	return $items;
+ }
+function ur_mutualfriends_show(){
+  global $user;
+  $noMutualFriends = t('Keine gemeinsamen Freunde!');
+  if($user->uid == 0) return $noMutualFriends. 'USER ID';
+  $profileId = ur_mutualfriends_get_current_user_profile_id();
+  if($profileId == 0) return $noMutualFriends. 'PROFILE ID';
+  $friends = ur_mutualfriends_get_mutual_friends($profileId, $user->uid);
+  if(count($friends) == 0) return $noMutualFriends. 'NO FRIENDS';
+  $html = '<table class="views-view-grid">';
+  $i = 1;
+  foreach($friends as $friendId){
+     $friend = user_load($friendId);
+     if($i%4 === 1) $html .= '<tr>';
+     $html .= '<td>'.
+              theme('user_picture', $friend).
+              '<p>'.l($friend->profile_firstname . ' ' . $friend->profile_lastname, 'user/' . $friend->uid).'</p>
+             </td>';
+     if($i%4 === 0) $html .= '</tr>';
+     $i++;
+  }
+  $html .= '</table>';
+  return $html;
+}
+function ur_mutualfriends_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks[0] = array(
+        'info' => t('UR Mutual Friends Block'),
+      );
+      return $blocks;
+
+    case 'view':
+      switch ($delta) {
+        case 0:
+          $block['subject'] = t('Gemeinsame Freunde');
+          $block['content'] = ur_mutualfriends_get_block_html();
+          break;
+      }
+      return $block;
+    }
+}
+?>

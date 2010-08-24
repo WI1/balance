@@ -1,0 +1,52 @@
+<?php
+
+function balanceonline_eventform_manage_event(&$iform,$node) {
+
+
+	$form_id = 'rsvp_overview_form';
+	//$node = array('type' => 'Event', 'uid' => $GLOBALS['user']->uid, 'name' => $GLOBALS['user']->uid);
+	// load the $form
+
+	$form_state = array();
+	$form = drupal_retrieve_form($form_id, $form_state, $node,null);
+	drupal_prepare_form($form_id, $form, $form_state);
+
+	$iform['rsvp_overview_created_form']=$form['rsvp_overview_created_form'];
+	$iform['rsvp_overview_created_form']['#title']=t('Edit events');
+
+
+
+}
+
+function balanceonline_eventform_form_alter(&$form, &$form_state,$form_id){
+	if ($form_id=='signup_node_admin_details_form') {
+		//echo drupal_render($form);
+	}
+	 
+	if ($form_id=='event_node_form') {
+                unset($form['og_nodeapi']['#type']);
+//		$form['#submit'][]='balanceonline_eventform_signup_node_submit';
+		//print_r($form);
+		$eventFieldSet = $form['event'];
+
+		$path = drupal_get_normal_path($_GET['q']);
+		$nids = explode('/',$path);
+		$nid = $nids[1];
+		$node = node_load($nid);
+		unset($form['event']['#type']);
+                $groups = $form['og_nodeapi']['visible']['og_groups'];
+                $public = $form['og_nodeapi']['visible']['og_public'];
+                $form['body_field']['og_groups'] = $groups;
+                $form['body_field']['og_public'] = $public;
+                unset($form['og_nodeapi']['visible']['og_groups']);
+                unset($form['og_nodeapi']['visible']['og_public']);
+
+		$form['event']['status_2_premarkup']['#value']='<fieldset class="collapsible" style="width:95%"><legend class="collapse-processed"><a href="#">'.t('Do you want to appoint a space of time for this event?').'</a></legend><div style="padding:4px">';
+		$form['event']['status_2_premarkup']['#weight']=-100;
+		$form['event']['#weight']=-4;
+		$form['event']['status_2_postmarkup']['#value']='</div></fieldset>';
+
+		balanceonline_eventform_manage_event($form,$node);
+	}
+}
+?>

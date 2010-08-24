@@ -1,0 +1,335 @@
+<?php
+// $ID$
+
+/**
+ * Implements hook_perm().
+ */
+function focus_groups_perm() {
+	return array(
+		'view focus groups',
+		'view focus group colors'
+	);
+}
+
+/**
+ * Implements hook_views_api().
+ * @return array with Views API version.
+ */
+function focus_groups_views_api() {
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'focus_groups'),
+  );
+}
+
+/**
+ * Implements hook_block().
+ * Adds the following custom blocks:
+ *  - Balance Group Menu: shows my groups
+ *
+ * @param string $op
+ * @param int $delta
+ * @param array $edit
+ * @return string
+ */
+function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
+	switch ($op) {
+		case 'list':
+			$blocks[0]['info'] = 'Balance Group Menu';
+			return $blocks;
+
+		case 'view':
+			global $user;
+			$user = user_load($user->uid);
+
+			switch($delta) {
+				case 0:
+					$block['subject'] = t('My Groups');
+					$block['content'] = $user->og_groups ? phptemplate_group_list(focus_groups_load_group_details($user->og_groups)) : '<p>Sie sind in keiner Gruppe angemeldet. Werden Sie Mitglied in Ihrer Gruppe, indem Sie diese im Menü auswählen und die Mitgliedschaft beantragen.</p>';
+				break;
+			}
+
+			return $block;
+	}
+}
+
+/**
+ * Overrides or inserts variables into the node templates.
+ *
+ * set node_classes (same as body_classes) for nodes (e.g. post teasers on the front page)
+ * @todo merge with focus_groups_load_group_details
+ * @param array $vars
+ */
+function focus_groups_preprocess_node(&$vars, $hook) {
+	$vars['related_groups'] = array();
+	$vars['focusgroup'] = array();
+	$node_classes_group_ids = array();
+	$focus_group_ids = array();
+
+	if(isset($vars['og_groups']) && $group_ids = $vars['og_groups']) {
+		foreach($group_ids as $nid) {
+			$group = node_load($nid);
+
+			if($group->type == 'focusgroup' && user_access('view focus groups')) {
+				$focus_group_ids[] = $group->field_fgnumber[0]['value'];
+				$node_classes_group_ids[] = $nid;
+				$vars['focusgroups'][] = $group;
+			}
+
+			// if($group->type == 'project') {
+			// 	$node_classes_group_ids[] = $nid;
+			// 	$vars['projects'][] = $group;
+			// }
+		}
+	}
+	if($node_classes_group_ids) {
+		$vars['node_classes'] = 'og-context-' . implode(' og-context-', $node_classes_group_ids);
+	}
+
+	if(!empty($focus_group_ids) && user_access('view focus group colors')) {
+		$vars['node_classes'] .= ' fg' . implode(' fg', $focus_group_ids);
+	}
+}
+
+/**
+ * Loads CSS classes and related groups depending on node type
+ *
+ * @param array $vars
+ */
+function focus_groups_preprocess_page(&$vars) {
+	$url = arg();
+	$related_groups = array();
+
+	if($url[0] != 'user') {
+		if(!isset($vars['node'])) {
+			// node needed for og context and colors
+			if($url[0] == 'node' && $url[1] == 'add' && $nodeIds = $_GET['gids']) {
+				// load node for node/add/blog?gids[]=31 links
+				$nodeId = reset(explode(',', reset($nodeIds)));
+			} elseif(!isset($vars['node']) && is_numeric($url[1])) { // on settings pages we don't have nodes
+				// todo why don't nodes load on e.g. node/31/team
+				$nodeId = $url[1];
+			}
+      
+      if(isset($nodeId)) {
+  			$vars['node'] = node_load($nodeId);
+      }
+		}
+
+    if(isset($vars['node'])) {
+  		switch($vars['node']->type) {
+  			case 'project':
+  				// load parent = focusgroup for block in right sidebar
+  				$vars['parent'] = node_load(focus_groups_get_parent($vars['node']->nid));
+  				if(user_access('view focus group colors') && isset($vars['parent']->field_fgnumber[0]['value']) && (int)$vars['parent']->field_fgnumber[0]['value'] > 0) {
+  					$vars['body_classes'] .= ' fg' . $vars['parent']->field_fgnumber[0]['value'];
+  				}
+  			break;
+
+  			case 'blog':
+  				$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
+  			break;
+
+  			case 'focusgroup':
+  				if(!user_access('view focus groups')) {
+  					drupal_goto('/');
+  				}
+  			break;
+  		}
+
+  		$vars['body_classes'] = focus_groups_get_body_classes($vars['node'], $vars['body_classes']);
+    }
+	} elseif($url[0] == 'user' && !in_array($url[1], array('register', 'password'))) {
+		// user page
+		$profile = user_load($url[1]);
+		$vars['related_groups'] = focus_groups_load_group_details($profile->og_groups);
+	}
+}
+
+/**
+ * Get the parent of the given node. Extends nodehierachy module which hasn't this functionality
+ *
+ * @uses nodehierarchy module
+ * @param int $nid
+ *   Node id of a child node
+ * @return int
+ *   Node id of the parent node
+ */
+function focus_groups_get_parent($nid) {
+	static $parent;
+	$nid = (int)$nid;
+	
+	if(!isset($parent[$nid])) {
+		$parent[$nid] = (int)db_result(db_query("SELECT h.parent FROM {nodehierarchy} h WHERE h.nid = %d", $nid));
+	}
+
+	return $parent[$nid];
+}
+
+/**
+ * Gets the focusgroup short out of a bunch of groups
+ *
+ * First looks up if one of the given groups is a focusgroup (i.e. is a parent of a group).
+ * Then gives back the cck field value of fgident.
+ * Used because we want to declare focusgroups by numbers from 1-8, not by their group id.
+ *
+ * @uses nodehierarchy module
+ * @param mixed $gids
+ *   One or more group ids
+ * @return string
+ *   used for css classes, e.g. "fg1"
+ */
+function focus_groups_get_focus_group_short($gids) {
+	$gids = (array)$gids;
+	if (count($gids)==0) {
+		return '';
+	}
+	$query = "SELECT field_fgnumber_value FROM {content_type_focusgroup}
+		WHERE nid =	(SELECT parent FROM {nodehierarchy} WHERE nid IN (" . db_placeholders($gids, 'int') . ") LIMIT 1)
+		OR nid IN (" . db_placeholders($gids, 'int') . ")";
+
+	$result = db_query($query, array_merge($gids, $gids));
+
+	if(($fgident = (int)db_result($result)) && $fgident > 0) {
+		return 'fg' . $fgident;
+	} else {
+		return '';
+	}
+}
+
+
+/**
+ * Implements hook_menu()
+ *
+ * @todo instead of using view paths hardcode wiki, team and downloads
+ * @return array
+ */
+function focus_groups_menu() {
+	$items['node/%node/info'] = array(
+		'title' => 'Info',
+		'type' => MENU_LOCAL_TASK,
+		'page callback' => 'focus_groups_info_tab_call_back',
+		'page arguments' => array(1),
+		'access callback' => 'focus_groups_is_project', // We use the access callback to show additional tabs only on project content types
+		'access arguments' => array(1),
+	);
+
+	$items['node/%node/publications'] = array(
+		'title' => 'Publikationen',
+		'type' => MENU_LOCAL_TASK,
+		'page callback' => 'focus_groups_publications_tab_call_back',
+		'page arguments' => array(1),
+		'access callback' => 'focus_groups_is_project',
+		'access arguments' => array(1),
+	);
+
+	$items['user/%user/publications'] = array(
+		'title' => 'Publikationen',
+		'type' => MENU_LOCAL_TASK,
+		'page callback' => 'focus_groups_publications_tab_call_back',
+		'page arguments' => array(1),
+		'access callback' => 'focus_groups_is_project',
+		'access arguments' => array(1),
+	);
+
+	return $items;
+}
+
+/**
+ * Checks if the given node is a project or focusgroup content type
+ *
+ * @param object $node
+ * @return bool
+ */
+function focus_groups_is_project($node) {
+	if (in_array($node->type, array('project', 'focusgroup'))) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
+ * Page callback function for info tab menu item
+ *
+ * @param array $node
+ * @return string
+ */
+function focus_groups_info_tab_call_back($node) {
+ 	return node_view($node, $teaser = FALSE, $page = FALSE, $links = TRUE);
+}
+
+/**
+ * Page callback function for publications tab menu item
+ *
+ * @return string
+ */
+function focus_groups_publications_tab_call_back() {
+ 	return '<p><em>Kommt in K&uuml;rze.</em></p>';
+}
+
+/**
+ * Adds body classes for node
+ *
+ * @param object $node
+ * @param string $body_classes
+ * @param bool $logged_in
+ * @return string
+ */
+function focus_groups_get_body_classes($node, $body_classes = '') {
+	if(!$node || !isset($node->og_groups)) {
+		return $body_classes;
+	}
+
+	$body_classes = explode(' ', $body_classes);
+	// load color for nodes which belong to a project
+	// add proprietary focusgroup short to color a page
+	if(user_access('view focus group colors') && $fg_short = focus_groups_get_focus_group_short($node->og_groups)) {
+		$body_classes[] = $fg_short;
+	}
+
+	// og adds only one group as og-context, not all of them
+	foreach($node->og_groups as $gid) {
+		$body_classes[] = 'og-context-' . $gid;
+	}
+
+	// load color for focus group
+	if(isset($node->field_fgnumber[0]['value']) && (int)$node->field_fgnumber[0]['value'] > 0 && user_access('view focus group colors')) {
+		$body_classes[] = 'fg' . $node->field_fgnumber[0]['value'];
+	}
+
+	return implode(' ', array_unique($body_classes));
+}
+
+/**
+ * Loads group nodes
+ *
+ * @param array $groups
+ * @param bool $logged_in
+ * @return array
+ */
+function focus_groups_load_group_details($groups) {
+	$return_groups = array();
+
+	if($groups) {
+		foreach($groups as $nid => $g) {
+			$current_group = node_load($nid);
+
+			if($current_group->type == 'focusgroup' && !user_access('view focus groups')) {
+				continue;
+			}
+
+			$return_groups[$current_group->nid] = $current_group;
+		}
+	}
+
+	return $return_groups;
+}
+
+function focus_groups_form_alter(&$form, &$form_state, $form_id){
+  switch($form_id){
+    case 'blog_node_form':
+      $form['field_coautors']['field_coautors_add_more']['#value'] = 'Weitere Autoren hinzufügen';
+      return $form;
+  }
+}

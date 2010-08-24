@@ -1,0 +1,5 @@
+; $Id$
+name = Event Form
+description = Simpliefies the backend event form 
+core = 6.x
+package = Balance Meta
