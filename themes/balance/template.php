@@ -1,5 +1,40 @@
 <?php
 // $Id: template.php,v 1.20 2009/08/26 17:08:19 jmburnz Exp $
+
+/**
+ * Overrides theme_event_ical_link: Format the ical link
+ *
+ * @param path
+ *   The url for the ical feed
+ */
+function balance_event_ical_link($path) {
+	return '';
+}
+
+/**
+ * Overrides theme_event_more_link: the 'read more' link for events
+ *
+ * @param string path
+ *   The url to use for the read more link
+ */
+function balance_event_more_link($path) {
+	return '<div class="more-link">'. l('Alle Termine', $path) .'</div>';
+}
+
+/**
+ * Overrides theme_event_upcoming_item: an individual upcoming event block item
+ *
+ * @param node
+ *   The node to render as an upcoming event
+ */
+function balance_event_upcoming_item($node, $types = array()) {
+	$formatted_date = date('d.m.', strtotime($node->event_start));
+	
+	$output = l($formatted_date . ' | ' . $node->title, 'node/' . $node->nid, array('attributes' => array('title' => $node->title)));
+	return $output;
+}
+
+
 /**
  * Outputs visibility information for a given set of Organic Groups
  * 
