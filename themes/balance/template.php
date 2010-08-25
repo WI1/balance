@@ -51,10 +51,10 @@ function balance_edit_link($node) {
 
 	if(arg(2) != 'edit') {
 		if(node_access('update', $node)) {
-			$output = '<div id="node-edit">' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</div>';
+			$output = '<span id="balance-node-edit">' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</span>';
 		}
 	} else {
-		$output = '<div id="node-edit-back">' . l('Zurück', 'node/' . $node->nid) . '</div>';
+		$output = '<span id="balance-node-edit-back">' . l('Zurück', 'node/' . $node->nid) . '</span>';
 	}
 
 	return $output;
@@ -285,6 +285,21 @@ function phptemplate_group_list_item($g, $withTitle = TRUE, $withCreateLink = TR
 
 
 	return $out;
+}
+
+/**
+ * Outputs a link to write a new og blog post in the active organic group
+ * 
+ * @param object $node
+ */
+function balance_og_add_blog_link($node) {
+	global $user;
+	list($txt, $subscription) = og_subscriber_count_link($node);
+	
+	if(($subscription == 'active' && module_invoke('blog', 'access', 'create', 'blog', $user)) || user_access('administer nodes')) {
+		$links = module_invoke_all('og_create_links', $node);
+		return '<span id="balance-add-blog">' . $links['create_blog'] . '</span>';
+	}
 }
 
 /**

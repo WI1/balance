@@ -90,6 +90,9 @@ $grid = array(
 										<?php print $meta_content; ?>
 									<?php endif; ?>
 									<?php if(isset($node)): ?>
+										<?php if(in_array($node->type, array('project', 'focusgroup'))): ?>
+											<?php print balance_og_add_blog_link($node); ?>
+										<?php endif; ?>
 										<?php print balance_edit_link($node); ?>
 									<?php endif; ?>
 									<?php print $content; ?>
