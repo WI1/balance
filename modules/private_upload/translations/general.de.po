@@ -1,0 +1,249 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright 2009 NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  private_upload.module,v 1.13.2.11 2009/11/29 18:42:14 lynn
+#  private_upload.info,v 1.2.2.2 2008/07/17 19:51:24 starbow
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-12-07 01:06+0100\n"
+"PO-Revision-Date: 2009-12-07 01:10+0100\n"
+"Last-Translator: Thomas Zahreddin <tz@it-arts.org>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: private_upload.module:60
+#, fuzzy
+msgid "Private Uploads"
+msgstr "Hochgeladene Dateien"
+
+#: private_upload.module:61
+msgid "Configure settings for private file upload."
+msgstr ""
+
+#: private_upload.module:108;121;152;166;176;190;212
+#: private_upload.info:0
+#, fuzzy
+msgid "Private Upload"
+msgstr "Dateien hochladen"
+
+#: private_upload.module:419
+msgid "Private Upload cannot find privacy settings."
+msgstr ""
+
+#: private_upload.module:425
+msgid "Adjusting private_upload's weight to !new_weight"
+msgstr ""
+
+#: private_upload.module:429
+msgid "Please check for modules that conflicts with Private Upload."
+msgstr ""
+
+#: private_upload.module:474
+#, fuzzy
+msgid "Private Upload Settings"
+msgstr "Einstellungen private Nachrichten"
+
+#: private_upload.module:482
+#, fuzzy
+msgid "Private Upload Path"
+msgstr "Pfad zum nicht öffentlichen, privaten Dateisystem"
+
+#: private_upload.module:484
+msgid "This folder will be inside of \"!public\"."
+msgstr ""
+
+#: private_upload.module:489
+#, fuzzy
+msgid "Default Upload Privacy Setting"
+msgstr "Der standard Hashalgorithmus wird auf %s (%d) gesetzt\n"
+
+#: private_upload.module:492
+msgid "Are uploads public or private by default?"
+msgstr ""
+
+#: private_upload.module:499
+#, fuzzy
+msgid "Private Upload Status"
+msgstr "Aktualisierungsstatus der Module"
+
+#: private_upload.module:524
+msgid "There are !fs_count files in the private folder, and the DB thinks there are !db_count private files."
+msgstr ""
+
+#: private_upload.module:529
+#, fuzzy
+msgid " Great."
+msgstr "Sehr gut"
+
+#: private_upload.module:533
+msgid "!private_path is not a valid directory (!is)."
+msgstr ""
+
+#: private_upload.module:541
+msgid "There are !count public files attached to private nodes. "
+msgstr ""
+
+#: private_upload.module:544
+msgid "There are no public files attached to private nodes. Great."
+msgstr ""
+
+#: private_upload.module:549
+msgid "Uploaded files in db: !files files attached to !nodes nodes."
+msgstr ""
+
+#: private_upload.module:607
+#, fuzzy
+msgid "Making !filename private"
+msgstr "OG: Gruppe: Privat"
+
+#: private_upload.module:611
+msgid "Could not move %filepath to private directory (fid: %fid attached to node: !nid)."
+msgstr ""
+
+#: private_upload.module:651
+#, fuzzy
+msgid "Delete"
+msgstr "Löschen"
+
+#: private_upload.module:651
+#, fuzzy
+msgid "List"
+msgstr "Liste"
+
+#: private_upload.module:651
+#, fuzzy
+msgid "Private"
+msgstr "Privat"
+
+#: private_upload.module:651
+#, fuzzy
+msgid "Description"
+msgstr "Beschreibung"
+
+#: private_upload.module:651
+#, fuzzy
+msgid "Weight"
+msgstr "Gewichtung"
+
+#: private_upload.module:651;678
+#, fuzzy
+msgid "Size"
+msgstr "Größe"
+
+#: private_upload.module:678
+#, fuzzy
+msgid "Attachment"
+msgstr "Anhang"
+
+#: private_upload.module:787
+msgid "Unable to test file access: !errstr"
+msgstr ""
+
+#: private_upload.module:825
+#, fuzzy
+msgid "Show the true pathname"
+msgstr "Zuletzt verwendeter Pfadname"
+
+#: private_upload.module:826
+#, fuzzy
+msgid "Show the usable pathname"
+msgstr "Zuletzt verwendeter Pfadname"
+
+#: private_upload.module:831
+#, fuzzy
+msgid "All files"
+msgstr "Alle Dateien"
+
+#: private_upload.module:832
+#, fuzzy
+msgid "Listed files"
+msgstr "Aufgelistete Dateien"
+
+#: (duplicate) private_upload.module:110
+#, fuzzy
+msgid "Conflict with Upload Path"
+msgstr "Neuer Pfad mit den aktuellen Werten"
+
+#: (duplicate) private_upload.module:111
+msgid "Private Upload will not work if Upload Path is installed"
+msgstr ""
+
+#: (duplicate) private_upload.module:123
+#, fuzzy
+msgid "Private Downloads directory is not writable"
+msgstr "Das Bilderverzeichnis existiert nicht oder ist schreibgeschützt."
+
+#: (duplicate) private_upload.module:124
+msgid "Please make sure directory !dir exists and is writable."
+msgstr ""
+
+#: (duplicate) private_upload.module:137
+msgid "You have an .htaccess file in private folder. Great."
+msgstr ""
+
+#: (duplicate) private_upload.module:154
+msgid "Private directory is publically accessable!"
+msgstr ""
+
+#: (duplicate) private_upload.module:155
+msgid "Very bad! Your private files are not private!"
+msgstr ""
+
+#: (duplicate) private_upload.module:161
+msgid "Your private folder is not accessable. Great!"
+msgstr ""
+
+#: (duplicate) private_upload.module:168
+#, fuzzy
+msgid "Unable to write test file."
+msgstr "Kann neue Dateitrigger-Datei »%.250s« nicht schreiben"
+
+#: (duplicate) private_upload.module:169
+msgid "Unable to add test file to your private folder. Unable to test security of your private folder!"
+msgstr ""
+
+#: (duplicate) private_upload.module:178
+#: ;192
+#, fuzzy
+msgid "Private Downloads"
+msgstr "Downloads zählen"
+
+#: (duplicate) private_upload.module:179
+msgid "Private Upload will not work with file upload method set to private. Please enable <a href=\"!url\">Public File Transfer</a>."
+msgstr ""
+
+#: (duplicate) private_upload.module:184
+msgid "File download method is set to public. Great."
+msgstr ""
+
+#: (duplicate) private_upload.module:193
+msgid "You have !count old style file(s) listed in the database. "
+msgstr ""
+
+#: (duplicate) private_upload.module:198
+msgid "There are no old-style private files hanging around. Great."
+msgstr ""
+
+#: (duplicate) private_upload.module:214
+msgid "Private Upload is correctly configured and secure."
+msgstr ""
+
+#: private_upload.info:0
+msgid "Allow individual files to be kept in a private file directory."
+msgstr ""
+
+#: private_upload.info:0
+#, fuzzy
+msgid "File management"
+msgstr "Dateiverwaltung"
+
