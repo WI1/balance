@@ -250,6 +250,196 @@ function projecttabs_views_default_views() {
     'weight' => 0,
   ));
   $views[$view->name] = $view;
+  $view = new view;
+$view->name = 'Veranstaltungen_vergangen';
+$view->description = '';
+$view->tag = '';
+$view->view_php = '';
+$view->base_table = 'node';
+$view->is_cacheable = FALSE;
+$view->api_version = 2;
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+$handler = $view->new_display('default', 'Standards', 'default');
+$handler->override_option('sorts', array(
+  'unix_event_start' => array(
+    'order' => 'DESC',
+    'granularity' => 'second',
+    'id' => 'unix_event_start',
+    'table' => 'event',
+    'field' => 'unix_event_start',
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('filters', array(
+  'type' => array(
+    'operator' => 'in',
+    'value' => array(
+      'event' => 'event',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'type',
+    'table' => 'node',
+    'field' => 'type',
+    'relationship' => 'none',
+  ),
+  'unix_event_start' => array(
+    'operator' => '<',
+    'value' => array(
+      'type' => 'offset',
+      'value' => '+1 minute',
+      'min' => '',
+      'max' => '',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'unix_event_start',
+    'table' => 'event',
+    'field' => 'unix_event_start',
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('access', array(
+  'type' => 'none',
+));
+$handler->override_option('cache', array(
+  'type' => 'none',
+));
+$handler->override_option('title', 'Vergangene Veranstaltungen');
+$handler->override_option('header_format', '1');
+$handler->override_option('header_empty', 0);
+$handler->override_option('row_plugin', 'node');
+$handler->override_option('row_options', array(
+  'relationship' => 'none',
+  'build_mode' => 'teaser',
+  'links' => 1,
+  'comments' => 0,
+));
+$handler = $view->new_display('page', 'Seite', 'page_1');
+$handler->override_option('path', 'veranstaltungen_vergangen');
+$handler->override_option('menu', array(
+  'type' => 'none',
+  'title' => '',
+  'description' => '',
+  'weight' => 0,
+  'name' => 'navigation',
+));
+$handler->override_option('tab_options', array(
+  'type' => 'none',
+  'title' => '',
+  'description' => '',
+  'weight' => 0,
+  'name' => 'navigation',
+));
+$handler = $view->new_display('block', 'Block', 'block_1');
+$handler->override_option('block_description', '');
+$handler->override_option('block_caching', -1);
 
+$views[$view->name] = $view;
+
+$view = new view;
+$view->name = 'Veranstaltungen';
+$view->description = '';
+$view->tag = '';
+$view->view_php = '';
+$view->base_table = 'node';
+$view->is_cacheable = FALSE;
+$view->api_version = 2;
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+$handler = $view->new_display('default', 'Standards', 'default');
+$handler->override_option('sorts', array(
+  'unix_event_start' => array(
+    'order' => 'ASC',
+    'granularity' => 'second',
+    'id' => 'unix_event_start',
+    'table' => 'event',
+    'field' => 'unix_event_start',
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('filters', array(
+  'type' => array(
+    'operator' => 'in',
+    'value' => array(
+      'event' => 'event',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'type',
+    'table' => 'node',
+    'field' => 'type',
+    'relationship' => 'none',
+  ),
+  'unix_event_start' => array(
+    'operator' => '>',
+    'value' => array(
+      'type' => 'offset',
+      'value' => '+1 minute',
+      'min' => '',
+      'max' => '',
+    ),
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'unix_event_start',
+    'table' => 'event',
+    'field' => 'unix_event_start',
+    'relationship' => 'none',
+  ),
+));
+$handler->override_option('access', array(
+  'type' => 'none',
+));
+$handler->override_option('cache', array(
+  'type' => 'none',
+));
+$handler->override_option('title', 'Kommende Veranstaltungen');
+$handler->override_option('header', 'Der Förderschwerpunkt führt unter anderem folgende Veranstaltungen durch:
+Forschungsworkshops (inhaltlicher Austausch, Community-Building) Praxistransferworkshops Jahrestagung BALANCEDinnovation (2010, 2012) Veranstaltungen zur Förderung des wissenschaftlichen Nachwuchses');
+$handler->override_option('header_format', '1');
+$handler->override_option('header_empty', 0);
+$handler->override_option('row_plugin', 'node');
+$handler->override_option('row_options', array(
+  'relationship' => 'none',
+  'build_mode' => 'teaser',
+  'links' => 1,
+  'comments' => 0,
+));
+$handler = $view->new_display('page', 'Seite', 'page_1');
+$handler->override_option('path', 'veranstaltungen_kommend');
+$handler->override_option('menu', array(
+  'type' => 'none',
+  'title' => '',
+  'description' => '',
+  'weight' => 0,
+  'name' => 'navigation',
+));
+$handler->override_option('tab_options', array(
+  'type' => 'none',
+  'title' => '',
+  'description' => '',
+  'weight' => 0,
+  'name' => 'navigation',
+));
+$handler = $view->new_display('block', 'Block', 'block_1');
+$handler->override_option('block_description', '');
+$handler->override_option('block_caching', -1);
+
+$views[$view->name] = $view;
   return $views;
 }
