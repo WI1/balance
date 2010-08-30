@@ -99,58 +99,6 @@ $grid = array(
 								<?php print $feed_icons; ?>
 							</div><!-- /content -->
 						</div><!-- /main-squeeze -->
-						<div id="sidebar-right" class="column sidebar grid_<?=$grid['right']?>">
-							<?php if (isset($node->field_projectlogo) && ($projectlogo = $node->field_projectlogo[0])): ?>
-								<div class="logo-title">
-									<?php print l(theme('imagecache', 'pic_2c_square', $projectlogo['filepath']), 'node/' . $node->nid, array('html' => TRUE)) ?>
-								</div>
-							<?php endif; ?>
-
-						<?php if (isset($parent) && $node->type == 'project'): ?>
-							<?php print balance_parent_focusgroup($node, $parent); ?>
-						<?php endif; ?>
-
-						<?php if (isset($authors)): ?>
-							<div class="block" id="authors">
-								<h2>Autoren</h2>
-								<ul class="no-bullets">
-							<?php foreach($authors as $a): ?>
-								<li>
-								<?php print theme('user_picture', $a); ?>
-								<h3><?php print l($a->profile_lastname . ', ' . $a->profile_firstname, 'user/' . $a->uid); ?></h3>
-								<p><?php print $a->profile_title; ?></p>
-								</li>
-							<?php endforeach; ?>
-							<?php if(isset($node->field_coautors)): ?>
-              <?php
-                $coautors = $node->field_coautors;
-                if(is_array($coautors)):
-                  foreach($coautors as $coautor):
-                    if($coautor['uid'] == '') continue;
-                    $coautor = user_load($coautor['uid']); ?>
-                      <li>
-                      <?php print theme('user_picture', $coautor); ?>
-                      <h3><?php print l($coautor->profile_lastname . ', ' . $coautor->profile_firstname, 'user/' . $coautor->uid); ?></h3>
-                      <p><?php print $coautor->profile_title; ?></p>
-                      </li>
-                  <?php endforeach; ?>
-								<?php endif; ?>
-							<?php endif; ?>
-								</ul>
-							</div>
-
-							<?php if(isset($related_groups)): ?>
-								<div class="block" id="related_groups">
-									<h2>Gruppen dieses Beitrags</h2>
-									<ul class="no-bullets">
-								    <?php foreach($related_groups as $g): ?>
-										<li><?php print phptemplate_group_list_item($g); ?></li>
-									<?php endforeach; ?>
-									</ul>
-								</div>
-							<?php endif; ?>
-						<?php endif; ?>
-						</div><!-- /right -->
 					</div><!-- main -->
 				</div><!-- /container -->
 				<div class="clear"></div>
