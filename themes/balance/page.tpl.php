@@ -165,7 +165,7 @@ $grid = array(
 						<?php print $project_sidebar; ?>
 						</div>
 						<?php endif; ?>
-						<?php if (!empty($right)): ?>
+						<?php if (!empty($right) && $node->type != 'project'): ?>
 							<?php print $right; ?>
 						<?php endif; ?>
 						</div><!-- /right -->
