@@ -672,6 +672,11 @@ color: #666;
 font-size: 11px;
 float: right;
 }
+
+#balance-node-edit {
+float: right; background-color: #eee; position: relative; top: -1.2em; right: -1.4em; padding: 0.2em 0.6em 0.2em 0.4em;
+}
+
 body.front .node .title,
 body.front .story .taxonomy {
 display: none;
