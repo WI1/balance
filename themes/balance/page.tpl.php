@@ -4,6 +4,7 @@ $grid = array(
 	'left' => 2,
 	'middle' => 10,
 	'right' => 0,
+	);
 } else {
 $grid = array(
 	'left' => 2,
