@@ -51,7 +51,7 @@ function balance_edit_link($node) {
 
 	if(arg(2) != 'edit') {
 		if(node_access('update', $node)) {
-			$output = '<span id="balance-node-edit">' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</span>';
+			$output = '<span id="balance-node-edit"><span class="famfam active famfam-cog_edit">' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</span>';
 		}
 	} else {
 		$output = '<span id="balance-node-edit-back">' . l('Zurück', 'node/' . $node->nid) . '</span>';
