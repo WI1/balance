@@ -5,8 +5,8 @@
 .famfam.inactive{background-image: url('images/famfamfam-silk-sprites/famfam-inactive.png'); cursor:default;}
 
 /* icon set items - include only the rules for the icons you wish to use in your page*/
-.famfam-accept {background-position: -0px -0px;}
-.famfam-add {background-position: -20px -0px;}
+.famfam-accept, .balance-save-node {background-position: -0px -0px;}
+.famfam-add, .balance-add-node {background-position: -20px -0px;}
 .famfam-anchor {background-position: -40px -0px;}
 .famfam-application {background-position: -60px -0px;}
 .famfam-application_add {background-position: -80px -0px;}
