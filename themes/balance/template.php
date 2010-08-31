@@ -298,7 +298,7 @@ function balance_og_add_blog_link($node) {
 	
 	if(($subscription == 'active' && module_invoke('blog', 'access', 'create', 'blog', $user)) || user_access('administer nodes')) {
 		$links = module_invoke_all('og_create_links', $node);
-		return '<span class="famfam active node-add"></span><span id="balance-node-blog-add">' . $links['create_blog'] . '</span>';
+		return '<span class="famfam active add-node"></span><span id="balance-add-node">' . $links['create_blog'] . '</span>';
 	}
 }
 
