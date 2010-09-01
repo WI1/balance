@@ -673,12 +673,17 @@ font-size: 11px;
 float: right;
 }
 
-#balance-node-edit {
-float: right; background-color: #eee; position: relative; top: -1.2em; right: -1.4em; padding: 0.2em 0.6em 0.2em 0.4em;
+#balance-node-edit, #balance-user-edit {
+float: right; 
+background-color: #eee; 
+position: relative; 
+top: -1.2em; 
+right: -1.4em; 
+padding: 0.2em 0.6em 0.2em 0.4em;
 }
 
-#balance-node-edit a {
-vertical-align: middle;
+#balance-node-edit a, #balance-user-edit a {
+vertical-align: middle !important;
 }
 
 body.front .node .title,
