@@ -74,17 +74,18 @@ function balance_edit_link($node) {
  *   parent node
  */
 function balance_parent_focusgroup($node, $parent) {
-	echo '<div>';
-	echo "<b>Ansprechpartner</b><br>";
-	if($node->picture){
-		echo '<img src="/'.$node->picture.'"><br>';
-	}
-	echo $node->name."<br>";
-	$userobj = unserialize($node->data);
-	echo "Telefon: ".$userobj['addresses']['phone']."<br>";
-	$userurl = drupal_get_path_alias('user/'.$node->uid);
-	echo '<a href="/'.$userurl.'/contact">Kontaktieren</a>';
-	echo "</div><br>";
+	
+	//echo '<div>';
+	//echo "<b>Ansprechpartner</b><br>";
+	//if($node->picture){
+	//	echo '<img src="/'.$node->picture.'"><br>';
+	//}
+	//echo $node->name."<br>";
+	//$userobj = unserialize($node->data);
+	//echo "Telefon: ".$userobj['addresses']['phone']."<br>";
+	//$userurl = drupal_get_path_alias('user/'.$node->uid);
+	//echo '<a href="/'.$userurl.'/contact">Kontaktieren</a>';
+	//echo "</div><br>";
 
 	if($parent && user_access('view focusgroups')) {
 
