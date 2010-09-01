@@ -49,6 +49,10 @@ function balance_visibility($groups) {
 function balance_edit_link($node) {
 	$output = '';
 
+	if(in_array($node->type, array('project', 'focusgroup')) && arg(2) != 'info') {
+		return '';
+	}
+
 	if(arg(2) != 'edit') {
 		if(node_access('update', $node)) {
 			$output = '<div id="balance-node-edit"><span class="famfam active famfam-cog_edit"></span>' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</div>';
