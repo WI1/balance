@@ -683,7 +683,8 @@ padding: 0.2em 0.6em 0.2em 0.4em;
 }
 
 #balance-node-edit a, #balance-user-edit a {
-vertical-align: middle !important;
+margin-left:2px;
+vertical-align:super;
 }
 
 body.front .node .title,
