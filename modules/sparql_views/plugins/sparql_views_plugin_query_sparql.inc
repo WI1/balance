@@ -194,7 +194,7 @@ class sparql_views_plugin_query_sparql extends views_plugin_query {
    * Builds the necessary info to execute the query.
    */
   function build(&$view) {
-    $this->init_pager($view);
+    $views->init_pager();
     if ($this->pager->use_pager()) {
       $this->pager->set_current_page($view->current_page);
     }
