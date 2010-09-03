@@ -51,11 +51,11 @@ class sparql_views_plugin_query_sparql extends views_plugin_query {
     return "";
   }
 
-  /*
+  
   function use_pager() {
     return FALSE;
   }
-*/
+
   /**
    * Generate a query and a countquery from all of the information supplied
    * to the object.
@@ -195,7 +195,7 @@ class sparql_views_plugin_query_sparql extends views_plugin_query {
    * Builds the necessary info to execute the query.
    */
   function build(&$view) {
-    $views->init_pager();
+    $view->init_pager();
     if ($this->pager->use_pager()) {
       $this->pager->set_current_page($view->current_page);
     }
