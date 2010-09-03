@@ -51,10 +51,11 @@ class sparql_views_plugin_query_sparql extends views_plugin_query {
     return "";
   }
 
+  /*
   function use_pager() {
     return FALSE;
   }
-
+*/
   /**
    * Generate a query and a countquery from all of the information supplied
    * to the object.
