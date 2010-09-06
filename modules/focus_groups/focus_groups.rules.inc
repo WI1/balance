@@ -6,19 +6,19 @@ function focus_groups_action_info() {
 	return array(
 		'focus_groups_subscribe_user_action' => array(
 			'description' => t('Subscribe user to the focus group of the context group'),
-			'type' => 'node',
+			'type' => 'user',
 			'configurable' => FALSE,
 			'hooks' => array('any' => TRUE),
 		),
 		'focus_groups_simplenews_subscribe_action' => array(
 			'description' => t('Subscribe user to the newsletter of the context group'),
-			'type' => 'node',
+			'type' => 'user',
 			'configurable' => FALSE,
 			'hooks' => array('any' => TRUE),
 		),
 		'focus_groups_simplenews_unsubscribe_action' => array(
 			'description' => t('Unsubscribe user from the newsletter of the context group'),
-			'type' => 'node',
+			'type' => 'user',
 			'configurable' => FALSE,
 			'hooks' => array('any' => TRUE),
 		)
@@ -28,42 +28,65 @@ function focus_groups_action_info() {
 /**
  * Subscribes a user to a focus group of the given group
  */
-function focus_groups_subscribe_user_action($object, $context) {
-	global $user;
-	
-	if($focus_group_id = focus_groups_get_parent($object->nid)) {
-		og_save_subscription($focus_group_id, $user->uid, array('is_active' => 1));
-		watchdog('action', 'Subscribed user id %id to focus group %fg.', array('%id' => $user->uid, '%fg' => $focus_group_id));
+function focus_groups_subscribe_user_action($account, $context) {
+	xdebug_break(); // FIXME
+	if($group_id = focus_groups_get_group_id()) {
+		if($focus_group_id = focus_groups_get_parent($group_id)) {
+			og_save_subscription($focus_group_id, $user->uid, array('is_active' => 1));
+			watchdog('focus_groups', 'Subscribed user id %id to focus group %fg.', array('%id' => $account->uid, '%fg' => $focus_group_id));
+		}
 	}
 }
 
 /**
  * Subscribes a user to a newsletter of the given group. If the newsletter doesn't exist already it creates it.
  */
-function focus_groups_simplenews_subscribe_action($object, $context) {
-	global $user;
+function focus_groups_simplenews_subscribe_action($account, $context) {
+	if($group_id = focus_groups_get_group_id()) {
+		$group = node_load($group_id);
 
-	$term = taxonomy_get_term_by_name('Newsletter ' . $object->title);
-	if(!$term){
-		//creating a new term
-		$term = array('name' => 'Newsletter ' . $object->title, 'vid' => 7);
-		taxonomy_save_term($term);
-		$term = taxonomy_get_term_by_name('Newsletter ' . $object->title);
+		$term = taxonomy_get_term_by_name('Newsletter ' . $group->title);
+		if(!$term){
+			//creating a new term
+			$term = array('name' => 'Newsletter ' . $group->title, 'vid' => 7);
+			taxonomy_save_term($term);
+			$term = taxonomy_get_term_by_name('Newsletter ' . $group->title);
+		}
+		$term = array_pop($term);
+		simplenews_subscribe_user($account->mail, $term->tid, false);
+		watchdog('focus_groups', 'Subscribed user id %id to newsletter %newsletter.', array('%id' => $account->uid, '%newsletter' => $group->title));
 	}
-	$term = array_pop($term);
-	simplenews_subscribe_user($user->mail, $term->tid, false);
-	watchdog('action', 'Subscribed user id %id to newsletter %newsletter.', array('%id' => $user->uid, '%newsletter' => $object->title));
 }
 
 /**
  * Unsubscribes a user from a newsletter of the given group.
  */
-function focus_groups_simplenews_unsubscribe_action($object, $context) {
-	global $user;
+function focus_groups_simplenews_unsubscribe_action($account, $context) {
+	if($group_id = focus_groups_get_group_id()) {
+		$group = node_load($group_id);
+
+		if($term = array_pop(taxonomy_get_term_by_name('Newsletter ' . $group->title))) {
+			simplenews_unsubscribe_user($account->mail, $term->tid, false);
+			watchdog('focus_groups', 'Unubscribed user id %id from newsletter %newsletter.', array('%id' => $account->uid, '%newsletter' => $group->title));
+		}
+	}
+}
+
+/**
+ * Get group id from url since i couldn't get it into the context
+ * 
+ * This is an uncool function and works only because for all actions the URL is in the form of /og/approve/55/.
+ * A workaround could be making an actions settings form and insert the group id as a token.
+ */
+function focus_groups_get_group_id() {
+	$group_id = arg(2);
+
+	if(!is_numeric($group_id) || (int)$group_id < 1) {
+		watchdog('focus_groups', 'Group id invalid', array(), WATCHDOG_ERROR);
+		return false;
+	}
 	
-	$term = array_pop(taxonomy_get_term_by_name('Newsletter ' . $object->title));
-	simplenews_unsubscribe_user($user->mail, $term->tid, false);
-	watchdog('action', 'Unubscribed user id %id from newsletter %newsletter.', array('%id' => $user->uid, '%newsletter' => $object->title));
+	return (int)$group_id;
 }
 
 /**
