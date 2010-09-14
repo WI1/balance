@@ -119,6 +119,5 @@
 <?php print $scripts; ?>
 <?php print $closure; ?>
 
-</script> 
 </body>
 </html>
