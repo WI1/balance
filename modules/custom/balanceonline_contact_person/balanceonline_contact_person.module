@@ -1,0 +1,44 @@
+<?php
+
+
+/**
+ * Implementation of hook_block().
+ */
+function balanceonline_contact_person_block($op = 'list', $delta = 0, $edit = array()) {
+  if ($op == 'list') {
+    $blocks[0]['info'] = t('Custom Contact Person');
+    $blocks[0]['cache'] = BLOCK_NO_CACHE;
+    return $blocks;
+  }
+  elseif ($op == 'view') {
+    switch ($delta) {
+      case 0:
+        return balanceonline_contact_person_block_details();
+    }
+  }
+}
+
+function balanceonline_contact_person_block_details() {
+$node_id = arg(1);
+$node = node_load($node_id);
+
+	$content = "";
+	if($node->picture){
+		$content .= theme('imagecache', 'userpic_2c_portrait', '$node->picture', 'Ansprechpartner', 'Ansprechpartner')."<br>";  
+	}
+	$content .= $node->name."<br>";
+	$userobj = unserialize($node->data);
+	if($userobj['addresses']['phone']){
+		$content .= "Telefon: ".$userobj['addresses']['phone']."<br>";
+	}
+	$userurl = drupal_get_path_alias('user/'.$node->uid);
+	 $content .= '<a href="/'.$userurl.'/contact">Kontaktieren</a>';
+	
+	
+	$block['content'] = $content."<br><br>";
+    $block['subject'] = "Ansprechpartner";
+    return $block;
+}
+
+
+?>
