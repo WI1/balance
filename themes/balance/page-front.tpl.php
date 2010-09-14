@@ -118,6 +118,14 @@
 </div><!-- /page -->
 <?php print $scripts; ?>
 <?php print $closure; ?>
+		<script type="text/javascript">
+  $(document).ready(function(){
+     $('.form-select').add('.form-text').change(function(){
+      $('#views-exposed-form-frontpage-page').submit();
 
+ })
+
+  })
+</script> 
 </body>
 </html>
