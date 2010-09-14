@@ -95,7 +95,7 @@ function balance_parent_focusgroup($node, $parent) {
 			echo 'Projekthomepage<br><a href="'.$node->field_projecthomepage[0]['url'].'">'.$node->field_projecthomepage[0]['display_title'].'</a><br><br>';
 		}
 		if($node->field_synopsis[0]['view']){
-			echo "Projektexposé<br>" . $node->field_synopsis[0]['view'];
+			echo "Projektexposé<br>" . $node->field_synopsis[0]['view']."<br>";
 		}
 	}
 }
