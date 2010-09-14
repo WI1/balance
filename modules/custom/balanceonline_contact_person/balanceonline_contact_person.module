@@ -24,10 +24,12 @@ $node = node_load($node_id);
 
 	$content = "";
 	if($node->picture){
-		$content .= theme('imagecache', 'userpic_2c_portrait', '$node->picture', 'Ansprechpartner', 'Ansprechpartner')."<br>";  
+		$content .= theme('imagecache', 'userpic_2c_portrait', $node->picture, 'Ansprechpartner', 'Ansprechpartner')."<br>";  
 	}
-	$content .= $node->name."<br>";
+		
+	
 	$userobj = unserialize($node->data);
+	$content .= $node->name."<br>";
 	if($userobj['addresses']['phone']){
 		$content .= "Telefon: ".$userobj['addresses']['phone']."<br>";
 	}
