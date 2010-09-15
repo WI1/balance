@@ -121,7 +121,7 @@
 		<script type="text/javascript">
   $(document).ready(function(){
      $('.form-select').add('.form-text').change(function(){
-      $('#views-exposed-form-frontpage-page').submit();
+      $('views-exposed-form-frontpage-hack-page').submit();
 
  })
 
