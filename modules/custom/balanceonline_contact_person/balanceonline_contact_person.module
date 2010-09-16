@@ -24,12 +24,14 @@ $node = node_load($node_id);
 
 	$content = "";
 	if($node->picture){
-		$content .= theme('imagecache', 'userpic_2c_portrait', $node->picture, 'Ansprechpartner', 'Ansprechpartner')."<br>";  
+		$content .= theme('imagecache', 'userpic-1c-square', $node->picture, 'Ansprechpartner', 'Ansprechpartner')."<br>";  
 	}
 		
 	
 	$userobj = unserialize($node->data);
-	$content .= $node->name."<br>";
+	
+	$account = user_load(array('uid' => $node->uid));
+	$content .= $account->profile_title.' '.$account->profile_firstname.' '.$account->profile_lastname."<br>";
 	if($userobj['addresses']['phone']){
 		$content .= "Telefon: ".$userobj['addresses']['phone']."<br>";
 	}
