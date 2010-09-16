@@ -29,6 +29,7 @@
  * @ingroup views_templates
  */
 ?>
+<?php $node = node_load($node->nid); ?>
 <div class="<?php print $classes; ?>">
   <?php if ($admin_links): ?>
     <div class="views-admin-links views-hide">
