@@ -1,6 +1,0 @@
-;$Id$
-name = SPARQL Views
-description = Runs a query against a SPARQL endpoint.
-dependencies[] = views
-dependencies[] = rdfx
-core = 6.x
