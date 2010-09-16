@@ -1,0 +1,16 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * SPARQL Views - Exhibit integration
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function sparql_views_exhibit_views_api() {
+  return array(
+    'api' => '3.0-alpha1',
+  );
+}
