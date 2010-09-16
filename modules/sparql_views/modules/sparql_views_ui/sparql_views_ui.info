@@ -1,6 +1,0 @@
-;$Id$
-name = SPARQL Views UI
-description = A JavaScript interface for creating SPARQL queries.
-dependencies[] = sparql_views
-dependencies[] = dialog
-core = 6.x
