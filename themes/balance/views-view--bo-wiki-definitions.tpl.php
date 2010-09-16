@@ -83,7 +83,7 @@
 	 <?php if ($footer): ?>
       <?php print $footer; ?>
 	 <?php endif; ?>
-	  <a href="/node/add/definition?edit[taxonomy][tags][2]=<?php print $node->title[view];?>" class="popups" title="[Popups]">Definition hinzuf&uuml;gen</a>
+	  <a href="/node/add/definition?edit[taxonomy][tags][2]=<?php print $node->title; ?>" class="popups" title="[Popups]">Definition hinzuf&uuml;gen</a>
     </div>
 
 
