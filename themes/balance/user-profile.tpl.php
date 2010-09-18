@@ -23,7 +23,7 @@
 	<?php if($account->profile_twitter): ?><li><?php print l('Twitter Account', sprintf('http://twitter.com/%s', $account->profile_twitter)); ?></li><?php endif; ?>
 	<?php if($account->profile_xing): ?><li><?php print l('XING Account', sprintf('http://www.xing.com/profile/%s', $account->profile_xing)); ?></li><?php endif; ?>
 </ul>
-
+<?php print views_embed_view('bo_user_flagged_items', 'default', $account->uid); ?>
 <?php if(user_edit_access($account)): ?>
   <h2>Angemeldet zu folgenden Veranstaltungen</h2>
 <?php print views_embed_view('signup_current_signups', 'block', $account->uid); ?>
