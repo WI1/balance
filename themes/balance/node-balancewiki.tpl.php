@@ -3,7 +3,7 @@
 		<h2 class="node-title"><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
 	<?php endif; ?>
 <?php if ($links): ?>
-  <span class="links"><?php print $links; ?></span>
+  <div class="links"><?php print $links; ?></div>
 <?php endif; ?>
 
 	<?php if(!$page && isset($focusgroups)): ?>
