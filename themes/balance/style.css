@@ -1065,7 +1065,9 @@ display: none;
 }
 
 body.node-type-balancewiki a.flag-link-toggle {
-border:1px solid #999999;
+background:none repeat scroll 0 0 #243D80;
+border:1px solid #666666;
+color:#FFFFFF;
 font-size:13px;
 font-weight:bold;
 padding:0.5em 1em;
