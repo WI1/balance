@@ -1060,6 +1060,10 @@ position:relative !important;
 top:-200px;
 }
 
+body.node-type-balancewiki div.links .talk_add {
+display: none;
+}
+
 body.node-type-balancewiki a.flag-link-toggle {
 border:1px solid #999999;
 font-size:13px;
