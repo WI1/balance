@@ -10,7 +10,7 @@ function balanceonline_og_like_install() {
         $max++;
 	}
 	variable_set('og_user_roles_counter', $max);
-        db_query("UPDATE {system} SET weigth = 20 WHERE name = 'og_user_roles'");
+        db_query("UPDATE {system} SET weight = 20 WHERE name = 'og_user_roles'");
 }
 
 function balanceonline_og_like_uninstall() {
