@@ -9,7 +9,8 @@ function balanceonline_og_like_install() {
 		db_query("INSERT INTO {og_users_roles} (uid,rid,gid,ogr_id) VALUES (%d, %d, %d, %d)", $role->uid, $groupid, $role->nid, $max);
         $max++;
 	}
-	variable_set('og_user_roles_counter', $max);   
+	variable_set('og_user_roles_counter', $max);
+        db_query("UPDATE {system} SET weigth = 20 WHERE name = 'og_user_roles'");
 }
 
 function balanceonline_og_like_uninstall() {
