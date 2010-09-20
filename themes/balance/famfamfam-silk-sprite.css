@@ -943,8 +943,8 @@
 .famfam-textfield_delete {background-position: -300px -460px;}
 .famfam-textfield_key {background-position: -320px -460px;}
 .famfam-textfield_rename {background-position: -340px -460px;}
-.famfam-thumb_down {background-position: -360px -460px;}
-.famfam-thumb_up {background-position: -380px -460px;}
+.famfam-thumb_down, .balance-dislike {background-position: -360px -460px;}
+.famfam-thumb_up, .balance-like {background-position: -380px -460px;}
 .famfam-tick {background-position: -400px -460px;}
 .famfam-time {background-position: -420px -460px;}
 .famfam-time_add {background-position: -440px -460px;}

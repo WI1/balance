@@ -128,6 +128,20 @@ clear: both;
 padding: 0 0 1em 0;
 }
 
+#sidebar-left .group-list-item  a {
+float: left;
+}
+
+#sidebar-left .group-list-item  ul {
+float: left;
+list-style-type: none;
+}
+
+#sidebar-left .group-list-item  ul  li {
+margin-left: 1em;
+}
+
+
 #block-focus_groups-0  h2 {
 background-color: transparent;
 color: #bbb;
@@ -733,6 +747,18 @@ clear: both;
 /*************************/
 /***** Profile	    ******/
 /*************************/
+#sidebar-left .group-list-item  a {
+float: left;
+}
+
+#sidebar-left .group-list-item  ul {
+float: left;
+list-style-type: none;
+}
+
+#sidebar-left .group-list-item  ul  li {
+margin-left: 1em;
+}
 
 /* User List */
 #profile .profile {
