@@ -749,6 +749,8 @@ clear: both;
 /*************************/
 #sidebar-left .group-list-item  a {
 float: left;
+width: 32px;
+height: 32px;
 }
 
 #sidebar-left .group-list-item  ul {
