@@ -1,5 +1,6 @@
 ; $Id$
 name = OG Like Funktion
 description = OG Like Funktion
+dependencies[] = og_user_roles
 core = 6.x
 package = Custom
