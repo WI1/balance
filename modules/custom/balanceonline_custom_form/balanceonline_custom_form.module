@@ -1,0 +1,19 @@
+<?php
+/**
+ * Implementation of hook_form().
+ */
+function balanceonline_custom_form_form_alter(&$form,$form_state,$form_id){
+	global $user;
+	if( $form_id == 'project_node_form') {
+		if (in_array('Project Administrators', array_values($user->roles))) {
+			unset($form['path']);
+			unset($form['og_user_roles_logo']);
+			unset($form['og_user_roles_links_gid']);
+			unset($form['og_user_roles_nopublic_gid']);
+			unset($form['book']);
+			unset($form['comment_settings']);
+			unset($form['attachments']);
+		}
+	}	
+}
+?>
