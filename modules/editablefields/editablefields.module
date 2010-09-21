@@ -167,6 +167,9 @@ function editablefields_forms() {
 function editablefields_form_builder(&$form_state, $node, $field_name, $delta) {
   $field = content_fields($field_name);
 
+  $node_options = variable_get('node_options_'. $node->type, array('status', 'promote'));
+  $node->revision = in_array('revision', $node_options);
+
   $form = array('#node' => $node);
 //  $form_state = array('values' => array($field['field_name'] => $default_value));
   module_load_include('inc', 'content', 'includes/content.node_form');

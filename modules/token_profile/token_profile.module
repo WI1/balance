@@ -1,5 +1,5 @@
 <?php
-// $Id: token_profile.module,v 1.2 2010/04/27 17:18:01 fizk Exp $
+// $Id: token_profile.module,v 1.2.2.1 2010/07/29 14:46:32 fizk Exp $
 /**
  * @file
  * Provides profile tokens in Drupal 6.
@@ -29,17 +29,16 @@ function token_profile_token_values($type, $object = NULL) {
         $account = $object;
         break;
       case 'node':
-        global $user;
-        $account = $user;
+        $account = user_load($object->uid);
         break;
     }
 
     profile_load_profile($account);
-    $fields = _profile_token_profile_fields();
+    $fields = _token_profile_profile_fields();
 
     foreach ($fields as $name => $field) {
       $field->value = $account->$name;
-      $values[$type . ':' . $name] = _profile_token_format_field($field);
+      $values[$type . ':' . $name] = _token_profile_format_field($field);
     }
   }
 
@@ -53,7 +52,7 @@ function token_profile_token_list($type = 'all') {
   if ($type == 'node' || $type == 'user' || $type == 'all') {
     $show_user = ($type == 'user' || $type == 'all');
     $show_node = ($type == 'node' || $type == 'all');
-    $fields = _profile_token_profile_fields();
+    $fields = _token_profile_profile_fields();
     $tokens = array();
 
     foreach ($fields as $name => $field) {
@@ -64,11 +63,12 @@ function token_profile_token_list($type = 'all') {
         $tokens['user']['user:' . $name] = $field->title;
       }
     }
+
     return $tokens;
   }
 }
 
-function _profile_token_profile_fields() {
+function _token_profile_profile_fields() {
   static $fields;
 
   if (!isset($fields)) {
@@ -82,7 +82,7 @@ function _profile_token_profile_fields() {
   return $fields;
 }
 
-function _profile_token_format_field($field) {
+function _token_profile_format_field($field) {
   switch ($field->type) {
     case 'checkbox':
       return ($field->value) ? check_plain($field->title) : '';

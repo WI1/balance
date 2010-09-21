@@ -375,6 +375,7 @@ $header = array('', t('Description'),t('Delete'));
   return $output;
 
 }
+
 function balance_upload_form_new(&$form) {
         $files = & $form['files'];
         $files['#weight']=10;
@@ -387,4 +388,8 @@ function balance_upload_form_new(&$form) {
         $output = drupal_render($form);
         return $output;
 
+}
+
+function phptemplate_preprocess_flag(&$vars) {
+  //$vars['link_text'] = '<span class="famfam active balance-like></span>';
 }

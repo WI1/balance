@@ -6,9 +6,9 @@ php = 5.1
 dependencies[] = 'profile'
 dependencies[] = 'token'
 
-; Information added by drupal.org packaging script on 2010-04-28
-version = "6.x-1.x-dev"
+; Information added by drupal.org packaging script on 2010-07-29
+version = "6.x-1.0-beta1"
 core = "6.x"
 project = "token_profile"
-datestamp = "1272413807"
+datestamp = "1280416209"
 
