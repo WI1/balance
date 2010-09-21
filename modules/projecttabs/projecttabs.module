@@ -37,7 +37,7 @@ function projecttabs_menu_alter(&$items) {
 	$items['user/%user/notifications'] = null;
 	$items['og/activity'] = null;
 	$items['user/%user_category/edit']['type'] = MENU_CALLBACK;
-	$items['node/%node/edit']['type'] = MENU_CALLBACK;
+	//$items['node/%node/edit']['type'] = MENU_CALLBACK;
 	$items['user/%user/contact']['type'] = MENU_CALLBACK;
 
 	// profileplus adds it own user search tab
