@@ -24,4 +24,5 @@ scripts[] = scripts.js
 
 admin[admin_inline] = 0
 
+stylesheets[all][] = style.css
 stylesheets[all][] = http://www.byte-box.com/projekte/balanceonline/bytebox/update.css
