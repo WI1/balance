@@ -1,0 +1,8 @@
+<?php
+function balanceonline_custom_form_install() {
+  db_query("UPDATE {system} SET weight = 21 WHERE name = 'balanceonline_custom_form'");
+}
+function balanceonline_custom_form_uninstall() {
+}
+
+?>
