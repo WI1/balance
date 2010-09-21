@@ -114,6 +114,7 @@ function theme_editablefields_formatter_editable($element) {
           'url_submit' => url('editablefields_submit', array('absolute' => TRUE)),
           'url_view' => url('editablefields_view', array('absolute' => TRUE)),
           'clicktoedit_message' => '<div class="editablefields_clicktoedit_message">'. t('[edit]') .'</div>',
+		  'clicktosave_message' => '<div class="editablefields_clicktosave_message">'. t('[save]') .'</div>',
         );
         drupal_add_js(array('editablefields' => $settings), 'setting');
       }
