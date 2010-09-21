@@ -1,0 +1,73 @@
+<?php
+// $Id: modalframe_locale.module,v 1.1.2.1 2010/01/03 13:14:55 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens string related forms implemented by the translation search interface
+ * in modal frames.
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_locale_init() {
+  if (!empty($_COOKIE['has_js'])) {
+    if ($_GET['q'] == 'admin/build/translate/search') {
+      modalframe_parent_js();
+      drupal_add_js(drupal_get_path('module', 'modalframe_locale') .'/modalframe_locale.js');
+    }
+    elseif (!empty($_GET['modalframe']) && preg_match('`^admin/build/translate/(?:edit|delete)/[0-9]+$`', $_GET['q'])) {
+      modalframe_child_js();
+    }
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function modalframe_locale_form_alter(&$form, $form_state, $form_id) {
+  static $js_settings;
+  if (!empty($_COOKIE['has_js'])) {
+    if ($form_id == 'locale_translate_seek_form') {
+      $limit_language = (!empty($form['search']['language']['#default_value']) ? $form['search']['language']['#default_value'] : 'all');
+      if ($limit_language != 'en' && $limit_language != 'all') {
+        if (!isset($js_settings)) {
+          $js_settings = array('language' => $limit_language);
+          drupal_add_js(array('modalFrameLocale' => $js_settings), 'setting');
+        }
+      }
+    }
+    elseif (!empty($_GET['modalframe']) && in_array($form_id, array('locale_translate_edit_form', 'locale_translate_delete_form'))) {
+      if (!empty($_GET['modalframe-language'])) {
+        $form['modalframe-language'] = array('#type' => 'value', '#value' => $_GET['modalframe-language']);
+      }
+      $form['#submit'][] = 'modalframe_locale_form_submit';
+
+      // For delete forms, render the page title in the content area as well.
+      if ($form_id == 'locale_translate_delete_form') {
+        $form['#prefix'] = '<h2 class="title">'. drupal_get_title() .'</h2>';
+      }
+    }
+  }
+}
+
+/**
+ * Process the string related forms implemented by the translation interface.
+ */
+function modalframe_locale_form_submit($form, &$form_state) {
+  $form_values = $form_state['values'];
+  $modalframe_args = array(
+    'submitted' => TRUE,
+  );
+  if ($form_values['form_id'] == 'locale_translate_edit_form') {
+    // Rebuild the list of languages in the search results page for this string.
+    $translations = array();
+    $result = db_query('SELECT language, translation FROM {locales_target} WHERE lid = %d', $form_values['lid']);
+    while ($row = db_fetch_object($result)) {
+      $translations[$row->language] = $row->translation;
+    }
+    $limit_language = (!empty($form_values['modalframe-language']) ? $form_values['modalframe-language'] : FALSE);
+    $modalframe_args['languages'] = _locale_translate_language_list($translations, $limit_language);
+  }
+  modalframe_close_dialog($modalframe_args);
+}

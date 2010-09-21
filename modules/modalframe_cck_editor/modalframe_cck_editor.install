@@ -1,0 +1,47 @@
+<?php
+// $Id: modalframe_cck_editor.install,v 1.1.2.1 2010/01/16 10:32:59 markuspetrux Exp $
+
+/**
+ * @file
+ * Module installation hooks.
+ */
+
+/**
+ * Implementation of hook_enable().
+ */
+function modalframe_cck_editor_enable() {
+  // Alter the weight of our module to load between CCK and Fieldgroup modules.
+  // Fielgroup module weight is higher than CCK, so it's ok to base our weight
+  // on just one of the these modules.
+  $weight = (int)db_result(db_query("SELECT weight FROM {system} WHERE type = 'module' AND name = 'content'"));
+  db_query("UPDATE {system} SET weight = %d WHERE type = 'module' AND name = 'modalframe_cck_editor'", ($weight + 1));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function modalframe_cck_editor_uninstall() {
+  // Delete all module variables and then clear the variable cache.
+  db_query("DELETE FROM {variable} WHERE name LIKE 'modalframe\_cck\_editor\_settings\_%%'");
+  cache_clear_all('variables', 'cache');
+}
+
+/**
+ * Change the name of the module variables from modalframe_cck_editor_status_*
+ * to modalframe_cck_editor_settings_*.
+ */
+function modalframe_cck_editor_update_6000() {
+  $ret = array();
+  $result = db_query("SELECT name FROM {variable} WHERE name LIKE 'modalframe\_cck\_editor\_status\_%%'");
+  while ($variable_old = db_result($result)) {
+    $variable_new = preg_replace('`^(modalframe_cck_editor_)status(.*)$`', '$1settings$2', $variable_old);
+    $value = variable_get($variable_old, array());
+    variable_del($variable_old);
+    variable_set($variable_new, $value);
+    $ret[] = array(
+      'success' => TRUE,
+      'query' => strtr('Module variable renamed from @old to @new.', array('@old' => $variable_old, '@new' => $variable_new)),
+    );
+  }
+  return $ret;
+}

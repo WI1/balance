@@ -1,0 +1,14 @@
+; $Id: modalframe_dblog.info,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+name = Modal Frame DB Log Details
+description = Opens details of watchdog entries managed by the database logging module in modal frames.
+package = Modal frame
+dependencies[] = modalframe
+dependencies[] = dblog
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-01-17
+version = "6.x-1.0"
+core = "6.x"
+project = "modalframe_contrib"
+datestamp = "1263747306"
+

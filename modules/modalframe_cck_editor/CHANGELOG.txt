@@ -1,0 +1,21 @@
+// $Id: CHANGELOG.txt,v 1.1.2.9 2010/01/21 08:09:20 markuspetrux Exp $
+
+6.x-1.0 (2010-01-21)
+====================
+
+This is the first stable release of the Modal Frame CCK Editor module. Notes below detail changes made since initial checkin to CVS.
+
+- Initial release for testing.
+- Prevent from sending Drupal.settings more than once to the page.
+- Externalize the real code into separate include files to minimize memory consumption when module features are not in use. When you have a lot of modules, every little bit helps.
+- Do not apply Drupal.checkPlain() to button title because this is already done using Drupal.t() with the @ placeholder.
+- Ignore field group from view processing if access to the content element has been denied.
+- Implement hook_content_fieldapi() and hook_node_type() to clean up possible variables related to our module features, if any.
+- Added an option to reload the page after a successful edit operation.
+- Implement a method to allow external modules implement additional features during onSubmit callback processing of the modal frame.
+- If the field group is collapsible, make sure we do not render it collapsed.
+- Typo in hook name. I forgot to add the _alter suffix. Oops!
+- Fix the method used to hide elements in the node edit form.
+- #687144 Provide support to edit individual fields in modal frames as well.
+- It should not be possible to allow edition of fields that are part of a multigroup. This is because delta values for fields in multigroups must be in sync with each other.
+- Adjust the page title of the (partial) node edit form in the modal frame to reflect we're just editing a field or field group.

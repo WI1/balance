@@ -1,0 +1,30 @@
+/* $Id: modalframe_blocks.css,v 1.1.2.2 2010/01/02 05:57:49 markuspetrux Exp $ */
+
+.modalframe-blocks-message {
+  padding: 1em;
+}
+.modalframe-blocks-messages .modalframe-blocks-message {
+  padding: 0;
+}
+.modalframe-blocks-configure-button {
+  visibility: hidden;
+  float: right;
+  font-size: .9em;
+}
+html.js .modalframe-blocks-block-hover .modalframe-blocks-configure-button {
+  visibility: visible;
+}
+html.js .modalframe-blocks-configure-button span {
+  display: none;
+}
+html.js .modalframe-blocks-configure-button a {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: transparent url(../images/configure.png) no-repeat 0 0;
+  text-decoration: none;
+}
+html.js .modalframe-blocks-configure-button a:hover {
+  background-position: 0 -16px;
+  text-decoration: none;
+}

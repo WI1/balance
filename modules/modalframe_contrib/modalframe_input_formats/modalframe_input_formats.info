@@ -1,0 +1,14 @@
+; $Id: modalframe_input_formats.info,v 1.1.2.1 2010/01/06 20:32:14 markuspetrux Exp $
+name = Modal Frame Input Formats
+description = Opens input format administration forms (including support for Better Formats module) in modal frames.
+package = Modal frame
+dependencies[] = modalframe
+dependencies[] = filter
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-01-17
+version = "6.x-1.0"
+core = "6.x"
+project = "modalframe_contrib"
+datestamp = "1263747306"
+

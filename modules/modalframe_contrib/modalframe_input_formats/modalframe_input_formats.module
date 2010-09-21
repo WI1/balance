@@ -1,0 +1,49 @@
+<?php
+// $Id: modalframe_input_formats.module,v 1.1.2.1 2010/01/06 20:32:14 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens input format administration forms (including support for Better
+ * Formats module) in modal frames.
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_input_formats_init() {
+  if (!empty($_COOKIE['has_js'])) {
+    if (preg_match('`^admin/settings/filters(?:/list)?$`', $_GET['q'])) {
+      modalframe_parent_js();
+      drupal_add_js(drupal_get_path('module', 'modalframe_input_formats') .'/modalframe_input_formats.js');
+    }
+    elseif (!empty($_GET['modalframe']) && preg_match('`^admin/settings/filters/(?:add|defaults|settings|[0-9]+|[0-9]+/(?:edit|configure|order)|delete/[0-9]+)$`', $_GET['q'])) {
+      modalframe_child_js();
+    }
+  }
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function modalframe_input_formats_theme() {
+  return array('modalframe_input_formats_admin_overview' => array('form' => array(), 'file' => 'modalframe_input_formats.admin.inc'));
+}
+
+/**
+ * Implementation of hook_theme_registry_alter().
+ */
+function modalframe_input_formats_theme_registry_alter(&$theme_registry) {
+  // Replace original theme entry with our own.
+  variable_set('modalframe_input_formats_theme_entry', $theme_registry['filter_admin_overview']);
+  $theme_registry['filter_admin_overview'] = $theme_registry['modalframe_input_formats_admin_overview'];
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function modalframe_input_formats_form_alter(&$form, $form_state, $form_id) {
+  if (!empty($_COOKIE['has_js']) && (strpos($form_id, 'filter_admin_') === 0 || strpos($form_id, 'better_formats_') === 0)) {
+    module_load_include('inc', 'modalframe_input_formats', 'modalframe_input_formats.admin');
+    _modalframe_input_formats_form_alter($form, $form_state, $form_id);
+  }
+}

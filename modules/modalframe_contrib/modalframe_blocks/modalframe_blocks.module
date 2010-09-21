@@ -1,0 +1,167 @@
+<?php
+// $Id: modalframe_blocks.module,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens block settings pages in modal frames.
+ */
+
+/**
+ * Implementation of hook_theme().
+ */
+function modalframe_blocks_theme() {
+  return array(
+    'modalframe_blocks_configure_button' => array(
+      'arguments' => array('block' => NULL),
+    ),
+  );
+}
+
+/**
+ * Process variables for block.tpl.php
+ */
+function modalframe_blocks_preprocess_block(&$variables) {
+  if (user_access('administer blocks')) {
+    $block_field = (!empty($variables['block']->subject) ? 'subject' : (!empty($variables['block']->content) ? 'content' : ''));
+    if (!empty($block_field)) {
+      modalframe_blocks_active_region($variables['block']->region, FALSE);
+      $variables['block']->$block_field = theme('modalframe_blocks_configure_button', $variables['block']) . $variables['block']->$block_field;
+    }
+  }
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_blocks_init() {
+  if (!empty($_COOKIE['has_js'])) {
+    if (preg_match('`^admin/build/block(?:/(?:list(?:/(?:[_a-z0-9]+)?)?)?)?$`', $_GET['q'])) {
+      modalframe_blocks_add_js('parent');
+    }
+    elseif (preg_match('`^admin/build/block/(?:configure/|delete/|add).*$`', $_GET['q'])) {
+      modalframe_blocks_add_js('child');
+    }
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function modalframe_blocks_form_alter(&$form, $form_state, $form_id) {
+  if (!empty($_COOKIE['has_js'])) {
+    if ($form_id == 'block_admin_display_form') {
+      if (!isset($form['#pre_render'])) {
+        $form['#pre_render'] = array();
+      }
+      $form['#pre_render'][] = 'modalframe_blocks_parent_form_pre_render';
+    }
+    elseif (in_array($form_id, array('block_admin_configure', 'block_add_block_form', 'block_box_delete'))) {
+      $form['#submit'][] = 'modalframe_blocks_child_form_submit';
+
+      // Render the page title in the content area as well.
+      if ($form_id == 'block_box_delete') {
+        $form['#prefix'] = '<h2 class="title">'. drupal_get_title() .'</h2>';
+      }
+      if (!empty($_GET['refresh'])) {
+        $form['modalframe_refresh'] = array('#type' => 'value', '#value' => TRUE);
+      }
+    }
+  }
+}
+
+/**
+ * Pre-render callback for the blocks administration form.
+ */
+function modalframe_blocks_parent_form_pre_render($form) {
+  static $processed;
+  if (!isset($processed)) {
+    $processed = TRUE;
+    foreach (array_keys(system_region_list($GLOBALS['theme_key'])) as $region) {
+      modalframe_blocks_active_region($region, FALSE);
+    }
+  }
+  return $form;
+}
+
+/**
+ * Process the block settings or block delete forms.
+ */
+function modalframe_blocks_child_form_submit($form, &$form_state) {
+  $modalframe_args = array(
+    'submitted' => TRUE,
+  );
+  if (!empty($form_state['values']['modalframe_refresh'])) {
+    $region = db_result(db_query("SELECT region FROM {blocks} WHERE module = '%s' AND delta = '%s'", array(
+      $form_state['values']['module'],
+      $form_state['values']['delta'],
+    )));
+    if (!empty($region)) {
+      if (!empty($_GET['modalframe-blocks-path']) && strpos($_GET['modalframe-blocks-path'], 'admin/build/block') !== 0) {
+        modalframe_blocks_active_region($region, FALSE);
+        $current_path = $_GET['q'];
+        $_GET['q'] = $_GET['modalframe-blocks-path'];
+        $modalframe_args['blocks'] = theme('blocks', $region);
+        $_GET['q'] = $current_path;
+      }
+      else {
+        modalframe_blocks_active_region($region, TRUE);
+        $modalframe_args['blocks'] = theme('blocks', $region);
+      }
+      $modalframe_args['region'] = $region;
+    }
+  }
+  modalframe_close_dialog($modalframe_args);
+}
+
+/**
+ * Add javascript and stylesheets to the page.
+ */
+function modalframe_blocks_add_js($mode) {
+  static $parent_processed, $child_processed;
+  $module_path = drupal_get_path('module', 'modalframe_blocks');
+  if ($mode == 'parent') {
+    if (!isset($parent_processed)) {
+      $parent_processed = TRUE;
+      modalframe_parent_js();
+      drupal_add_css($module_path .'/css/modalframe_blocks.css');
+      drupal_add_js($module_path .'/js/parent.js');
+    }
+  }
+  elseif ($mode == 'child') {
+    if (!isset($child_processed)) {
+      $child_processed = TRUE;
+      modalframe_child_js();
+      drupal_add_js($module_path .'/js/child.js');
+    }
+  }
+}
+
+/**
+ * Active a block region for dynamic updates.
+ */
+function modalframe_blocks_active_region($region, $show_demo) {
+  static $region_blocks, $regions = array();
+  if (!isset($regions[$region])) {
+    $regions[$region] = TRUE;
+    if ($show_demo) {
+      if (!isset($region_blocks)) {
+        $region_blocks = system_region_list($GLOBALS['theme_key']);
+      }
+      drupal_set_content($region, '<div class="block-region">'. $region_blocks[$region] .'</div>');
+    }
+    drupal_set_content($region, '<div class="modalframe-blocks-region-'. $region .'"></div>');
+  }
+}
+
+/**
+ * Render the configure block button.
+ */
+function theme_modalframe_blocks_configure_button($block) {
+  modalframe_blocks_add_js('parent');
+  $output = '<div class="modalframe-blocks-configure-button" title="'. check_plain(t('Configure this block.')) .'"><span>[</span>';
+  $path = 'admin/build/block/configure/'. $block->module .'/'. $block->delta;
+  $options = array('query' => 'modalframe-blocks-path='. $_GET['q'], 'html' => TRUE);
+  $output .= l('<span>'. t('configure') .'</span>', $path, $options);
+  $output .= '<span>]</span></div>';
+  return $output;
+}

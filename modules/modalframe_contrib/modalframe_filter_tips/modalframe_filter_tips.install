@@ -1,0 +1,14 @@
+<?php
+// $Id: modalframe_filter_tips.install,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+
+/**
+ * @file
+ * Installation related hooks for the module.
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function modalframe_filter_tips_uninstall() {
+  variable_del('modalframe_filter_tips_theme_entry');
+}

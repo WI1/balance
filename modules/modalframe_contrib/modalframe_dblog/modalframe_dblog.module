@@ -1,0 +1,23 @@
+<?php
+// $Id: modalframe_dblog.module,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens details of watchdog entries managed by the database logging module
+ * in modal frames.
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_dblog_init() {
+  if (!empty($_COOKIE['has_js'])) {
+    if ($_GET['q'] == 'admin/reports/dblog') {
+      modalframe_parent_js();
+      drupal_add_js(drupal_get_path('module', 'modalframe_dblog') .'/modalframe_dblog.js');
+    }
+    elseif (preg_match('`^admin/reports/event/[0-9]+$`', $_GET['q'])) {
+      modalframe_child_js();
+    }
+  }
+}

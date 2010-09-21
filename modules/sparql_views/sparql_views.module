@@ -1,0 +1,142 @@
+<?php
+// $Id$
+
+/**
+ * SPARQL Views
+ *
+ * The SPARQL Views module enables the creation of SPARQL queries in Views.
+ * SPARQL is a query language for accessing RDF datastores, frequently to access
+ * remote datastores using HTTP.
+ */
+
+include_once (drupal_get_path('module', 'rdfx') .'/rdfx.sparql.inc');
+include_once (drupal_get_path('module', 'rdfx') .'/rdfx.import.inc');
+
+/**
+ * Implements hook_views_api().
+ */
+function sparql_views_views_api() {
+  return array(
+    'api' => '3.0-alpha1',
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function sparql_views_menu() {
+  $items['sparql_views/autocomplete/subject-object/%/%'] = array(
+    'title' => 'SPARQL variables autocomplete',
+    'page callback' => 'sparql_views_variables_autocomplete',
+    'access arguments' => array('administer views'),
+    'type' => MENU_CALLBACK,
+    'file' => 'sparql_views.pages.inc',
+  );
+  $items['sparql_views/autocomplete/predicate'] = array(
+    'title' => 'SPARQL variables autocomplete',
+    'page callback' => 'sparql_views_predicates_autocomplete',
+    'access arguments' => array('administer views'),
+    'type' => MENU_CALLBACK,
+    'file' => 'sparql_views.pages.inc',
+  );
+  $items['sparql_views/prefixes/autocomplete'] = array(
+    'title' => 'Endpoint predicate loader',
+    'page callback' => 'sparql_views_autocomplete_prefixes',
+    'access arguments' => array('administer views'),
+    'type' => MENU_CALLBACK,
+    'file' => 'sparql_views.pages.inc',
+  );
+
+  return $items;
+}
+
+function sparql_views_theme($existing, $type, $theme, $path) {
+  $path = drupal_get_path('module', 'sparql_views');
+  $base = array(
+    'path' => "$path/theme",
+  );
+
+  $hooks['sparql_views_ui'] = $base + array(
+    'template' => 'sparql_views_ui',
+    'arguments' => array(),
+  );
+
+  return $hooks;
+}
+
+/*
+ * Helper function to retrieve the variables that have been entered in filters.
+ * These variables are used as the fields in Views.
+ */
+function _sparql_views_get_fields($view = NULL, $display_name = NULL) {
+  $fields = array();
+  $sparql_view_names = array();
+
+  $display_name = ($view != NULL && $display_name == NULL) ? 'default' : $display_name;
+
+  if ($view != NULL) {
+    $prefixes = $view->display[$display_name]->display_options['query']['options']['prefixes'];
+    $select_clause = $view->display[$display_name]->display_options['query']['options']['select_clause'];
+    if ($select_clause == NULL) {
+      $prefixes = $view->display['default']->display_options['query']['options']['prefixes'];
+      $select_clause = $view->display['default']->display_options['query']['options']['select_clause'];
+    }
+    $parsed_clause = _sparql_views_parse_query($prefixes, $select_clause);
+    if (isset($parsed_clause['vars'])) {
+      $fields = $parsed_clause['vars'];
+    }
+  }
+
+  //@todo Move this to _sparql_views_get_all_fields which could be Drupal static.
+  // @todo make logic more elegant.
+  else {
+    $views = views_get_all_views();
+    foreach ($views as $view_name => $view) {
+      $query_type = $view->display['default']->display_options['query']['type'];
+      if ($query_type == 'sparql_query') {
+        foreach ($view->display as $display) {
+          $prefixes = $display->display_options['query']['options']['prefixes'];
+          $select_clause = $display->display_options['query']['options']['select_clause'];
+          if (isset($select_clause)) {
+            $parsed_clause = _sparql_views_parse_query($prefixes, $select_clause);
+            if (isset($parsed_clause['vars'])) {
+              $fields = array_merge($parsed_clause['vars'], $fields);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return $fields;
+}
+
+function _sparql_views_get_prefixes($endpoint = NULL) {
+  $ns_mappings = _sparql_views_fetch_standard_prefixes();
+  if ($endpoint != NULL) {
+    // @todo get the additional prefixes for this endpoint.
+  }
+  // Return as combined prefix => uri and uri => prefix for easy matching.
+  $flipped = array_flip($ns_mappings);
+  $ns_mappings = array_merge($flipped, $ns_mappings);
+  return $ns_mappings;
+}
+
+/*
+ * Get namespace mappings from prefix.cc.
+ */
+function _sparql_views_fetch_standard_prefixes() {
+  // @todo Use Drupal cache.
+  $results = rdfx_fetch_rdf('http://prefix.cc/popular/all.rdf.plain', 'prefix');
+  return $results[1];
+}
+
+function _sparql_views_parse_query($prefixes, $select_clause) {
+  $parser = ARC2::getSPARQLParser();
+  $q = "$prefixes $select_clause";
+  $parser->parse($q);
+  if (!$parser->getErrors()) {
+    $parsed_query = $parser->getQueryInfos();
+  }
+  return $parsed_query;
+}

@@ -1,0 +1,15 @@
+; $Id: modalframe_cck_editor.info,v 1.1.2.2 2010/01/17 14:22:01 markuspetrux Exp $
+name = Modal Frame CCK Editor
+description = Opens edit forms for selected CCK fields or field groups in modal frames from the node view.
+package = Modal frame
+dependencies[] = modalframe
+dependencies[] = content
+dependencies[] = fieldgroup
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-01-21
+version = "6.x-1.0"
+core = "6.x"
+project = "modalframe_cck_editor"
+datestamp = "1264061708"
+

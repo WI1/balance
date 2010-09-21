@@ -1,0 +1,18 @@
+--- ../projectblogs/contributions/modules/rdfproxy/rdfproxy.module	2009-06-21 14:39:53.000000000 +0100
++++ sites/all/modules/contributions/modules/rdfproxy/rdfproxy.module	2009-12-04 11:08:14.000000000 +0000
+@@ -100,6 +100,7 @@ function rdfproxy_lookup($profile) {
+   // Build a node based on the RDF graph.
+   // Get the content type to be created.
+   foreach ($sparql_res as $triple) {
++    $triple = array_values($triple);
+     if ($triple[1] == rdf_qname_to_uri('rdf:type')) {
+       $found = preg_match('/.*#(.*)/', $triple[2], $matches);
+       if (isset($matches[1])) {
+@@ -119,6 +120,7 @@ function rdfproxy_lookup($profile) {
+   foreach ($sparql_res as $triple) {
+     // TODO add check on the site ns.
+     //var_dump($triple);
++    $triple = array_values($triple);
+     $found = preg_match('/.*#[a-z_]*([A-Z])(.*)/', $triple[1], $matches);
+     if ($matches[2]) {
+       $field_name = strtolower($matches[1] . $matches[2]);

@@ -1,0 +1,14 @@
+<?php
+// $Id: modalframe_more_help.install,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+
+/**
+ * @file
+ * Installation related hooks for the module.
+ */
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function modalframe_more_help_uninstall() {
+  variable_del('modalframe_more_help_theme_entry');
+}

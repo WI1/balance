@@ -1,0 +1,15 @@
+Drupal-6--1-0-BETA1
+Updated to work with Popups API 2.0 Alpha4 (now required).
+
+Drupal-6--1-0-ALPHA2
+Bug Fix
+ * node_access('edit') needs to be node_access('update');
+
+Drupal-6--1-0-ALPHA1
+ * First Release
+ * Needs at least Popups API 6.x-2.0-Alpha4 or 6.x-1.3
+TODO
+ * Done - Check permissions when showing edit link!
+ * Shrink the popup if needed.
+ * Error with file upload if "Save" button clicked before "Upload".
+ * Settings page with "Hide Edit" and "Default on/off"?

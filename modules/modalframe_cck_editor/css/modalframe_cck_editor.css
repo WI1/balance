@@ -1,0 +1,14 @@
+/* $Id: modalframe_cck_editor.css,v 1.1.2.1 2010/01/16 10:32:59 markuspetrux Exp $ */
+
+.modalframe-cck-editor-button-edit {
+  display: block;
+  float: right;
+  width: 16px;
+  height: 16px;
+  background: transparent url(../images/edit.png) no-repeat 0 0;
+  text-decoration: none;
+}
+.modalframe-cck-editor-button-edit:hover {
+  background-position: 0 -16px;
+  text-decoration: none;
+}

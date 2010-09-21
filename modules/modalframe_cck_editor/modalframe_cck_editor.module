@@ -1,0 +1,143 @@
+<?php
+// $Id: modalframe_cck_editor.module,v 1.1.2.4 2010/01/18 22:38:54 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens edit forms for selected CCK fields or field groups in modal frames
+ * from the node view.
+ */
+
+/**
+ * Options to process the result of a modal frame operation.
+ *
+ * @see modalframe_cck_editor_fieldgroup_edit_form_alter()
+ * @see modalframe_cck_editor_node_edit_form_submit()
+ */
+define('MODALFRAME_CCK_EDITOR_STATUS_DISABLED', 0);
+define('MODALFRAME_CCK_EDITOR_STATUS_REFRESH_ELEMENT', 1);
+define('MODALFRAME_CCK_EDITOR_STATUS_RELOAD_PAGE', 2);
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_cck_editor_init() {
+  // Enable the Modal Frame API for the child window.
+  if (!empty($_GET['modalframe_cck_editor'])) {
+    modalframe_child_js();
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function modalframe_cck_editor_form_alter(&$form, $form_state, $form_id) {
+  // Alter the field group settings form.
+  if ($form_id == 'fieldgroup_group_edit_form') {
+    module_load_include('inc', 'modalframe_cck_editor', 'includes/admin');
+    modalframe_cck_editor_fieldgroup_edit_form_alter($form);
+  }
+  // Alter the field settings form.
+  elseif ($form_id == 'content_field_edit_form') {
+    if ($form['basic']['field_name']['#type'] == 'hidden') {
+      module_load_include('inc', 'modalframe_cck_editor', 'includes/admin');
+      modalframe_cck_editor_field_edit_form_alter($form);
+    }
+  }
+  // Alter the node edit form.
+  elseif (isset($form['type']) && isset($form['#node']) && $form['type']['#value'] .'_node_form' == $form_id && !empty($_GET['modalframe_cck_editor'])) {
+    module_load_include('inc', 'modalframe_cck_editor', 'includes/node_form');
+    modalframe_cck_editor_node_edit_form_alter($form);
+  }
+}
+
+/**
+ * Proxy function to process the node edit form.
+ *
+ * This proxy function is required because the node edit form is often cached
+ * at Forms API level, and then, since Forms API does not need to rebuild the
+ * form to process the submit request, it does not invoke hook_form_alter(),
+ * which is where we would include our external script where our real submit
+ * callback lives.
+ *
+ * Note that we move our node form related code into a separate script to
+ * save a bit of memory when the feature is not in use, but also because it
+ * makes the code more modular and easier to understand/maintain.
+ */
+function modalframe_cck_editor_node_edit_form_submit_proxy($form, &$form_state) {
+  module_load_include('inc', 'modalframe_cck_editor', 'includes/node_form');
+  modalframe_cck_editor_node_edit_form_submit($form, $form_state);
+}
+
+/**
+ * Proxy function to process the field settings form.
+ */
+function modalframe_cck_editor_field_edit_form_submit_proxy($form, &$form_state) {
+  module_load_include('inc', 'modalframe_cck_editor', 'includes/admin');
+  modalframe_cck_editor_field_edit_form_submit($form, $form_state);
+}
+
+/**
+ * Implementation of hook_fieldgroup_view().
+ */
+function modalframe_cck_editor_fieldgroup_view(&$node, &$element, $group, $context) {
+  // Proceed only for normal node view processing. Note that it makes no sense
+  // to alter the node during previews, search indexing, etc.
+  if ($node->build_mode === NODE_BUILD_NORMAL) {
+
+    // Ignore this field group if access to the content element has been denied.
+    // Note that the field group could have been hidden from 'Display fields'.
+    if (!isset($element['#access']) || $element['#access']) {
+
+      // More complex processing moved to external script. We do not really
+      // need the code to alter the view of the target element on every page.
+      module_load_include('inc', 'modalframe_cck_editor', 'includes/node_view');
+      _modalframe_cck_editor_fieldgroup_view($node, $group);
+    }
+  }
+}
+
+/**
+ * Theme preprocess function for content-field.tpl.php.
+ */
+function modalframe_cck_editor_preprocess_content_field(&$variables) {
+  $element = $variables['element'];
+  if ($element['#node']->build_mode === NODE_BUILD_NORMAL) {
+    if (!isset($element['#access']) || $element['#access']) {
+      module_load_include('inc', 'modalframe_cck_editor', 'includes/node_view');
+      _modalframe_cck_editor_content_field_view($element['#node'], $element['#field_name']);
+    }
+  }
+}
+
+/**
+ * Implementation of hook_node_type().
+ */
+function modalframe_cck_editor_node_type($op, $info) {
+  if ($op == 'delete') {
+    // Get rid of settings related to the content type being deleted.
+    $result = db_query("SELECT name FROM {variable} WHERE name LIKE 'modalframe\_cck\_editor\_settings\_%s-%%'", $info->type);
+    while ($name = db_result($result)) {
+      variable_del($name);
+    }
+  }
+  elseif ($op == 'update' && $info->old_type != $info->type) {
+    // Adjust settings related to the content type being renamed.
+    $result = db_query("SELECT name FROM {variable} WHERE name LIKE 'modalframe\_cck\_editor\_settings\_%s-%%'", $info->old_type);
+    while ($variable_old = db_result($result)) {
+      $variable_new = preg_replace('`^(modalframe_cck_editor_settings_).*?(-.*)$`', '$1'. $info->type .'$2', $variable_old);
+      $value = variable_get($variable_old, array());
+      variable_del($variable_old);
+      variable_set($variable_new, $value);
+    }
+  }
+}
+
+/**
+ * Implementation of hook_content_fieldapi().
+ */
+function modalframe_cck_editor_content_fieldapi($op, $field) {
+  if ($op == 'delete instance') {
+    // Get rid of settings related to the field instance being deleted.
+    variable_del('modalframe_cck_editor_settings_'. $field['type_name'] .'-'. $field['field_name']);
+  }
+}

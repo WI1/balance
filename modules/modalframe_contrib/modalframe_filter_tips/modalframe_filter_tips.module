@@ -1,0 +1,49 @@
+<?php
+// $Id: modalframe_filter_tips.module,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens the "More information about formatting options" pages in modal frames.
+ */
+
+/**
+ * Implementation of hook_theme().
+ */
+function modalframe_filter_tips_theme() {
+  return array('modalframe_filter_tips_info' => array('arguments' => array()));
+}
+
+/**
+ * Implementation of hook_theme_registry_alter().
+ */
+function modalframe_filter_tips_theme_registry_alter(&$theme_registry) {
+  // Replace original theme entry with our own.
+  variable_set('modalframe_filter_tips_theme_entry', $theme_registry['filter_tips_more_info']);
+  $theme_registry['filter_tips_more_info'] = $theme_registry['modalframe_filter_tips_info'];
+}
+
+/**
+ * Replacement of theme_filter_tips_more_info().
+ */
+function theme_modalframe_filter_tips_info() {
+  static $ready;
+  if (!isset($ready)) {
+    $ready = TRUE;
+    modalframe_parent_js();
+    drupal_add_js(drupal_get_path('module', 'modalframe_filter_tips') .'/modalframe_filter_tips.js');
+  }
+
+  // Invoke the original theme function.
+  $theme_registry = variable_get('modalframe_filter_tips_theme_entry', array());
+  $function = !empty($theme_registry['function']) && function_exists($theme_registry['function']) ? $theme_registry['function'] : 'theme_filter_tips_more_info';
+  return $function();
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_filter_tips_init() {
+  if (!empty($_COOKIE['has_js']) && $_GET['q'] == 'filter/tips') {
+    modalframe_child_js();
+  }
+}

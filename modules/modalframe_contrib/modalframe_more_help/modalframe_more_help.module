@@ -1,0 +1,49 @@
+<?php
+// $Id: modalframe_more_help.module,v 1.1.2.1 2010/01/01 20:19:39 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens the "more help" pages in modal frames.
+ */
+
+/**
+ * Implementation of hook_theme().
+ */
+function modalframe_more_help_theme() {
+  return array('modalframe_more_help_link' => array('arguments' => array('url' => NULL)));
+}
+
+/**
+ * Implementation of hook_theme_registry_alter().
+ */
+function modalframe_more_help_theme_registry_alter(&$theme_registry) {
+  // Replace original theme entry with our own.
+  variable_set('modalframe_more_help_theme_entry', $theme_registry['more_help_link']);
+  $theme_registry['more_help_link'] = $theme_registry['modalframe_more_help_link'];
+}
+
+/**
+ * Replacement of theme_more_help_link().
+ */
+function theme_modalframe_more_help_link($url) {
+  static $ready;
+  if (!isset($ready)) {
+    $ready = TRUE;
+    modalframe_parent_js();
+    drupal_add_js(drupal_get_path('module', 'modalframe_more_help') .'/modalframe_more_help.js');
+  }
+
+  // Invoke the original theme function.
+  $theme_registry = variable_get('modalframe_more_help_theme_entry', array());
+  $function = !empty($theme_registry['function']) && function_exists($theme_registry['function']) ? $theme_registry['function'] : 'theme_more_help_link';
+  return $function($url);
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_more_help_init() {
+  if (!empty($_COOKIE['has_js']) && preg_match('`^admin/help/[_a-z0-9]+$`', $_GET['q'])) {
+    modalframe_child_js();
+  }
+}

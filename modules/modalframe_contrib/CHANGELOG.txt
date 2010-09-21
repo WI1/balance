@@ -1,0 +1,13 @@
+// $Id: CHANGELOG.txt,v 1.1.2.7 2010/01/17 16:49:09 markuspetrux Exp $
+
+6.x-1.0 (2010-01-17)
+====================
+
+- Initial commit already includes the following modules: modalframe_blocks, modalframe_dblog, modalframe_filter_tips, modalframe_more_help and modalframe_path.
+- Removed throbber from modalframe_blocks module, moved to Modal Frame API itself.
+- Added module: modalframe_cck_manage_fields.
+- Minor changes to modalframe_path module.
+- modalframe_cck_manage_fields: For delete forms, render the page title in the content area as well.
+- Added module: modalframe_locale.
+- Added module: modalframe_input_formats.
+- Module modalframe_cck_manage_fields: Fixed method to catch up link to configure fields.

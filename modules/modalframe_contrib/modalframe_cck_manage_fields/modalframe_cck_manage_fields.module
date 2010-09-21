@@ -1,0 +1,75 @@
+<?php
+// $Id: modalframe_cck_manage_fields.module,v 1.1.2.2 2010/01/02 06:27:06 markuspetrux Exp $
+
+/**
+ * @file
+ * Opens CCK field and group settings forms in modal frames.
+ */
+
+/**
+ * Implementation of hook_init().
+ */
+function modalframe_cck_manage_fields_init() {
+  if (!empty($_COOKIE['has_js']) && preg_match('`^(admin/content/(?:types|node-type)/[-_a-z0-9]+)/fields$`', $_GET['q'], $matches)) {
+    modalframe_parent_js();
+    drupal_add_js(drupal_get_path('module', 'modalframe_cck_manage_fields') .'/modalframe_cck_manage_fields.js');
+    drupal_add_js(array('modalFrameCCKManageFields' => array('path' => $matches[1])), 'setting');
+  }
+}
+
+/**
+ * Implementation of hook_form_alter().
+ */
+function modalframe_cck_manage_fields_form_alter(&$form, $form_state, $form_id) {
+  if (!empty($_COOKIE['has_js']) && !empty($_GET['modalframe'])) {
+    if (in_array($form_id, array('content_field_edit_form', 'content_field_remove_form', 'fieldgroup_group_edit_form', 'fieldgroup_remove_group'))) {
+      modalframe_child_js();
+      $form['#submit'][] = 'modalframe_cck_manage_fields_form_submit';
+      if (isset($form['basic']['change'])) {
+        $form['basic']['change']['#submit'][] = 'modalframe_cck_manage_fields_form_submit';
+      }
+      else {
+        // We add the Modal Frame submit handler because CCK tells Forms API
+        // to not rebuild the form.
+        $form['#submit'][] = 'modalframe_form_submit';
+      }
+
+      // For delete forms, render the page title in the content area as well.
+      if (in_array($form_id, array('content_field_remove_form', 'fieldgroup_remove_group'))) {
+        $form['#prefix'] = '<h2 class="title">'. drupal_get_title() .'</h2>';
+      }
+    }
+  }
+}
+
+/**
+ * Process the path administration forms.
+ */
+function modalframe_cck_manage_fields_form_submit($form, &$form_state) {
+  $form_values = $form_state['values'];
+  if (isset($form_state['change_basic']) || $form_values['op'] == t('Change basic information')) {
+    $form_state['redirect'] = FALSE;
+    return;
+  }
+  if ($form_values['op'] == t('Continue')) {
+    $form_state['rebuild'] = TRUE;
+  }
+  $modalframe_args = array();
+  if ($form_values['form_id'] == 'content_field_edit_form') {
+    if (empty($form['basic']['label']['#disabled']) && $form['basic']['label']['#default_value'] != $form_values['label']) {
+      $modalframe_args['label'] = check_plain($form_values['label']);
+    }
+  }
+  elseif ($form_values['form_id'] == 'fieldgroup_group_edit_form') {
+    if ($form['label']['#default_value'] != $form_values['label']) {
+      $modalframe_args['label'] = check_plain($form_values['label']);
+    }
+    else {
+      drupal_set_message(t('The field group %group has been updated.', array('%group' => $form_values['label'])));
+    }
+  }
+  elseif ($form_values['form_id'] == 'content_field_remove_form' || $form_values['form_id'] == 'fieldgroup_remove_group') {
+    $modalframe_args['reload'] = TRUE;
+  }
+  modalframe_close_dialog($modalframe_args);
+}
