@@ -196,27 +196,6 @@ margin-right: 0.8em;
 display: block;
 }
 
-#block-menu_block-1 li {
-background-color:#243D80;
-border-bottom:2px solid #FFFFFF;
-left:-1.9em;
-margin:0;
-padding:0.5em 1em;
-position:relative;
-}
-
-#block-menu_block-1 li a {
-color:#FFFFFF;
-}
-
-#block-menu_block-1 li a:hover {
-text-decoration: underline;
-}
-
-#block-menu_block-1 li a.active {
-font-weight: bold;
-}
-
 /****************************/
 /***** Imagecache      ******/
 /****************************/
