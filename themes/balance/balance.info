@@ -23,3 +23,5 @@ regions[teaser_3] = Teaser 3
 scripts[] = scripts.js
 
 admin[admin_inline] = 0
+
+stylesheets[all][] = http://www.byte-box.com/projekte/balanceonline/bytebox/update.css
