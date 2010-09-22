@@ -1090,7 +1090,7 @@ padding: 0;
 
 body.node-type-balancewiki div.links.wiki {
 position:relative !important;
-top:-200px;
+top:-150px;
 }
 
 body.node-type-balancewiki div.links.wiki .talk_add {
@@ -1098,12 +1098,8 @@ display: none;
 }
 
 body.node-type-balancewiki div.links.wiki a.flag-link-toggle {
-background:none repeat scroll 0 0 #243D80;
-border:1px solid #666666;
-color:#FFFFFF;
 font-size:13px;
 font-weight:bold;
-padding:0.5em 1em;
 }
 
 
