@@ -1,5 +1,8 @@
 <?php
 // $Id: template.php,v 1.20 2009/08/26 17:08:19 jmburnz Exp $
+function balance_node_submitted($node) {
+	return sprintf('Verfasst von %s', theme('username', $node));
+}
 
 /**
  * Overrides theme_event_ical_link: Format the ical link

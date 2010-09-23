@@ -14,16 +14,11 @@
 	<?php endif; ?>
 
   <div class="content">
-    <?php print $content ?>
+    <?php print $content ?> … <?php print l('weiterlesen', 'node/' . $node->nid); ?>
     <div class="addthis_button_div"><?php print theme('addthis_button',$node,$teaser); ?></div>
   </div>
 
-<?php if ($links): ?>
-  <div class="links"><?php print $links; ?></div>
-<?php endif; ?>
-
 <?php if ($submitted): ?>
-  <div class="submitted"><?php print $submitted; ?></div>
-<?php endif; ?>
-
+  <div class="submitted"><?php print $submitted; ?> |
+<?php endif; ?> <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
 </div>
