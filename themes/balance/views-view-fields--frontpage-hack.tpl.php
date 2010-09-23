@@ -44,7 +44,7 @@ $user = user_load($node->uid);
 				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="/sites/balanceonline.org/themes/balance/img/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
 			</div>
 
-			<div class="submitted"><?php print balance_node_submitted($node); ?></div>
+			<div class="submitted"><?php print balance_node_submitted($node); ?> | <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
 		</div>
 	</div>
 </div>
