@@ -9,13 +9,18 @@
 		<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
+	<?php if (isset($og_public) && $og_public === FALSE): ?>
+	<?php print balance_visibility($node->og_groups_both); ?>
+	<?php endif; ?>
 
   <div class="content">
     <?php print $content ?> … <?php print l('weiterlesen', 'node/' . $node->nid); ?>
+		<div class="addthis_button_div">
+			<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+		</div>
   </div>
 
 <?php if ($submitted): ?>
   <div class="submitted"><?php print $submitted; ?> |
 <?php endif; ?> <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
-
 </div>

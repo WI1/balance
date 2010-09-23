@@ -21,6 +21,7 @@ regions[teaser_2] = Teaser 2
 regions[teaser_3] = Teaser 3
 
 scripts[] = scripts.js
+scripts[] = addthis_widget.js
 
 admin[admin_inline] = 0
 

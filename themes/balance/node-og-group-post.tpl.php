@@ -15,7 +15,9 @@
 
   <div class="content">
     <?php print $content ?> … <?php print l('weiterlesen', 'node/' . $node->nid); ?>
-    <div class="addthis_button_div"><?php print theme('addthis_button',$node,$teaser); ?></div>
+		<div class="addthis_button_div">
+			<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+		</div>
   </div>
 
 <?php if ($submitted): ?>

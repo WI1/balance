@@ -18,43 +18,33 @@
  *
  * @ingroup views_templates
  */
-$nid = $fields['nid']->content;
-$link = drupal_get_path_alias('node/'.$nid);
-$title = $fields['title']->content;
+
+/**
+ * We copy the node.tpl here because we can only use field views, not node views with views_hack
+ */
+$link = drupal_get_path_alias('node/' . $node->nid);
 $img =  $fields['field_smallteaser_fid']->content;
 $content = $fields['teaser']->content;
-$node = node_load($nid);
+$node = node_load($fields['nid']->content);
 $user = user_load($node->uid);
-$userlink = '<a href="'.drupal_get_path_alias('user/'.$user->uid).'">'.$user->profile_firstname.' '.$user->profile_lastname.'</a>';
-$fileCount = 0;
-if(isset($node->files)){
-  $fileCount = count($node->files);
-}
-$anhang = '';
-if($fileCount > 0){
-  if($fileCount == 1){
-    $anhang = '1 Anhang';
-  }else{
-    $anhang = $fileCount.' Anhänge';
-  }
-}
 ?>
 <div class="views-row views-row-2 views-row-even">
-    <div id="node-<?php print $nid ?>" class="node sticky  node-blog clear-block">
-			<h2 class="node-title"><a href="<?php print $link ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
+	<div id="node-<?php print $node->nid ?>" class="node sticky  node-blog clear-block">
+		<h2 class="node-title"><?php print l($fields['title']->content, 'node/' . $node->nid) ?></h2>
+		<div class="content">
+			<div class="field field-type-filefield field-field-smallteaser">
+				<div class="field-items">
+					<div class="field-item odd">
+						<a href="<?php print $link ?>" class="imagecache imagecache-pic-1c-square imagecache-linked imagecache-pic-1c-square_linked"><img src="/<?php print $img ?>" alt="" title="" class="imagecache imagecache-pic-1c-square" width="70" height="70"></a>
+					</div>
+				</div>
+			</div>
+			<p><?php print $content ?> … <?php print l('weiterlesen', 'node/' . $nid); ?></p>
+			<div class="addthis_button_div">
+				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+			</div>
 
-  <div class="content">
-    <div class="field field-type-filefield field-field-smallteaser">
-    <div class="field-items">
-            <div class="field-item odd">
-                    <a href="<?php print $link ?>" class="imagecache imagecache-pic-1c-square imagecache-linked imagecache-pic-1c-square_linked"><img src="/<?php print $img ?>" alt="" title="" class="imagecache imagecache-pic-1c-square" width="70" height="70"></a>        </div>
-        </div>
+			<div class="submitted"><?php print balance_node_submitted($node); ?></div>
+		</div>
+	</div>
 </div>
-<p><?php print $content ?> … <?php print l('weiterlesen', 'node/' . $nid); ?></p>
-    <div class="addthis_button_div">
-      <a class="addthis-button" href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', 'http://<?php print $_SERVER['HTTP_HOST'].'/'.$link ?>', '<?php print $title ?>')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s9.addthis.com/button1-share.gif" width="125" height="16" alt="&quot;&quot;"></a></div>
-  </div>
-
-  <div class="submitted">Verfasst von <?php print $userlink ?> | <a href="/comment/reply/<?php print $nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
-
-</div>  </div>
