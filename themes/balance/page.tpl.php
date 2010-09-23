@@ -52,10 +52,15 @@ $grid = array(
 				<div id="container" class="clear-block container_12">
 					<div id="sidebar-left" class="column sidebar grid_<?=$grid['left']?>">
 						<div id="logo-title">
-							<?php if (!empty($logo)): ?>
+							<div class="logo-title">
+							<?php if($fg): // page with fg context ?>
+								<?php print l(theme('imagecache', 'pic_2c_square', 'sites/balanceonline.org/img/badges_gross/fokusgruppe_' . $fg['field_fgnumber_value']), 'node/' . $fg->nid, array('html' => TRUE)) ?>
+							<?php else: ?>
 							<a id="logo" href="<?php print $front_page; ?>" rel="home" title="<?php print t('Home'); ?>">
 								<img alt="<?php print t('Home'); ?>" src="<?php print $logo; ?>" />
-							</a><?php endif; ?>
+							</a>
+							<?php endif; ?>
+							</div>
 						</div>
 					</div><!-- /sidebar-left -->
 
@@ -106,15 +111,11 @@ $grid = array(
 							</div><!-- /content -->
 						</div><!-- /main-squeeze -->
 						<div id="sidebar-right" class="column sidebar grid_<?=$grid['right']?>">
-							<?php if (isset($node->field_projectlogo) && ($projectlogo = $node->field_projectlogo[0])): ?>
+							<?php if($node->type !== 'focusgroup' && isset($node->field_projectlogo) && ($projectlogo = $node->field_projectlogo[0])): ?>
 								<div class="logo-title">
 									<?php print l(theme('imagecache', 'pic_2c_square', $projectlogo['filepath']), 'node/' . $node->nid, array('html' => TRUE)) ?>
 								</div>
 							<?php endif; ?>
-
-						<?php if (isset($parent) && $node->type == 'project'): ?>
-							<?php print balance_parent_focusgroup($node, $parent); ?>
-						<?php endif; ?>
 
 						<?php if (isset($authors)): ?>
 							<div class="block" id="authors">

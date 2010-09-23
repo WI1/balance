@@ -99,6 +99,7 @@ function focus_groups_preprocess_node(&$vars, $hook) {
 function focus_groups_preprocess_page(&$vars) {
 	$url = arg();
 	$related_groups = array();
+	$vars['fg'] = FALSE;
 
 	if($url[0] != 'user') {
 		if(!isset($vars['node'])) {
@@ -117,6 +118,8 @@ function focus_groups_preprocess_page(&$vars) {
 		}
 
     if(isset($vars['node'])) {
+      $vars['fg'] = focus_groups_get_focus_group($vars['node']);
+      
   		switch($vars['node']->type) {
   			case 'project':
   				// load parent = focusgroup for block in right sidebar
@@ -167,7 +170,7 @@ function focus_groups_get_parent($nid) {
 }
 
 /**
- * Gets the focusgroup short out of a bunch of groups
+ * Gets the focusgroup out of a bunch of groups
  *
  * First looks up if one of the given groups is a focusgroup (i.e. is a parent of a group).
  * Then gives back the cck field value of fgident.
@@ -176,25 +179,20 @@ function focus_groups_get_parent($nid) {
  * @uses nodehierarchy module
  * @param mixed $gids
  *   One or more group ids
- * @return string
+ * @return array
  *   used for css classes, e.g. "fg1"
  */
-function focus_groups_get_focus_group_short($gids) {
-	$gids = (array)$gids;
-	if (count($gids)==0) {
-		return '';
+function focus_groups_get_focus_group($gids) {
+	if(count($gids) === 0 || !user_access('view focus group colors')) {
+		return FALSE;
 	}
-	$query = "SELECT field_fgnumber_value FROM {content_type_focusgroup}
+	$query = "SELECT * FROM {content_type_focusgroup}
 		WHERE nid =	(SELECT parent FROM {nodehierarchy} WHERE nid IN (" . db_placeholders($gids, 'int') . ") LIMIT 1)
 		OR nid IN (" . db_placeholders($gids, 'int') . ")";
 
 	$result = db_query($query, array_merge($gids, $gids));
 
-	if(($fgident = (int)db_result($result)) && $fgident > 0) {
-		return 'fg' . $fgident;
-	} else {
-		return '';
-	}
+	return db_fetch_object($result);
 }
 
 
@@ -284,8 +282,8 @@ function focus_groups_get_body_classes($node, $body_classes = '') {
 	$body_classes = explode(' ', $body_classes);
 	// load color for nodes which belong to a project
 	// add proprietary focusgroup short to color a page
-	if(user_access('view focus group colors') && $fg_short = focus_groups_get_focus_group_short($node->og_groups)) {
-		$body_classes[] = $fg_short;
+	if($fg = focus_groups_get_focus_group($node->og_groups)) {
+		$body_classes[] = 'fg' . $fg['field_fgnumber_value'];
 	}
 
 	// og adds only one group as og-context, not all of them
