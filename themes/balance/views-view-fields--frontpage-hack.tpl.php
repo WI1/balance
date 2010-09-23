@@ -26,7 +26,6 @@ $img =  $fields['field_smallteaser_fid']->content;
 $content = $fields['teaser']->content;
 $node = node_load($fields['nid']->content);
 $link = drupal_get_path_alias('node/' . $node->nid);
-$user = user_load($node->uid);
 ?>
 <div class="views-row views-row-2 views-row-even">
 	<div id="node-<?php print $node->nid ?>" class="node sticky  node-blog clear-block">
@@ -39,12 +38,10 @@ $user = user_load($node->uid);
 					</div>
 				</div>
 			</div>
-			<p><?php print $content ?> … <?php print l('weiterlesen', 'node/' . $node->nid); ?></p>
-			<div class="addthis_button_div">
-				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="/sites/balanceonline.org/themes/balance/img/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
-			</div>
+			<p><?php print $content ?> <?php print balance_node_more_link($node); ?></p>
+			<?php print balance_addthis_button(); ?>
 
-			<div class="submitted"><?php print balance_node_submitted($node); ?> | <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
+			<div class="links"><?php print balance_node_submitted($node); ?> | <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
 		</div>
 	</div>
 </div>

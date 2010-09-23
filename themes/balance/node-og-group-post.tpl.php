@@ -16,14 +16,10 @@
   <div class="content">
     <?php print $content ?>
 		<?php if (!$page): ?>
-		… <?php print l('weiterlesen', 'node/' . $node->nid); ?>
+		<?php print balance_node_more_link($node); ?>
 		<?php endif; ?>
-		<div class="addthis_button_div">
-			<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="/sites/balanceonline.org/themes/balance/img/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
-		</div>
+		<?php print balance_addthis_button(); ?>
   </div>
 
-<?php if ($submitted): ?>
-  <div class="submitted"><?php print $submitted; ?> |
-<?php endif; ?> <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
+  <div class="links"><?php print $submitted; ?> | <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
 </div>

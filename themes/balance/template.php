@@ -1,7 +1,17 @@
 <?php
 // $Id: template.php,v 1.20 2009/08/26 17:08:19 jmburnz Exp $
+function balance_node_more_link($node) {
+	return '<div class="node-more-link">&hellip; ' . l('weiterlesen', 'node/' . $node->nid) . '</div>';
+}
+
 function balance_node_submitted($node) {
 	return sprintf('Verfasst von %s', theme('username', $node));
+}
+
+function balance_addthis_button() {
+	return '<div class="addthis_button_div">
+		<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="/sites/balanceonline.org/themes/balance/img/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+	</div>';
 }
 
 /**
