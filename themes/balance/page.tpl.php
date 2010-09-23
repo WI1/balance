@@ -50,7 +50,6 @@ $grid = array(
 				</div><!-- /header -->
 
 				<div id="container" class="clear-block container_12">
-					<?php if(!empty($left)):?>
 					<div id="sidebar-left" class="column sidebar grid_<?=$grid['left']?>">
 						<div id="logo-title">
 							<?php if (!empty($logo)): ?>
@@ -58,7 +57,6 @@ $grid = array(
 								<img alt="<?php print t('Home'); ?>" src="<?php print $logo; ?>" />
 							</a><?php endif; ?>
 						</div>
-						<?php print $left; ?>
 					</div><!-- /sidebar-left -->
 					<?php endif; ?>
 
