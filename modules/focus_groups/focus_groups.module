@@ -123,9 +123,6 @@ function focus_groups_preprocess_page(&$vars) {
   				// load parent = focusgroup for block in right sidebar
   				$vars['parent'] = node_load(focus_groups_get_parent($vars['node']->nid));
           $vars['fg'] = focus_groups_get_focus_group($vars['parent']->nid);
-  				if(user_access('view focus group colors') && isset($vars['parent']->field_fgnumber[0]['value']) && (int)$vars['parent']->field_fgnumber[0]['value'] > 0) {
-  					$vars['body_classes'] .= ' fg' . $vars['parent']->field_fgnumber[0]['value'];
-  				}
   			break;
 
   			case 'blog':
@@ -136,14 +133,21 @@ function focus_groups_preprocess_page(&$vars) {
   				if(!user_access('view focus groups')) {
   					drupal_goto('/');
   				}
+
+        	// load color for focus group
   				$vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
   			break;
   		}
 
+			// load color for nodes which belong to a project
+    	// add proprietary focusgroup short to color a page
       if(!$vars['fg'] && isset($vars['node']->og_groups)) {
         $vars['fg'] = focus_groups_get_focus_group($vars['node']->og_groups);
       }
-  		$vars['body_classes'] = focus_groups_get_body_classes($vars['node'], $vars['body_classes']);
+      
+      if($vars['fg']) {
+        $vars['body_classes'] .= ' fg' . $vars['fg']->field_fgnumber_value;
+      }
     }
 	} elseif($url[0] == 'user' && !in_array($url[1], array('register', 'password'))) {
 		// user page
@@ -269,39 +273,6 @@ function focus_groups_info_tab_call_back($node) {
  */
 function focus_groups_publications_tab_call_back() {
  	return '<p><em>Kommt in K&uuml;rze.</em></p>';
-}
-
-/**
- * Adds body classes for node
- *
- * @param object $node
- * @param string $body_classes
- * @param bool $logged_in
- * @return string
- */
-function focus_groups_get_body_classes($node, $body_classes = '') {
-	if(!$node || !isset($node->og_groups)) {
-		return $body_classes;
-	}
-
-	$body_classes = explode(' ', $body_classes);
-	// load color for nodes which belong to a project
-	// add proprietary focusgroup short to color a page
-	if($fg = focus_groups_get_focus_group($node->og_groups)) {
-		$body_classes[] = 'fg' . $fg->field_fgnumber_value;
-	}
-
-	// og adds only one group as og-context, not all of them
-	foreach($node->og_groups as $gid) {
-		$body_classes[] = 'og-context-' . $gid;
-	}
-
-	// load color for focus group
-	if(isset($node->field_fgnumber[0]['value']) && (int)$node->field_fgnumber[0]['value'] > 0 && user_access('view focus group colors')) {
-		$body_classes[] = 'fg' . $node->field_fgnumber[0]['value'];
-	}
-
-	return implode(' ', array_unique($body_classes));
 }
 
 /**
