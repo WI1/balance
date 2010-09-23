@@ -22,10 +22,10 @@
 /**
  * We copy the node.tpl here because we can only use field views, not node views with views_hack
  */
-$link = drupal_get_path_alias('node/' . $node->nid);
 $img =  $fields['field_smallteaser_fid']->content;
 $content = $fields['teaser']->content;
 $node = node_load($fields['nid']->content);
+$link = drupal_get_path_alias('node/' . $node->nid);
 $user = user_load($node->uid);
 ?>
 <div class="views-row views-row-2 views-row-even">
@@ -39,9 +39,9 @@ $user = user_load($node->uid);
 					</div>
 				</div>
 			</div>
-			<p><?php print $content ?> … <?php print l('weiterlesen', 'node/' . $nid); ?></p>
+			<p><?php print $content ?> … <?php print l('weiterlesen', 'node/' . $node->nid); ?></p>
 			<div class="addthis_button_div">
-				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
+				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="/sites/balanceonline.org/themes/balance/img/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
 			</div>
 
 			<div class="submitted"><?php print balance_node_submitted($node); ?></div>
