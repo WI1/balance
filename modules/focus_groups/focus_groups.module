@@ -286,7 +286,7 @@ function focus_groups_get_body_classes($node, $body_classes = '') {
 	// load color for nodes which belong to a project
 	// add proprietary focusgroup short to color a page
 	if($fg = focus_groups_get_focus_group($node->og_groups)) {
-		$body_classes[] = 'fg' . $fg['field_fgnumber_value'];
+		$body_classes[] = 'fg' . $fg->field_fgnumber_value;
 	}
 
 	// og adds only one group as og-context, not all of them
