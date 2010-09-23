@@ -117,7 +117,7 @@ function focus_groups_preprocess_page(&$vars) {
       }
 		}
 
-    if(isset($vars['node'])) {
+    if(isset($vars['node'])) {			
   		switch($vars['node']->type) {
   			case 'project':
   				// load parent = focusgroup for block in right sidebar
@@ -130,17 +130,19 @@ function focus_groups_preprocess_page(&$vars) {
 
   			case 'blog':
   				$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
-  				$vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
   			break;
 
   			case 'focusgroup':
   				if(!user_access('view focus groups')) {
   					drupal_goto('/');
   				}
-          $vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
+  				$vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
   			break;
   		}
 
+      if(!$vars['fg'] && isset($vars['node']->og_groups)) {
+        $vars['fg'] = focus_groups_get_focus_group($vars['node']->og_groups);
+      }
   		$vars['body_classes'] = focus_groups_get_body_classes($vars['node'], $vars['body_classes']);
     }
 	} elseif($url[0] == 'user' && !in_array($url[1], array('register', 'password'))) {

@@ -14,7 +14,10 @@
 	<?php endif; ?>
 
   <div class="content">
-    <?php print $content ?> … <?php print l('weiterlesen', 'node/' . $node->nid); ?>
+    <?php print $content ?>
+		<?php if (!$page): ?>
+		… <?php print l('weiterlesen', 'node/' . $node->nid); ?>
+		<?php endif; ?>
 		<div class="addthis_button_div">
 			<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=stoeckit"><img src="http://s7.addthis.com/static/btn/sm-share-en.gif" width="83" height="16" alt="Bookmark and Share" style="border:0"/></a>
 		</div>
