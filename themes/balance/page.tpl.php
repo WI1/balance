@@ -58,7 +58,6 @@ $grid = array(
 							</a><?php endif; ?>
 						</div>
 					</div><!-- /sidebar-left -->
-					<?php endif; ?>
 
 					<div id="main" class="column">
 						<div id="main-squeeze" class="grid_<?=$grid['middle']?>">
