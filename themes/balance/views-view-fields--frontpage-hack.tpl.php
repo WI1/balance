@@ -50,16 +50,11 @@ if($fileCount > 0){
                     <a href="<?php print $link ?>" class="imagecache imagecache-pic-1c-square imagecache-linked imagecache-pic-1c-square_linked"><img src="/<?php print $img ?>" alt="" title="" class="imagecache imagecache-pic-1c-square" width="70" height="70"></a>        </div>
         </div>
 </div>
-<p><?php print $content ?></p>
+<p><?php print $content ?> … <?php print l('weiterlesen', 'node/' . $nid); ?></p>
     <div class="addthis_button_div">
       <a class="addthis-button" href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', 'http://<?php print $_SERVER['HTTP_HOST'].'/'.$link ?>', '<?php print $title ?>')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s9.addthis.com/button1-share.gif" width="125" height="16" alt="&quot;&quot;"></a></div>
   </div>
 
-  <div class="links"><ul class="links inline"><li class="comment_add first"><a href="/comment/reply/<?php print $nid?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></li>
-<li class="node_read_more"><a href="<?php print $link?>" title="<?php print $title ?>">Weiterlesen</a></li>
-<li class="upload_attachments"><a href="<?php print $link ?>" title="Vollständigen Artikel lesen um die Anhänge zu sehen."><?php print $anhang ?></a></li>
-</ul></div>
-
-  <div class="submitted">Verfasst von <?php print $userlink ?> am <?php print $fields['changed']->content ?></div>
+  <div class="submitted">Verfasst von <?php print $userlink ?> | <a href="/comment/reply/<?php print $nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
 
 </div>  </div>
