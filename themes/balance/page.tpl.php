@@ -54,7 +54,7 @@ $grid = array(
 						<div id="logo-title">
 							<div class="logo-title">
 							<?php if($fg): // page with fg context ?>
-								<?php print l(theme('imagecache', 'pic_2c_square', 'sites/balanceonline.org/img/badges_gross/fokusgruppe_' . $fg['field_fgnumber_value']), 'node/' . $fg->nid, array('html' => TRUE)) ?>
+								<?php print l('<img src="' . $base_path . 'sites/balanceonline.org/themes/balance/img/badges_gross/fokusgruppe_' . $fg->field_fgnumber_value . '.png" />', 'node/' . $fg->nid, array('html' => TRUE)) ?>
 							<?php else: ?>
 							<a id="logo" href="<?php print $front_page; ?>" rel="home" title="<?php print t('Home'); ?>">
 								<img alt="<?php print t('Home'); ?>" src="<?php print $logo; ?>" />

@@ -118,12 +118,11 @@ function focus_groups_preprocess_page(&$vars) {
 		}
 
     if(isset($vars['node'])) {
-      $vars['fg'] = focus_groups_get_focus_group($vars['node']);
-      
   		switch($vars['node']->type) {
   			case 'project':
   				// load parent = focusgroup for block in right sidebar
   				$vars['parent'] = node_load(focus_groups_get_parent($vars['node']->nid));
+          $vars['fg'] = focus_groups_get_focus_group($vars['parent']->nid);
   				if(user_access('view focus group colors') && isset($vars['parent']->field_fgnumber[0]['value']) && (int)$vars['parent']->field_fgnumber[0]['value'] > 0) {
   					$vars['body_classes'] .= ' fg' . $vars['parent']->field_fgnumber[0]['value'];
   				}
@@ -131,12 +130,14 @@ function focus_groups_preprocess_page(&$vars) {
 
   			case 'blog':
   				$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
+  				$vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
   			break;
 
   			case 'focusgroup':
   				if(!user_access('view focus groups')) {
   					drupal_goto('/');
   				}
+          $vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
   			break;
   		}
 
@@ -183,7 +184,9 @@ function focus_groups_get_parent($nid) {
  *   used for css classes, e.g. "fg1"
  */
 function focus_groups_get_focus_group($gids) {
-	if(!is_array($gids) || count($gids) === 0 || !user_access('view focus group colors')) {
+  $gids = (array)$gids;
+  
+	if(count($gids) === 0 || !user_access('view focus group colors')) {
 		return FALSE;
 	}
 	$query = "SELECT * FROM {content_type_focusgroup}
