@@ -396,3 +396,55 @@ function balance_upload_form_new(&$form) {
 function phptemplate_preprocess_flag(&$vars) {
   //$vars['link_text'] = '<span class="famfam active balance-like></span>';
 }
+
+function pn_node($node, $mode = 'n') {
+  if (!function_exists('prev_next_nid')) {
+    return NULL;
+  }
+
+  switch($mode) {
+    case 'p':
+      $n_nid = prev_next_nid($node->nid, 'prev');
+      $link_text = 'previous';
+      break;
+
+    case 'n':
+      $n_nid = prev_next_nid($node->nid, 'next');
+      $link_text = 'next';
+      break;
+
+    default:
+      return NULL;
+  }
+
+  if ($n_nid) {
+    $n_node = node_load($n_nid);
+
+    $options = array(
+      'attributes' => array('class' => 'thumbnail'),
+      'html'  => TRUE,
+    );
+    switch($n_node->type) {
+      // For image nodes only
+      case 'image':
+        // This is an image node, get the thumbnail
+        $html = l(image_display($n_node, 'thumbnail'), "node/$n_nid", $options);
+        $html .= l($link_text, "node/$n_nid", array('html' => TRUE));
+        return $html;
+
+      // For video nodes only
+      case 'video':
+        foreach ($n_node->files as $fid => $file) {
+          $html  = '<img src="' . base_path() . $file->filepath;
+          $html .= '" alt="' . $n_node->title;
+          $html .= '" title="' . $n_node->title;
+          $html .= '" class="image image-thumbnail" />';
+          $img_html = l($html, "node/$n_nid", $options);
+          $text_html = l($link_text, "node/$n_nid", array('html' => TRUE));
+          return $img_html . $text_html;
+        }
+      default:
+        // Add other node types here if you want.
+    }
+  }
+}
