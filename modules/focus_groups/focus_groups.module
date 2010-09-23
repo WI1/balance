@@ -183,7 +183,7 @@ function focus_groups_get_parent($nid) {
  *   used for css classes, e.g. "fg1"
  */
 function focus_groups_get_focus_group($gids) {
-	if(count($gids) === 0 || !user_access('view focus group colors')) {
+	if(!is_array($gids) || count($gids) === 0 || !user_access('view focus group colors')) {
 		return FALSE;
 	}
 	$query = "SELECT * FROM {content_type_focusgroup}
