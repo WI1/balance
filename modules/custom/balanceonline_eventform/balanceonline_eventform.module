@@ -1,31 +1,147 @@
 <?php
+function balanceonline_eventform_menu() {
+    $items = array();
 
+   	$items =array();
+ 	
+ 	$items['balanceonline_eventform/add/%user/%node']=array(
+ 	'title'=> t('add teammember'),
+ 	'page callback'=>'balanceonline_eventform_add_member',
+ 	'access callback' => 'balanceonline_eventform_add_member_access',
+ 	'page arguments'=>array(2,3),
+ 	'access arguments'=>array(2),
+ 	'type'=> MENU_CALLBACK,
+ 	);
+ 	return $items;
+  
+}
+
+function balanceonline_eventform_add_member_access($uid) {
+ 	return true;
+ 	global $user;
+ 	
+ 	if ($uid->uid==$user->uid) {
+ 		return true;  
+ 	}else {
+ 		return false; 
+ 	}
+ 	
+ }
+
+function balanceonline_eventform_add_member($user,$node) {
+	$rsvp = balanceonline_eventform_get_rsvp($node);
+	$success = rsvp_api_add_guests($rsvp->rid, null, array($user->name), false);
+	drupal_goto();
+}
+function balanceonline_eventform_display_teammembers($rsvp,$node) {
+	$nodeids = $node->og_groups;
+	if (count($nodeids)==0) { 
+		return ;
+	}
+	global $user;
+	$groupid = db_result(db_query('SELECT rid FROM {role} where name = "Project Members"'));
+	$sql ='select og_uid.uid from {og_uid} left join {og_users_roles} on og_users_roles.ogr_id = og_uid.nid
+			where og_users_roles.rid ='.$groupid . ' and og_uid.nid in ('.join(',',$nodeids).')';
+	$result = db_query($sql);
+	$ids = array();
+	$html ='';
+	while ($id = db_fetch_object($result)) {
+		$cuser = user_load($id->uid);
+		$html.=balanceonline_eventform_display_item('/'.$cuser->picture,'balanceonline_eventform/add/'.$cuser->uid.'/'.$node->nid,$node,$cuser->name);
+	}
+	if ($html!='') { 
+		$html='<div class="eventform_rsvp_row"><h3>'.t('Add teammembers').'</h3>'.$html.'<div style="clear:both"></div>';
+	}
+	//print_r($ids); 
+	return $html;
+}
+
+function balanceonline_eventform_display_all_guests_row($const,$rsvp,$title,$node){
+	$html='<div class="eventform_rsvp_row"><h4>'.t($title).'</h4>';
+	$attendees = rsvp_function_load_guests($rsvp->rid,$const);
+	$html_yes.='';
+	while ($attendee = db_fetch_object($attendees)) {
+		$user = user_load($attendee->uid);
+		$html_yes.=balanceonline_eventform_display_item('/'.$user->picture,'#',$node,theme_username($user));
+	}
+	if ($html_yes!='') {
+		$html.=$html_yes.'</div>';
+	}else { 
+		$html='';
+	}
+	return $html;
+}
+
+function balanceonline_eventform_display_all_guests($rsvp,$node) {
+	$totals = rsvp_function_load_totalguests($rsvp->rid);
+	
+	$html='';
+	$html.='<div style="clear:both"></div><br><div class="eventform_rsvp_row"><h3>'.t('Guests (total: %total, accepted: %yes, decline: %no, maybe: %maybe, No response: %none)',
+	array(
+	'%total'=>$totals['all'],
+	'%yes'=>$totals['yes'],
+	'%no'=>$totals['no'],
+	'%maybe'=>$totals['maybe'],
+	'%none'=>$totals['none']
+	)).'</h3>';
+	$html.=balanceonline_eventform_display_all_guests_row(RSVP_ATT_YES,$rsvp,'accepted',$node);
+	$html.=balanceonline_eventform_display_all_guests_row(RSVP_ATT_NO,$rsvp,'declined',$node);
+	$html.=balanceonline_eventform_display_all_guests_row(RSVP_ATT_MAYBE,$rsvp,'Maybe',$node);
+	$html.=balanceonline_eventform_display_all_guests_row(RSVP_ATT_NONE,$rsvp,'No response',$node);
+	
+	$html.='</div><div style="clear:both"></div>';
+	return $html;
+}
+function balanceonline_eventform_get_rsvp($node) {
+	$rsvps = rsvp_function_load_invitations_owner($node->nid, NULL);
+	while ($rsvp = db_fetch_object($rsvps)) {
+		return 	$rsvp;
+	}
+	return rsvp_api_create_invitation($node->nid, 'Invite ',date(DATE_RFC1036));
+}
+
+function balanceonline_eventform_display_item($imageurl,$link,$node,$subtext='') {
+	return '<div class="eventform_rsvp_item"><a href="'.url($link,array('query'=>'destination=node/'.$node->nid.'/edit?manage_event=rsvp')).'"><img height="60" src="'.$imageurl.'"><br>'.$subtext.'</a></div>';
+}
 function balanceonline_eventform_manage_event(&$iform,$node) {
-
-
+	if ($_REQUEST['manage_event']=='rsvp') { 
+	drupal_add_js('
+	$(document).ready(function (){
+		$("a[href=#rsvp_overview_created_form]").click()
+	});
+	','inline');
+	}
+	drupal_add_css((drupal_get_path('module', 'balanceonline_eventform') .'/eventform_rsvp.css'));
+	global $user;
+	$rsvp  =balanceonline_eventform_get_rsvp($node);
 	$form_id = 'rsvp_overview_form';
-	//$node = array('type' => 'Event', 'uid' => $GLOBALS['user']->uid, 'name' => $GLOBALS['user']->uid);
-	// load the $form
-
-	$form_state = array();
-	$form = drupal_retrieve_form($form_id, $form_state, $node,null);
-	drupal_prepare_form($form_id, $form, $form_state);
-
-	$iform['rsvp_overview_created_form']=$form['rsvp_overview_created_form'];
-	$iform['rsvp_overview_created_form']['#title']=t('Edit events');
+	$html = '';
+	$grouplist = rsvp_og_collect_groups($rsvp, true);
+	$html .='<div class="eventform_rsvp_row"><br><h3>'.t('Invite focusgroups:').'</h3>';
+	foreach  ($grouplist as $groupid =>$groupname) {
+		$groupid = str_replace('g_', '', $groupid);
+		$html .=balanceonline_eventform_display_item('/sites/balanceonline.org/themes/balance/img/badges_mittel_id/fokusgruppe_'.$groupid.'.png','rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
+	}
+	$html .='<div><div style="clear:both"></div>';
+	
+	$html .= balanceonline_eventform_display_teammembers($rsvp,$node);
+	$html .= balanceonline_eventform_display_all_guests($rsvp,$node);
+	$html .= '<div style="clear:both"><a href="'.url('rsvp/'.$rsvp->rid.'/attendees/send',array('query'=>'destination=node/'.$node->nid.'/edit?manage_event=rsvp')).'">'.t('send the invitation').'</a></div>';
+	$iform['rsvp_overview_created_form']['#type']='fieldset';
+	$iform['rsvp_overview_created_form']['html']['#type']='markup';
+	$iform['rsvp_overview_created_form']['html']['#value'] = $html;
+	//$iform['rsvp_overview_created_form']=$form['rsvp_overview_created_form'];
+	$iform['rsvp_overview_created_form']['#title']=t('Manage events');
 
 
 
 }
 
 function balanceonline_eventform_form_alter(&$form, &$form_state,$form_id){
-	if ($form_id=='signup_node_admin_details_form') {
-		//echo drupal_render($form);
-	}
-	 
+
 	if ($form_id=='event_node_form') {
-                unset($form['og_nodeapi']['#type']);
-//		$form['#submit'][]='balanceonline_eventform_signup_node_submit';
+		unset($form['og_nodeapi']['#type']);
+		//		$form['#submit'][]='balanceonline_eventform_signup_node_submit';
 		//print_r($form);
 		$eventFieldSet = $form['event'];
 
@@ -33,19 +149,20 @@ function balanceonline_eventform_form_alter(&$form, &$form_state,$form_id){
 		$nids = explode('/',$path);
 		$nid = $nids[1];
 		$node = node_load($nid);
+		
+		
 		unset($form['event']['#type']);
-                $groups = $form['og_nodeapi']['visible']['og_groups'];
-                $public = $form['og_nodeapi']['visible']['og_public'];
-                $form['body_field']['og_groups'] = $groups;
-                $form['body_field']['og_public'] = $public;
-                unset($form['og_nodeapi']['visible']['og_groups']);
-                unset($form['og_nodeapi']['visible']['og_public']);
+		$groups = $form['og_nodeapi']['visible']['og_groups'];
+		$public = $form['og_nodeapi']['visible']['og_public'];
+		$form['body_field']['og_groups'] = $groups;
+		$form['body_field']['og_public'] = $public;
+		unset($form['og_nodeapi']['visible']['og_groups']);
+		unset($form['og_nodeapi']['visible']['og_public']);
 
 		$form['event']['status_2_premarkup']['#value']='<fieldset class="collapsible" style="width:95%"><legend class="collapse-processed"><a href="#">'.t('Do you want to appoint a space of time for this event?').'</a></legend><div style="padding:4px">';
 		$form['event']['status_2_premarkup']['#weight']=-100;
 		$form['event']['#weight']=-4;
 		$form['event']['status_2_postmarkup']['#value']='</div></fieldset>';
-
 		balanceonline_eventform_manage_event($form,$node);
 	}
 }
