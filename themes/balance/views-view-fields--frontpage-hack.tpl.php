@@ -29,7 +29,7 @@ $link = drupal_get_path_alias('node/' . $node->nid);
 ?>
 <div class="views-row views-row-2 views-row-even">
 	<div id="node-<?php print $node->nid ?>" class="node sticky  node-blog clear-block">
-		<h2 class="node-title"><?php print l($fields['title']->content, 'node/' . $node->nid) ?></h2>
+		<h2 class="node-title"><?php print l($fields['title']->content, 'node/' . $node->nid, array('html' => TRUE)) ?></h2>
 		<div class="content">
 			<div class="field field-type-filefield field-field-smallteaser">
 				<div class="field-items">
