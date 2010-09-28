@@ -1,0 +1,29 @@
+; $Id: freelinking_prepopulate.info,v 1.1.2.3 2010/04/18 06:45:12 grayside Exp $
+name = Freelinking Prepopulate
+description = A Freelinking module providing Prepopulate-based plugins.
+package = Input filters
+core = 6.x
+dependencies[] = freelinking
+dependencies[] = prepopulate
+
+
+; Information added by drupal.org packaging script on 2009-11-25
+version = "6.x-3.x-dev"
+core = "6.x"
+project = "freelinking"
+datestamp = "1259150922"
+
+
+; Information added by drupal.org packaging script on 2010-03-31
+version = "6.x-3.x-dev"
+core = "6.x"
+project = "freelinking"
+datestamp = "1269994094"
+
+
+; Information added by drupal.org packaging script on 2010-05-22
+version = "6.x-3.0-alpha5"
+core = "6.x"
+project = "freelinking"
+datestamp = "1274552707"
+
