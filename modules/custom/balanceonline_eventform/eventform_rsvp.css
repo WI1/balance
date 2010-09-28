@@ -1,0 +1,9 @@
+.eventform_rsvp_item {
+	float:left;
+	padding-left:4px;
+	width:64px;
+	height:74px;
+	
+	padding-bottom:4px;
+	overflow:hidden;
+}
