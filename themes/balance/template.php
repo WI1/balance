@@ -42,7 +42,7 @@ function balance_event_more_link($path) {
  */
 function balance_event_upcoming_item($node, $types = array()) {
 	$formatted_date = date('d.m.', strtotime($node->event_start));
-	
+
 	$output = l($formatted_date . ' | ' . $node->title, 'node/' . $node->nid, array('attributes' => array('title' => $node->title)));
 	return $output;
 }
@@ -50,7 +50,7 @@ function balance_event_upcoming_item($node, $types = array()) {
 
 /**
  * Outputs visibility information for a given set of Organic Groups
- * 
+ *
  * @param array $groups
  *   e.g. 45 => 'ACHTINO' (og_groups_both)
  */
@@ -87,7 +87,7 @@ function balance_edit_link($node) {
  *   parent node
  */
 function balance_parent_focusgroup($node, $parent) {
-	
+
 	//echo '<div>';
 	//echo "<b>Ansprechpartner</b><br>";
 	//if($node->picture){
@@ -307,13 +307,13 @@ function phptemplate_group_list_item($g, $withTitle = TRUE, $withCreateLink = TR
 
 /**
  * Outputs a link to write a new og blog post in the active organic group
- * 
+ *
  * @param object $node
  */
 function balance_og_add_blog_link($node) {
 	global $user;
 	list($txt, $subscription) = og_subscriber_count_link($node);
-	
+
 	if(($subscription == 'active' && module_invoke('blog', 'access', 'create', 'blog', $user)) || user_access('administer nodes')) {
 		$links = module_invoke_all('og_create_links', $node);
 		if($links['create_blog']) {
@@ -321,7 +321,13 @@ function balance_og_add_blog_link($node) {
 		}
 	}
 }
-
+function balance_menu_item_link($link) {
+	
+	if ($link['path']=='node/%/edit') { 
+		$link['localized_options']['attributes']['class'] .= ' menu-edit';
+	}
+	return l($link['title'], $link['href'], $link['localized_options']);
+}
 /**
  * Outputs a HTML vCard
  *
@@ -369,39 +375,39 @@ function phptemplate_business_card($uid) {
 	return $hcardOutput;
 }
 function balance_upload_form_current(&$form) {
-$header = array('', t('Description'),t('Delete'));
-//$header = array();
-  drupal_add_tabledrag('upload-attachments', 'order', 'sibling', 'upload-weight');
+	$header = array('', t('Description'),t('Delete'));
+	//$header = array();
+	drupal_add_tabledrag('upload-attachments', 'order', 'sibling', 'upload-weight');
 
-  foreach (element_children($form) as $key) {
-    // Add class to group weight fields for drag and drop.
-    $form[$key]['weight']['#attributes']['class'] = 'upload-weight';
+	foreach (element_children($form) as $key) {
+		// Add class to group weight fields for drag and drop.
+		$form[$key]['weight']['#attributes']['class'] = 'upload-weight';
 
-    $row = array('');
-    $row[] = drupal_render($form[$key]['description']);
-    $row[] = drupal_render($form[$key]['remove']);
-  //  $row[] = drupal_render($form[$key]['list']);
+		$row = array('');
+		$row[] = drupal_render($form[$key]['description']);
+		$row[] = drupal_render($form[$key]['remove']);
+		//  $row[] = drupal_render($form[$key]['list']);
 
-//    $row[] = drupal_render($form[$key]['size']);
-    $rows[] = array('data' => $row, 'class' => 'draggable');
-  }
-  $output = '<br><br>'.theme('table', $header, $rows, array('id' => 'upload-attachments'));
-  $output .= drupal_render($form);
-  return $output;
+		//    $row[] = drupal_render($form[$key]['size']);
+		$rows[] = array('data' => $row, 'class' => 'draggable');
+	}
+	$output = '<br><br>'.theme('table', $header, $rows, array('id' => 'upload-attachments'));
+	$output .= drupal_render($form);
+	return $output;
 
 }
 
 function balance_upload_form_new(&$form) {
-        $files = & $form['files'];
-        $files['#weight']=10;
-        foreach ($files as $fileId =>$file) {
-                if (is_int($fileId)) {
-                        unset($files[$fileId]['size']);
-                        $files[$fileId]['description']['#size']=50;
-                }
-        }
-        $output = drupal_render($form);
-        return $output;
+	$files = & $form['files'];
+	$files['#weight']=10;
+	foreach ($files as $fileId =>$file) {
+		if (is_int($fileId)) {
+			unset($files[$fileId]['size']);
+			$files[$fileId]['description']['#size']=50;
+		}
+	}
+	$output = drupal_render($form);
+	return $output;
 
 }
 
