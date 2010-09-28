@@ -120,7 +120,9 @@ function balanceonline_eventform_manage_event(&$iform,$node) {
 	$html .='<div class="eventform_rsvp_row"><br><h3>'.t('Invite focusgroups:').'</h3>';
 	foreach  ($grouplist as $groupid =>$groupname) {
 		$groupid = str_replace('g_', '', $groupid);
-		$html .=balanceonline_eventform_display_item('/sites/balanceonline.org/themes/balance/img/badges_mittel_id/fokusgruppe_'.$groupid.'.png','rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
+		$groupnode = node_load($groupid);
+		
+		$html .=balanceonline_eventform_display_item('/'.$groupnode->field_projectlogo[0]['filepath'],'rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
 	}
 	$html .='<div><div style="clear:both"></div>';
 	
