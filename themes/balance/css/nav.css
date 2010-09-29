@@ -18,7 +18,13 @@ width: 587px;
 float: left;
 margin-left: 30px;
 padding-top: 3px;
+overflow: hidden; /* grows large for admins */
 }
+
+#balance-bar  #block-user-1:hover {
+	overflow: visible;
+}
+
 #balance-bar li.leaf, #balance-bar li.expanded, #balance-bar li.collapsed {
 list-style: none !important;
 margin-left: -10px !important;
