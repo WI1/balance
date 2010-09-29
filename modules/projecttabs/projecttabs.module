@@ -87,7 +87,7 @@ function projecttabs_block($op = 'list', $delta = 0, $edit = array()) {
 						$profile_completeness = projecttabs_get_profile_completeness();
 
 						$block['content'] = sprintf('<p class="login_text">%s<strong>Herzlich willkommen,<br />%s</strong></p><p>%s | %s</p>%s',
-							theme('imagecache', 'userpic-1c-square', $user->picture),
+							theme('imagecache', 'userpic-1c-square', $user->picture || 'dummy.jpg'),
 							l(implode(' ', array($user->profile_firstname, $user->profile_lastname)), 'user/' . $user->uid),
 							l("Abmelden", "logout"),
 							l("Kontakte", "relationships"),
