@@ -1,5 +1,11 @@
 <?php
-// $Id: views_slideshow.install,v 1.1.2.2.2.2 2010/02/23 22:21:44 psynaptic Exp $
+// $Id: views_slideshow.install,v 1.1.2.2.2.2.2.1 2010/09/29 03:07:49 redndahead Exp $
+
+/**
+ * @file
+ * Install, update and uninstall functions for the views slideshow module.
+ */
+
 
 /**
  * Implements hook_install().

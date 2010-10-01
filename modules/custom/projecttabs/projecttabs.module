@@ -312,7 +312,7 @@ function projecttabs_og_links_alter(&$links, $node) {
 	
   if (isset($user->og_groups[$node->nid]) && $user->og_groups[$node->nid]['is_admin'] == 1) {
     // Adds link to the user management to approve and decline membership requests
-    $links['users'] = l(t('Manage Users'), "og/users/$node->nid"); 
+    $links['users'] = l(t('Manage Users'), 'og/users/' . $node->nid);
   }
 }
 

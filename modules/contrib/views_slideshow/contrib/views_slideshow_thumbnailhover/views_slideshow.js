@@ -1,4 +1,4 @@
-// $Id: views_slideshow.js,v 1.1.2.2.2.35 2010/07/01 03:29:08 redndahead Exp $
+// $Id: views_slideshow.js,v 1.1.2.2.2.26.2.9 2010/09/04 07:14:35 redndahead Exp $
 
 /**
  * @file
@@ -217,9 +217,9 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
 
 // Pause the slideshow 
 viewsSlideshowThumbnailHoverPause = function (settings) {
-  //make Resume translatable
+  // Make Resume translatable
   var resume = Drupal.t('Resume');
-
+  
   $(settings.targetId).cycle('pause');
   if (settings.controls > 0) {
     $('#views_slideshow_thumbnailhover_playpause_' + settings.vss_id)
@@ -234,6 +234,9 @@ viewsSlideshowThumbnailHoverPause = function (settings) {
 
 // Resume the slideshow
 viewsSlideshowThumbnailHoverResume = function (settings) {
+  // Make Pause translatable
+  var pause = Drupal.t('Pause');
+  
   $(settings.targetId).cycle('resume');
   if (settings.controls > 0) {
     $('#views_slideshow_thumbnailhover_playpause_' + settings.vss_id)
@@ -241,7 +244,7 @@ viewsSlideshowThumbnailHoverResume = function (settings) {
       .addClass('views_slideshow_pause')
       .removeClass('views_slideshow_thumbnailhover_play')
       .removeClass('views_slideshow_play')
-      .text('Pause');
+      .text(pause);
   }
   settings.paused = false;
 }

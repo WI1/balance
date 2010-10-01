@@ -1,5 +1,5 @@
 <?php
-// $Id: views-slideshow-thumbnailhover.tpl.php,v 1.1.2.1.2.11 2010/07/10 06:33:26 redndahead Exp $
+// $Id: views-slideshow-thumbnailhover.tpl.php,v 1.1.2.1.2.10.2.1 2010/07/10 06:34:48 redndahead Exp $
 
 /**
  * @file

@@ -1,5 +1,5 @@
 <?php
-// $Id: views_slideshow_thumbnailhover.views_slideshow.inc,v 1.1.2.1.2.28 2010/07/10 06:26:49 redndahead Exp $
+// $Id: views_slideshow_thumbnailhover.views_slideshow.inc,v 1.1.2.1.2.19.2.12 2010/09/29 03:07:49 redndahead Exp $
 
 /**
  * @file
@@ -8,14 +8,14 @@
 
 function views_slideshow_thumbnailhover_views_slideshow_modes() {
   $options = array(
-    'views_slideshow_thumbnailhover' => t('ThumbnailHover'),
+    'views_slideshow_thumbnailhover' => t('ThumbnailHover (Legacy)'),
   );
   return $options;
 }
 
 function views_slideshow_thumbnailhover_views_slideshow_option_definition() {
   $options['views_slideshow_thumbnailhover'] = array(
-    'contains' => array (
+    'contains' => array(
       'timeout' => array('default' => 5000),
       'sort' => array('default' => 1),
       'effect' => array('default' => 'fade'),
@@ -136,7 +136,7 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
   $form['views_slideshow_thumbnailhover']['fixed_height'] = array(
     '#type' => 'select',
     '#title' => t('Make the slide window height fit the largest slide'),
-    '#options' => array(1 => t('Yes'),0 => t('No')),
+    '#options' => array(1 => t('Yes'), 0 => t('No')),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['fixed_height'],
     '#description' => t('If this is set to no then if the slides are different sizes the height of the slide area will change as the slides change.'),
   );
@@ -150,7 +150,7 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
   $form['views_slideshow_thumbnailhover']['pause'] = array(
     '#type' => 'radios',
     '#title' => t('Pause'),
-    '#options' => array(1 => t('Yes'),2 => t('No')),
+    '#options' => array(1 => t('Yes'), 2 => t('No')),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['pause'],
     '#description' => t('Pause when hovering on the slideshow image.'),
   );
@@ -214,7 +214,7 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
     '#dependency' => array('edit-style-options-views-slideshow-thumbnailhover-remember-slide' => array(1)),
   );
   $options = array('mouseover' => t('Hover'), 'click' => t('Click'));
-  if ((module_exists('jq') && jq_add('hoverIntent')) || (module_exists('hoverintent') && hoverintent_add())) {
+  if ((module_exists('jq') && jq_add('hoverIntent')) || (module_exists('hoverintent') && function_exists('hoverintent_add'))) {
     $options['hoverIntent'] = 'hoverIntent';
   }
   $form['views_slideshow_thumbnailhover']['pager_event'] = array(
@@ -227,14 +227,14 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
   $form['views_slideshow_thumbnailhover']['controls'] = array(
     '#type' => 'select',
     '#title' => t('Controls'),
-    '#options' => array(0 => t('None'),1 => t('Top'),2 => t('Bottom')),
+    '#options' => array(0 => t('None'), 1 => t('Top'), 2 => t('Bottom')),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['controls'],
     '#description' => t('Determine if controls for the slideshow (start/stop/next/previous) should appear, and if so whether they should appear before or after the slideshow.'),
   );
   $form['views_slideshow_thumbnailhover']['image_count'] = array(
     '#type' => 'select',
     '#title' => t('Image Counter'),
-    '#options' => array(0 => t('None'),1 => t('Top'),2 => t('Bottom')),
+    '#options' => array(0 => t('None'), 1 => t('Top'), 2 => t('Bottom')),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['image_count'],
     '#description' => t('Determine if Image Counter (1 of 4) should be displayed and if so whether they should appear before or after the slideshow.'),
   );
@@ -273,7 +273,7 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
     '#title' => t('Effect'),
     '#options' => $options,
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['effect'],
-    '#description' => t('The transition effect that will be used to change between images. Not all options below may be relevant depending on the effect.'),
+    '#description' => t('The transition effect that will be used to change between images. Not all options below may be relevant depending on the effect. ' . l('Follow this link to see examples of each effect.', 'http://jquery.malsup.com/cycle/browser.html', array('attributes' => array('target' => '_blank')))),
   );
   $form['views_slideshow_thumbnailhover']['sync'] = array(
     '#type' => 'radios',
@@ -318,12 +318,12 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
 }
 function views_slideshow_thumbnailhover_views_slideshow_options_form_validate(&$form, &$form_state, &$view) {
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_thumbnailhover']['speed'])) {
-    form_error($form['views_slideshow_thumbnailhover']['speed'], t('Speed must be numeric!'));
+    form_error($form['views_slideshow_thumbnailhover']['speed'], t('!setting must be numeric!', array('!setting' => 'Speed')));
   }
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_thumbnailhover']['timeout'])) {
-    form_error($form['views_slideshow_thumbnailhover']['timeout'],t('Timeout must be numeric!'));
+    form_error($form['views_slideshow_thumbnailhover']['timeout'], t('!setting must be numeric!', array('!setting' => 'Timeout')));
   }
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_thumbnailhover']['remember_slide_days'])) {
-    form_error($form['views_slideshow_thumbnailhover']['remember_slide_days'], t('Slide days must be numeric!'));
+    form_error($form['views_slideshow_thumbnailhover']['remember_slide_days'], t('!setting must be numeric!', array('Slide days')));
   }
 }

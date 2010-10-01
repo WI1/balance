@@ -1,5 +1,5 @@
 <?php
-// $Id: views_slideshow_thumbnailhover.theme.inc,v 1.1.2.1.2.36 2010/06/04 03:52:24 redndahead Exp $
+// $Id: views_slideshow_thumbnailhover.theme.inc,v 1.1.2.1.2.29.2.10 2010/09/29 03:07:49 redndahead Exp $
 
 /**
  * @file
@@ -14,6 +14,25 @@ function template_preprocess_views_slideshow_thumbnailhover(&$vars) {
   $view = $vars['view'];
   $rows = $vars['rows'];
   $vss_id = $view->name . '-' . $view->current_display;
+  $settings = $options['views_slideshow_thumbnailhover'];
+  
+  // Cast the strings into int or bool as necessary.
+  $new_settings = array();
+  foreach ($settings as $key => $value) {
+    $value = trim($value);
+
+    if (is_numeric($value)) {
+      $value = (int)$value;
+    }
+    elseif (strtolower($value) == 'true') {
+      $value = TRUE;
+    }
+    elseif (strtolower($value) == 'false') {
+      $value = FALSE;
+    }
+    
+    $new_settings[$key] = $value;
+  }
 
   $settings = array_merge(
     array(
@@ -24,7 +43,7 @@ function template_preprocess_views_slideshow_thumbnailhover(&$vars) {
       'vss_id' => $vss_id,
       'view_id' => $vss_id,
     ),
-    $options['views_slideshow_thumbnailhover']
+    $new_settings
   );
 
   // We need to go through the current js setting values to make sure the one we
@@ -69,6 +88,8 @@ function template_preprocess_views_slideshow_thumbnailhover(&$vars) {
   $thumbnailhover = $vars['options']['views_slideshow_thumbnailhover'];
 
   // Only show controls when there is more than one result.
+  $vars['controls_top'] = '';
+  $vars['controls_bottom'] = '';
   if ($settings['num_divs'] > 1) {
     if ($thumbnailhover['controls'] == 1) {
       $vars['controls_top'] = theme('views_slideshow_thumbnailhover_controls', $vss_id, $view, $options);
@@ -78,6 +99,8 @@ function template_preprocess_views_slideshow_thumbnailhover(&$vars) {
     }
   }
 
+  $vars['breakout_top'] = '';
+  $vars['breakout_bottom'] = '';
   if (!$thumbnailhover['teasers_last']) {
     $vars['breakout_top'] = theme('views_slideshow_thumbnailhover_breakout_teasers', $view, $rows, $vss_id, $options);
   }
@@ -85,6 +108,8 @@ function template_preprocess_views_slideshow_thumbnailhover(&$vars) {
     $vars['breakout_bottom'] = theme('views_slideshow_thumbnailhover_breakout_teasers', $view, $rows, $vss_id, $options);
   }
 
+  $vars['image_count_top'] = '';
+  $vars['image_count_bottom'] = '';
   if ($thumbnailhover['image_count'] == 1) {
     $vars['image_count_top'] = theme('views_slideshow_thumbnailhover_image_count', $vss_id, $view, $options);
   }

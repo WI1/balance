@@ -5,9 +5,9 @@ dependencies[] = views
 package = Views
 core = 6.x
 
-; Information added by drupal.org packaging script on 2010-07-21
-version = "6.x-2.3"
+; Information added by drupal.org packaging script on 2010-09-29
+version = "6.x-3.0-beta1"
 core = "6.x"
 project = "views_slideshow"
-datestamp = "1279683019"
+datestamp = "1285798564"
 

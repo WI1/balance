@@ -1,5 +1,5 @@
 <?php
-// $Id: views_slideshow_plugin_style_slideshow.inc,v 1.1.2.1.2.11 2010/06/06 04:28:42 redndahead Exp $
+// $Id: views_slideshow_plugin_style_slideshow.inc,v 1.1.2.1.2.9.2.4 2010/09/29 03:07:49 redndahead Exp $
 
 /**
  * @file
@@ -27,7 +27,7 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
 
     // Eveything below here is what's needed for views slideshow.
     if (in_array($options['mode'], array('singleframe', 'thumbnailhover', 'menu', 'slider', 'ddblock')) && is_array($options[$options['mode']])) {
-      foreach($options[$options['mode']] as $index => $value) {
+      foreach ($options[$options['mode']] as $index => $value) {
         $this->options['views_slideshow_' . $options['mode']][$index] = $value;
       }
     }
@@ -95,6 +95,14 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
     foreach (module_implements('views_slideshow_options_form_validate') as $module) {
       $function = $module . '_views_slideshow_options_form_validate';
       call_user_func_array($function, array(&$form, &$form_state, &$this));
+    }
+  }
+  
+  function options_submit($form, &$form_state) {
+    module_load_all_includes('views_slideshow.inc');
+    foreach (module_implements('views_slideshow_options_form_submit') as $module) {
+      $function = $module . '_views_slideshow_options_form_submit';
+      call_user_func_array($function, array($form, &$form_state));
     }
   }
 }

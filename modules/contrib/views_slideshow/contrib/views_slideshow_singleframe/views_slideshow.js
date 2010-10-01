@@ -1,4 +1,4 @@
-// $Id: views_slideshow.js,v 1.1.2.1.2.39 2010/07/01 03:29:08 redndahead Exp $
+// $Id: views_slideshow.js,v 1.1.2.1.2.27.2.14 2010/09/04 07:14:35 redndahead Exp $
 
 /**
  *  @file
@@ -212,9 +212,9 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
 
 // Pause the slideshow 
 viewsSlideshowSingleFramePause = function (settings) {
-  //make Resume translatable
+  // Make Resume translatable
   var resume = Drupal.t('Resume');
-
+  
   $(settings.targetId).cycle('pause');
   if (settings.controls > 0) {
     $('#views_slideshow_singleframe_playpause_' + settings.vss_id)
@@ -229,6 +229,9 @@ viewsSlideshowSingleFramePause = function (settings) {
 
 // Resume the slideshow
 viewsSlideshowSingleFrameResume = function (settings) {
+  // Make Pause translatable
+  var pause = Drupal.t('Pause');
+  
   $(settings.targetId).cycle('resume');
   if (settings.controls > 0) {
     $('#views_slideshow_singleframe_playpause_' + settings.vss_id)
@@ -236,7 +239,7 @@ viewsSlideshowSingleFrameResume = function (settings) {
       .addClass('views_slideshow_pause')
       .removeClass('views_slideshow_singleframe_play')
       .removeClass('views_slideshow_play')
-      .text('Pause');
+      .text(pause);
   }
   settings.paused = false;
 }
@@ -246,7 +249,8 @@ Drupal.theme.prototype.viewsSlideshowPagerThumbnails = function (classes, idx, s
   if (settings.pager_click_to_page) {
     href = $(slide).find('a').attr('href');
   }
-  return '<div class="' + classes + '"><a href="' + href + '"><img src="' + $(slide).find('img').attr('src') + '" /></a></div>';
+  var img = $(slide).find('img');
+  return '<div class="' + classes + '"><a href="' + href + '"><img src="' + $(img).attr('src') + '" alt="' + $(img).attr('alt') + '" title="' + $(img).attr('title') + '"/></a></div>';
 }
 
 Drupal.theme.prototype.viewsSlideshowPagerNumbered = function (classes, idx, slide, settings) {
