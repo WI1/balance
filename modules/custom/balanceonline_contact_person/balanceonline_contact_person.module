@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Implementation of hook_block().
  */
@@ -19,31 +17,23 @@ function balanceonline_contact_person_block($op = 'list', $delta = 0, $edit = ar
 }
 
 function balanceonline_contact_person_block_details() {
-$node_id = arg(1);
-$node = node_load($node_id);
+  $node = node_load(arg(1));
 	if($node->field_projectaccount[0]['uid']){
 		$account = user_load($node->field_projectaccount[0]['uid']);
-		$content = "";
-		if($account->picture){
-			$content .= theme('imagecache', 'userpic-1c-square', $account->picture, 'Bild', 'Ansprechpartner')."<br>";  
-		}
-			
-		
 		$userobj = unserialize($account->data);
-		
-		$content .= $account->profile_title.' '.$account->profile_firstname.' '.$account->profile_lastname."<br>";
-		if($userobj['addresses']['phone']){
-			$content .= "Telefon: ".$userobj['addresses']['phone']."<br>";
+		if(empty($account->picture)) {
+		  $account->picture = 'dummy.jpg';
 		}
-		$userurl = drupal_get_path_alias('user/'.$account->uid);
-		 $content .= '<a href="/'.$userurl.'/contact">Kontaktieren</a>';
+
+		$content = l($content .= theme('imagecache', 'userpic-1c-square', $account->picture, 'Bild', 'Ansprechpartner').'<br />' .  $account->profile_title.' '.$account->profile_firstname.' '.$account->profile_lastname . '</a><br />', 'user/' . $account->uid, array('html' => TRUE));
+
+		if($userobj['addresses']['phone']){
+			$content .= 'Telefon: ' . $userobj['addresses']['phone'] . '<br />';
+		}
+    $content .= l('Kontaktieren', 'user/' . $account->uid . '/contact');
 		
-		
-		$block['content'] = $content."<br><br>";
-	    $block['subject'] = "Ansprechpartner";
-	    return $block;
+		$block['content'] = $content;
+    $block['subject'] = 'Ansprechpartner';
+    return $block;
 	}
 }
-
-
-?>
