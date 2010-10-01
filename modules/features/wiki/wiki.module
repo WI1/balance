@@ -1,0 +1,3 @@
+<?php
+
+include_once('wiki.features.inc');
