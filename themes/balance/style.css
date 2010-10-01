@@ -263,8 +263,6 @@ width: inherit;
 }
 ul.tabs.primary li.active a {
 background: #fff;
-border: 1px solid #243D80 !important;
-border-width: 1px 1px 0 1px !important;
 padding: 5px 9px 1px 9px;
 }
 
