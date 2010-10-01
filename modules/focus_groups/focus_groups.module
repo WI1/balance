@@ -271,8 +271,12 @@ function focus_groups_info_tab_call_back($node) {
  *
  * @return string
  */
-function focus_groups_publications_tab_call_back() {
- 	return '<p><em>Kommt in K&uuml;rze.</em></p>';
+function focus_groups_publications_tab_call_back($node) {
+  if(!empty($node->field_mendeley_shared_collection[0]['value'])) {
+    return mendeley_publications($node->field_mendeley_shared_collection[0]['value']);
+  } else {
+   	return '<p><em>Noch keine Publikationen hinterlegt.</em></p>';
+  }
 }
 
 /**

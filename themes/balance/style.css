@@ -9,6 +9,10 @@
 
 @import url('famfamfam-silk-sprite.css');
 
+.mendeley_title {
+	text-decoration: underline;
+}
+
 .rsvp_form{
 	border: 1px solid black;
 }
