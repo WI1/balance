@@ -299,6 +299,75 @@ function wiki_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_db_merge_duplicates';
+  $strongarm->value = '0';
+
+  $export['rdf_db_merge_duplicates'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_db_prevent_duplicates';
+  $strongarm->value = '1';
+
+  $export['rdf_db_prevent_duplicates'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_db_purge_resources';
+  $strongarm->value = '1';
+
+  $export['rdf_db_purge_resources'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_format';
+  $strongarm->value = 'rdf+json';
+
+  $export['rdf_format'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_rdfa_doctype';
+  $strongarm->value = '1';
+
+  $export['rdf_rdfa_doctype'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_rdfa_prefixes';
+  $strongarm->value = array(
+    'dbo' => 'dbo',
+    'dbp' => 'dbp',
+    'dbpedia-owl' => 'dbpedia-owl',
+    'dbr' => 'dbr',
+    'dc' => 'dc',
+    'dcterms' => 'dcterms',
+    'foaf' => 'foaf',
+    'rdf' => 'rdf',
+    'sioc' => 'sioc',
+    'site' => 'site',
+    'skos' => 'skos',
+    'yago' => 'yago',
+  );
+
+  $export['rdf_rdfa_prefixes'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_schema_class_balancewiki';
+  $strongarm->value = 'http://dbpedia.org/resource';
+
+  $export['rdf_schema_class_balancewiki'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rdf_schema_class_blog';
+  $strongarm->value = '';
+
+  $export['rdf_schema_class_blog'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'upload_balancewiki';
   $strongarm->value = '1';
 
