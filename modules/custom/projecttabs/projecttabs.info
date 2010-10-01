@@ -1,0 +1,10 @@
+; $Id$
+name = Project tabs
+description = Balanceonline.org-specific modifications and extensions.
+dependencies[] = nodehierarchy
+dependencies[] = nodehierarchy_downloads
+dependencies[] = og
+dependencies[] = user_relationships_api
+dependencies[] = views
+core = 6.x
+package = Balance Meta

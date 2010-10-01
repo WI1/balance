@@ -1,0 +1,96 @@
+<?php
+// $Id: popups_subedit.module,v 1.1.1.1.2.8 2009/03/16 06:28:52 starbow Exp $
+
+/**
+ * @file
+ * Allow editing of parts of nodes from the node page. 
+ * Varition on edit-in-place, using Popups.
+ */ 
+
+/**
+ * Implementation of hook_theme().
+ */
+function popups_subedit_theme() {
+  return array(
+    'popups_subedit_fieldgroup' => array(
+      'arguments' => array('element' => NULL),
+    ),
+  );
+}
+
+/**
+ * Implementation of hook_fieldgroup_view().
+ * 
+ * Hijack the theming of selected fieldgroups.
+ */
+function popups_subedit_fieldgroup_view(&$node, &$element, $group, $context) {
+  $name = $group['group_name'];
+  if (node_access('update', $node) && variable_get('popups_subedit_group_' . $name, false)) {
+    popups_add_popups();
+    drupal_add_js(drupal_get_path('module', 'popups_subedit') .'/popups_subedit.js');
+    $element['#theme'] = 'popups_subedit_fieldgroup';
+    $element['#node'] = $node;
+    $element['#group_name'] = $name;
+  }
+}
+
+/**
+ * Theme the contents of a fieldgroup.
+ */
+function theme_popups_subedit_fieldgroup($element) {
+  $name = $element['#group_name'];
+  foreach (element_children($element) as $key) {
+    $output .= drupal_render($element[$key]);
+  }
+  $group_class = str_replace('_', '-',  $name);
+  $text = variable_get('popups_subedit_group_' . $name .'_label', 'Edit ' . $element['#title']);
+  $output .= '<p>';
+  $output .= l($text, 'node/' . $element['#node']->nid . '/edit', 
+               array(
+                 'attributes' => array(
+                   'class' => 'popups-form', 
+                   'rel' => $group_class
+                 )
+               )
+             );
+  $output .= '</p>';
+  return $output;
+}
+
+/**
+ * Implementation of hook_form_alter().
+ * 
+ * Add Subedit settings to fieldgroup settings page.
+ */
+function popups_subedit_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'fieldgroup_group_edit_form') {
+    $name = $form['group_name']['#default_value'];
+    $form['settings']['display']['subedit'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Subedit settings'),
+      '#description' => t('Edit this group independantly of the rest of the node.'),
+    );   
+    $form['settings']['display']['subedit']['on'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Turn on subedit for this group?'),
+      '#default_value' => variable_get('popups_subedit_group_' . $name, 0),
+    );    
+    $form['settings']['display']['subedit']['text'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Label for subedit link'),
+      '#default_value' => variable_get('popups_subedit_group_' . $name .'_label', 'Edit ' . $form['label']['#default_value']),
+    );    
+    $form['#submit'][] = 'popups_subedit_fieldgroup_edit_submit';
+  }
+}
+
+/**
+ * Submit the fieldgroup configure form.
+ */
+function popups_subedit_fieldgroup_edit_submit($form, $form_state) {
+  $name = $form_state['values']['group_name'];
+  variable_set('popups_subedit_group_' . $name, $form_state['values']['settings']['display']['subedit']['on']);
+  variable_set('popups_subedit_group_' . $name .'_label', $form_state['values']['settings']['display']['subedit']['text']);
+}
+
+

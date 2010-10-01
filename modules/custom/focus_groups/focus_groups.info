@@ -1,0 +1,8 @@
+; $Id$
+name = Focus Groups
+description = Enables focus groups (parent organic groups) and projects.
+dependencies[] = nodehierarchy
+dependencies[] = og
+dependencies[] = simplenews
+core = 6.x
+package = Balance Meta

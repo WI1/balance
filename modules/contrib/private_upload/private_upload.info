@@ -1,0 +1,14 @@
+; $Id: private_upload.info,v 1.2.2.2 2008/07/17 19:51:24 starbow Exp $
+name = Private Upload
+description = Allow individual files to be kept in a private file directory.
+dependencies[] = upload
+package = File management
+core = 6.x
+
+
+; Information added by drupal.org packaging script on 2010-07-11
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "private_upload"
+datestamp = "1278835369"
+

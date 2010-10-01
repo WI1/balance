@@ -1,0 +1,60 @@
+<?php
+function footer_sitemap_block ($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks = array();
+      $blocks[0] = array(
+        'info' => t('ED Footer Sitemap'),
+        'region' => 'footer',
+        'status' => 1,
+      );
+      return $blocks;
+      break;
+    case 'view':
+      $block = array();
+      switch ($delta) {
+        case 0:
+          $block['subject'] = '';
+          $block['content'] = '<div id="footer-sitemap">'.footer_sitemap_menu_display(variable_get('footer_sitemap_menu', NULL)).'</div>';
+          break;
+      }
+      return $block;
+      break;
+    case 'configure':
+      $form['footer_sitemap_menu'] = array (
+        '#type' => 'select',
+        '#title' => t('Menu to display as footer sitemap'),
+        '#required' => TRUE,
+        '#options' => menu_get_menus(),
+        '#default_value' => variable_get('footer_sitemap_menu', NULL),
+      );
+      $form['footer_sitemap_show_home'] = array (
+        '#type' => 'radios',
+        '#title' => t('Show home link'),
+        '#default_value' => variable_get('footer_sitemap_show_home', 'show'),
+        '#options' => array('hide' => t('No'), 'show' => t('Yes'))
+      );
+      return $form;
+      break;
+    case 'save':
+      variable_set('footer_sitemap_menu', $edit['footer_sitemap_menu']);
+      variable_set('footer_sitemap_show_home', $edit['footer_sitemap_show_home']);
+      break;
+  }
+}
+
+function footer_sitemap_menu_display ($menu_name) {
+  if ($menu_name == NULL) {
+    return '';
+  }
+
+  $tree = menu_tree_all_data($menu_name);
+  if (variable_get('footer_sitemap_show_home', 'show') == 'hide') {
+    foreach ($tree as &$item) {
+      if ($item['link']['href'] == '<front>') {
+        $item = NULL;
+      }
+    }
+  }
+  return menu_tree_output($tree);
+}

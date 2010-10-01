@@ -1,0 +1,6 @@
+; $Id$
+name = UR Mutual Friends
+description = Shows Mutual Friends based on User Relationships
+dependencies[] = user_relationships_api
+core = 6.x
+package = User Relationships

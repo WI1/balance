@@ -1,0 +1,444 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ * @return array with Views API version.
+ */
+function projecttabs_views_api() {
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'projecttabs'),
+    //'path' => drupal_get_path('module', 'nodehierarchy_downloads') . '/includes',
+  );
+}
+
+/**
+ * Implements hook_menu_alter()
+ * Changes tab navigation translations and restrict access
+ *
+ * @param array $items
+ */
+function projecttabs_menu_alter(&$items) {
+	// translations
+	$items['node/%node/view']['title'] = 'Aktuelles';
+	$items['user/%user/view']['title'] = 'Profil';
+	$items['user/%user/track']['title'] = 'Aktivitäten';
+	$items['user/%user_category/edit']['weight'] = 10;
+	$items['relationships/list']['title'] = 'Meine Kontakte';
+	$items['relationships/requests']['title'] = 'Kontaktanfragen';
+	$items['relationships/1']['title'] = 'Nutzer suchen';
+
+	// disable tabs (and the urls) for the user profile
+	// use the following to remove the tab but let the URL
+	// $items['user/%user/example']['type'] = MENU_CALLBACK;
+	//$items['user/%user/contact'] = null;
+	$items['user/%user/invites'] = null;
+	$items['user/%user/messages'] = null;
+	$items['user/%user/notifications'] = null;
+	$items['og/activity'] = null;
+	$items['user/%user_category/edit']['type'] = MENU_CALLBACK;
+	//$items['node/%node/edit']['type'] = MENU_CALLBACK;
+	$items['user/%user/contact']['type'] = MENU_CALLBACK;
+
+	// profileplus adds it own user search tab
+	if(module_exists('profileplus')) {
+		$items['search/user/%menu_tail'] = null;
+	}
+
+	// disable tabs for anonymous
+	global $user;
+	if(!$user->uid) { // not logged in
+		$items['user/%user/track'] = null;
+	}
+}
+
+/**
+ * Implements hook_block().
+ * Adds the following custom blocks:
+ *  - front page status, i.e. 'You have 2 new messages' etc.
+ *  - custom login: shows login box for anonymous, profile information for logged in users
+ *
+ * @param string $op
+ * @param int $delta
+ * @param array $edit
+ * @return string
+ */
+function projecttabs_block($op = 'list', $delta = 0, $edit = array()) {
+	switch ($op) {
+		case 'list':
+			$blocks[0]['info'] = 'Balance ' . t('Frontpage Status');
+			$blocks[1]['info'] = 'Balance ' . t('User');
+			$blocks[2]['info'] = 'Balance ' . t('Users You Might Know');
+			return $blocks;
+
+		case 'view':
+			global $user;
+			$user = user_load($user->uid);
+
+			switch($delta) {
+				case 0:
+					$approval_actions = projecttabs_get_approvable_actions();
+
+					$block['content'] = theme_item_list($approval_actions);
+				break;
+
+				case 1:
+					if($user->uid)  {
+						$profile_completeness = projecttabs_get_profile_completeness();
+
+						$block['content'] = sprintf('<p class="login_text">%s<strong>Herzlich willkommen,<br />%s</strong></p><p>%s | %s</p>%s',
+							theme('imagecache', 'userpic-1c-square', $user->picture),
+							l(implode(' ', array($user->profile_firstname, $user->profile_lastname)), 'user/' . $user->uid),
+							l("Abmelden", "logout"),
+							l("Kontakte", "relationships"),
+							$profile_completeness < 80 ? '<p>Ihr Profil ist zu ' . $profile_completeness . '% ausgefüllt. ' . l('Vervollständigen Sie Ihr Profil' ,'user/' . $user->uid . '/edit') . '!</p>' : ''
+						);
+					} else  {
+						$block['content'] = sprintf('<form action="/drupal/?q=user&amp;%s" method="post" id="user-login"><ul>
+					    <li><label for="edit-name">Name:</label><input type="text" maxlength="60" name="name" id="edit-name" size="15" value="" class="form-text required" title="Name" /></li>
+					    <li><label for="edit-pass">Passwort:</label><input type="password" maxlength="" name="pass" id="edit-pass" size="15" class="form-text required" title="Passwort" /></li></ul>
+						<input type="submit" name="op" value="Login" class="form-submit" /><br>
+						<div class="description"><a href="/drupal/?q=user/register" title="Create account">Registrieren</a> | <a href="/drupal/?q=user/password" title="Retrieve lost password">Passwort vergessen?</a></div>
+						<input type="hidden" name="form_id" id="edit-user-login" value="user_login" />
+					</form>
+', drupal_get_destination());
+					}
+				break;
+
+				case 2:
+					$block['subject'] = 'Mitglieder die Sie kennen könnten';
+					$block['content'] = projecttabs_users_you_might_know();
+				break;
+			}
+
+			return $block;
+	}
+}
+
+function projecttabs_users_you_might_know() {
+	global $user;
+	$rtid = 1; //Relationship type ID.
+	$max = 3; //The amount of users to show on the block.
+
+	$user_rel = db_query("
+	SELECT u.uid
+	FROM {users} u
+	LEFT JOIN {user_relationships} ur ON (u.uid = ur.requester_id OR u.uid = ur.requestee_id)
+	WHERE (ur.requester_id = %d OR ur.requestee_id = %d)
+	  AND ur.approved = 1
+	  AND ur.rtid = %d
+	  AND u.status <> 0
+	GROUP BY u.uid
+	ORDER BY COUNT(ur.requester_id OR ur.requestee_id) DESC
+	", $user->uid, $user->uid, $rtid);
+
+	$user_rel_com = array();
+	while ($value = db_fetch_array($user_rel)) {
+	  $user_rel_com[] = $value;
+	}
+
+	if ($user_rel_com) {
+
+		foreach ($user_rel_com as $row) {
+		  $req_req_id_list .= " OR ur.requester_id = " . $row['uid'] . " OR ur.requestee_id = " . $row['uid'];
+		  $no_include_friends .= " AND u.uid <> ". $row['uid'];
+		}
+
+		// Trim the first " OR ".
+		$req_req_id_list = drupal_substr($req_req_id_list, 4);
+
+		// Get all of the current user's friends' friends and order by how many times they show up in the list.
+		$user_rel_rel = db_query("
+		SELECT u.uid
+		FROM {users} u
+		LEFT JOIN {user_relationships} ur ON (u.uid = ur.requester_id OR u.uid = ur.requestee_id)
+		WHERE (%s)
+		  AND ur.approved = 1
+		  AND ur.rtid = %d
+		  AND u.uid <> %d
+		  %s
+		  AND u.status <> 0
+		GROUP BY u.uid
+		ORDER BY COUNT(ur.requester_id OR ur.requestee_id) DESC
+		", $req_req_id_list, $rtid, $user->uid, $no_include_friends);
+
+		$user_rel_rel_com = array();
+		while ($value = db_fetch_array($user_rel_rel)) {
+		  $user_rel_rel_com[] = $value['uid'];
+		}
+	} else {
+		// no connections => get random people
+
+		$user_rel_rel = db_query("
+		SELECT u.uid
+		FROM {users} u
+		LEFT JOIN {user_relationships} ur ON (u.uid = ur.requester_id OR u.uid = ur.requestee_id)
+		WHERE u.uid <> %d
+		  AND u.status <> 0
+		GROUP BY u.uid
+		ORDER BY RAND() DESC LIMIT %d
+		", $user->uid, $max);
+
+		$user_rel_rel_com = array();
+		while ($value = db_fetch_array($user_rel_rel)) {
+		  $user_rel_rel_com[] = $value['uid'];
+		}
+	}
+
+	// Scrambles the users non-randomly.  Does not scramble the user at the bottom of the list.
+	$z = $user_rel_rel_com;
+
+	$i = 0;
+	foreach ($user_rel_rel_com as $v) {
+	  $r = rand(0, 1);
+	  if ($r === 1 && $user_rel_rel_com[$i + 1]) {
+	    $z[$i] = $user_rel_rel_com[$i + 1];
+	    $z[$i + 1] = $v;
+	  }
+	  $i++;
+	}
+
+	if(count($user_rel_rel_com) < $max) {
+		$max = count($user_rel_rel_com);
+	}
+
+	for ($i = 0; $i < $max; $i++) {
+	  if ($z[$i] != $user->uid) {
+	    $account = user_load(array('uid' => $z[$i]));
+	    $list[] = theme('user_picture', $account) .' '. theme('username', $account);
+	  }
+	}
+
+	return theme('item_list', $list);
+}
+
+/**
+ * Counts how many percent of a user profile is entered
+ *
+ * @param array $user
+ * @return int
+ */
+function projecttabs_get_profile_completeness() {
+	global $user;
+
+	$filled_out = 0;
+	$fields = 0;
+
+	foreach($user as $field_name => $value) {
+		if($field_name == 'location' && is_array($value)) {
+			$fields += count($value) - 4; // 4 location fields are never filled out by the user
+			$filled_out += count(array_filter($value));
+		} elseif(strpos($field_name, 'profile_') !== false) {
+			$fields++;
+			if($value) {
+				$filled_out++;
+			}
+		}
+	}
+
+	if($fields > 0) {
+		$percent = (int)round(($filled_out * 100)/$fields, -1);
+	} else  {
+		$percent = 100;
+	}
+
+	return $percent;
+}
+
+/**
+ * Gets items you have to approve to show them on the front page
+ *
+ * @return array
+ *   to use with theme_item_list
+ */
+function projecttabs_get_approvable_actions() {
+	global $user;
+
+	if(module_exists('user_relationships_ui')) {
+		// gets pending relationship requests
+		if($user_relationships_count = count(user_relationships_load(array('requestee_id' => $user->uid, 'approved' => FALSE)))) {
+			$approve[] = l(format_plural($user_relationships_count, '1 new relationship request', '@count new relationship requests'), variable_get('user_relationships_requests_link', 'relationships/requests'));
+		}
+	}
+
+	if(module_exists('og_invite')) {
+		// gets invites to a group
+		// og/all page view needs to be extended for multiple arguments
+		if($og_invites = og_invite_load_pending()) {
+			$approve[] = l(format_plural(count($og_invites), '1 new group invite', '@count new group invites'), 'og/all/' . implode(',', array_keys($og_invites)));
+		}
+	}
+
+	if(module_exists('rsvp')) {
+		// gets invites to an appointment
+		if($invitations = rsvp_load_invited(null, $user->uid)) {
+			$invitationsCount = 0;
+
+			foreach($invitations as $event) {
+				foreach($event as $invitation) {
+					if($invitation->response == 'none') {
+						$invitationsCount++;
+					}
+				}
+			}
+
+			if($invitationsCount > 0) {
+				if($invitationsCount == 1) {
+					// send directly to accept page
+					$onlyInvitation = reset(reset($invitations));
+					$rsvpLink = 'rsvp/email/' . $onlyInvitation->hash . '/view';
+				} else {
+					// send to overview page
+					$rsvpLink = 'user/' . $user->uid . '/rsvp';
+				}
+
+				$approve[] = l(format_plural($invitationsCount, '1 new appointment invite', '@count new appointment invites'), $rsvpLink);
+			}
+		}
+	}
+
+	return $approve;
+}
+
+/**
+ * Implements hook_og_links_alter
+ * Modifies the group details block
+ *
+ * @param array $links
+ */
+function projecttabs_og_links_alter(&$links, $node) {
+	global $user;
+	unset($links['subscribers']);
+	
+  if (isset($user->og_groups[$node->nid]) && $user->og_groups[$node->nid]['is_admin'] == 1) {
+    // Adds link to the user management to approve and decline membership requests
+    $links['users'] = l(t('Manage Users'), "og/users/$node->nid"); 
+  }
+}
+
+/**
+ * Implements theme_breadcrumb
+ * Disables breadcrumb
+ *
+ * @param array $breadcrumb
+ * @return string
+ */
+function balance_breadcrumb($breadcrumb) {
+	return '';
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * @param array $form
+ * @param string $form_state
+ */
+function projecttabs_form_comment_form_alter(&$form, &$form_state) {
+	// no WYSIWYG for comment forms
+	$form['comment_filter']['format'] = array();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * @param array $form
+ * @param string $form_state
+ */
+function projecttabs_form_user_register_alter(&$form, &$form_state) {
+  $form['Benutzerinformation']['#weight'] = -5;
+  $form['og_register']['#title'] = 'Projekt auswählen';
+  
+	$agb = &$form['Benutzerinformation']['profile_agb'];
+	$agb['#title'] = str_replace('AGB', l('AGB', 'nutzungsbedingungenagb'), $agb['#title']);
+	unset($agb['#description']);
+
+	foreach($form['og_register']['og_register']['#options'] as &$o) {
+		$o = strip_tags($o);
+	}
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * @param array $form
+ * @param string $form_state
+ */
+function projecttabs_form_user_profile_form_alter(&$form, &$form_state) {
+	// remove unneeded tabs
+	$disable = array(
+		'contact',
+		'locale',
+		'messaging',
+		'timezone',
+	);
+
+	foreach($disable as $d) {
+		unset($form[$d]);
+	}
+
+	$form['locations']['#title'] = 'Adresse';
+
+	// AGB field is only used on register
+	unset($form['Benutzerinformation']['profile_agb']);
+}
+
+/**
+ * Implements hook_links_alter
+ *
+ * Removes the "Read !username's latest blog entries" under a blog post
+ *
+ * @param array $links
+ * @param array $node
+ */
+function projecttabs_link_alter(&$links, $node) {
+	unset($links['blog_usernames_blog']);
+}
+
+/**
+ * Loads CSS classes and authors depending on node type
+ *
+ * @param array $vars
+ */
+function projecttabs_preprocess_page(&$vars) {
+	$url = arg();
+	if($url[0] == 'user') {
+		if($url[1] && !in_array($url[1], array('register', 'password'))) {
+			// user page
+			$profile = user_load($url[1]);
+			$vars['profile'] = $profile;
+		} else {
+			// default template for register/password forgot
+			$vars['template_files'] = array('page');
+		}
+	} elseif(isset($vars['node']->type)) {
+		switch($vars['node']->type) {
+			case 'blog':
+				// set authors and groups of active blog post
+				$authors[] = user_load($vars['node']->uid);
+				$vars['authors'] = $authors;
+			break;
+		}
+		$vars['body_classes'] = projecttabs_get_body_classes($vars['node'], $vars['body_classes']);
+	}
+}
+
+/**
+ * Adds body classes for node
+ *
+ * @param object $node
+ * @param string $body_classes
+ * @param bool $logged_in
+ * @return string
+ */
+function projecttabs_get_body_classes($node, $body_classes = '') {
+	if(!$node) {
+		return $body_classes;
+	}
+
+	$body_classes = explode(' ', $body_classes);
+
+	// on some pages the automatic drupal body class algorithm doesn't work properly
+	// this is especially the case for views which are children of a group, e.g. project/name/info
+	if($node->type) {
+		$body_classes[] = 'node-type-' . $node->type;
+	}
+
+	return implode(' ', array_unique($body_classes));
+}

@@ -1,0 +1,15 @@
+; $Id: popups_subedit.info,v 1.1.1.1.2.3 2009/03/11 22:20:16 starbow Exp $
+name = Popups: Subedit
+description = Allow editing of parts of nodes from the node page. 
+package = User interface
+core = 6.x
+dependencies[] = popups 
+dependencies[] = content
+dependencies[] = fieldgroup
+
+; Information added by drupal.org packaging script on 2009-03-16
+version = "6.x-1.0-beta1"
+core = "6.x"
+project = "popups_subedit"
+datestamp = "1237185339"
+
