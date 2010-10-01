@@ -42,7 +42,6 @@ $grid = array(
 				</div><!-- /header -->
 
 				<div id="container" class="clear-block container_12">
-					<?php if(!empty($left)):?>
 					<div id="sidebar-left" class="column sidebar grid_<?=$grid['left']?>">
 						<div id="logo-title">
 							<?php if (!empty($logo)): ?>
@@ -52,7 +51,6 @@ $grid = array(
 						</div>
 						<?php print $left; ?>
 					</div><!-- /sidebar-left -->
-					<?php endif; ?>
 
 					<div id="main" class="column">
 						<div id="main-squeeze" class="grid_<?=$grid['middle']?>">
