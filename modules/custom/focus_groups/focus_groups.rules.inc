@@ -29,7 +29,6 @@ function focus_groups_action_info() {
  * Subscribes a user to a focus group of the given group
  */
 function focus_groups_subscribe_user_action($account, $context) {
-	xdebug_break(); // FIXME
 	if($group_id = focus_groups_get_group_id()) {
 		if($focus_group_id = focus_groups_get_parent($group_id)) {
 			og_save_subscription($focus_group_id, $user->uid, array('is_active' => 1));

@@ -1,6 +1,7 @@
 ; $Id$
 name = Focus Groups
 description = Enables focus groups (parent organic groups) and projects.
+dependencies[] = mendeley
 dependencies[] = nodehierarchy
 dependencies[] = og
 dependencies[] = simplenews
