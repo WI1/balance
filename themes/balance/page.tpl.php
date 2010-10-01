@@ -85,7 +85,7 @@ $grid = array(
 							<?php if (!empty($title)): ?>
 								<h1 id="page-title" class="title"><?php print $title; ?></h1>
 							<?php endif; ?>
-							<?php if (isset($node) && !empty($node->og_description)): ?>
+							<?php if (isset($node) && !empty($node->og_description) && $node->og_description !== 'na'): ?>
 							<p class="long"><?php print $node->og_description; ?></p>
 							<?php endif; ?>
 							<?php if (!empty($tabs)): ?>
