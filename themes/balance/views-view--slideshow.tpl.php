@@ -14,10 +14,10 @@
 			<?php $i++; ?>
 			<?php endforeach; ?>
 		</div>
-		<div class="views_slideshow_singleframe_controls views_slideshow_controls" id="views_slideshow_singleframe_controls_1" style="display: block; margin: 0 10px">
+		<!-- <div class="views_slideshow_singleframe_controls views_slideshow_controls" id="views_slideshow_singleframe_controls_1" style="display: block; margin: 0 10px">
 			<a href="#" id="views_slideshow_singleframe_prev_slideshow-block_1" class="views_slideshow_singleframe_previous views_slideshow_previous">Vorheriges Thema </a> |
 			<a href="#" id="views_slideshow_singleframe_next_slideshow-block_1" class="views_slideshow_singleframe_next views_slideshow_next">Nächstes Thema</a>
-		</div>
+		</div> --><br />
 	</div>
 	</div>
 </div>
