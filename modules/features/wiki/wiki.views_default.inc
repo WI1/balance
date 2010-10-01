@@ -14,12 +14,13 @@ function wiki_views_default_views() {
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
-  $view->api_version = 3.0-alpha1;
+  $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   
 /* Display: Standards */
   $handler = $view->new_display('default', 'Standards', 'default');
   $handler->display->display_options['items_per_page'] = 0;
+  $handler->display->display_options['use_more_text'] = 'mehr';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -84,12 +85,13 @@ function wiki_views_default_views() {
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
-  $view->api_version = 3.0-alpha1;
+  $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   
 /* Display: Standards */
   $handler = $view->new_display('default', 'Standards', 'default');
   $handler->display->display_options['items_per_page'] = 0;
+  $handler->display->display_options['use_more_text'] = 'mehr';
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     '9' => 9,
@@ -203,12 +205,13 @@ function wiki_views_default_views() {
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
-  $view->api_version = 3.0-alpha1;
+  $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   
 /* Display: Standards */
   $handler = $view->new_display('default', 'Standards', 'default');
   $handler->display->display_options['items_per_page'] = 0;
+  $handler->display->display_options['use_more_text'] = 'mehr';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -442,12 +445,13 @@ function wiki_views_default_views() {
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
-  $view->api_version = 3.0-alpha1;
+  $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   
 /* Display: Standards */
   $handler = $view->new_display('default', 'Standards', 'default');
   $handler->display->display_options['items_per_page'] = 0;
+  $handler->display->display_options['use_more_text'] = 'mehr';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -661,11 +665,12 @@ function wiki_views_default_views() {
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
-  $view->api_version = 3.0-alpha1;
+  $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   
 /* Display: Standards */
   $handler = $view->new_display('default', 'Standards', 'default');
+  $handler->display->display_options['use_more_text'] = 'mehr';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -676,6 +681,7 @@ function wiki_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Beträge pro Seite';
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '10';
+  $handler->display->display_options['style_options']['fill_single_line'] = 1;
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Leerer Text: Global: Text area */
   $handler->display->display_options['empty']['text']['id'] = 'area';
@@ -748,12 +754,13 @@ function wiki_views_default_views() {
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
-  $view->api_version = 3.0-alpha1;
+  $view->api_version = '3.0-alpha1';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   
 /* Display: Standards */
   $handler = $view->new_display('default', 'Standards', 'default');
   $handler->display->display_options['items_per_page'] = 0;
+  $handler->display->display_options['use_more_text'] = 'mehr';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -764,6 +771,7 @@ function wiki_views_default_views() {
   $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Beträge pro Seite';
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '10';
+  $handler->display->display_options['style_options']['fill_single_line'] = 0;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['inline'] = array(
     'value_1' => 'value_1',
