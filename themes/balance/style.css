@@ -1149,3 +1149,10 @@ li.addthis{
 .view-frontpage-hack .view-filters .form-submit{
   display:none;
 }
+
+
+#mendeley_documents li {
+list-style:none outside none;
+margin-bottom:1em;
+margin-left:0;
+}
