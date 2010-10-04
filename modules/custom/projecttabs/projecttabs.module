@@ -115,13 +115,20 @@ function projecttabs_block($op = 'list', $delta = 0, $edit = array()) {
 	}
 }
 
-function projecttabs_users_you_might_know() {
+/**
+ * Show users the logged in user could know because of user relationships
+ * 
+ * @param int $rtid
+ *  Relationship type ID
+ * @param int $max
+ *  The amount of users to show on the block
+ * @return string
+ *  HTML representation of user item list
+ */
+function projecttabs_users_you_might_know($rtid = 1, $max = 3) {
 	global $user;
-	$rtid = 1; //Relationship type ID.
-	$max = 3; //The amount of users to show on the block.
 
-	$user_rel = db_query("
-	SELECT u.uid
+	$user_rel = db_query('SELECT u.uid
 	FROM {users} u
 	LEFT JOIN {user_relationships} ur ON (u.uid = ur.requester_id OR u.uid = ur.requestee_id)
 	WHERE (ur.requester_id = %d OR ur.requestee_id = %d)
@@ -129,8 +136,7 @@ function projecttabs_users_you_might_know() {
 	  AND ur.rtid = %d
 	  AND u.status <> 0
 	GROUP BY u.uid
-	ORDER BY COUNT(ur.requester_id OR ur.requestee_id) DESC
-	", $user->uid, $user->uid, $rtid);
+	ORDER BY COUNT(ur.requester_id OR ur.requestee_id) DESC', $user->uid, $user->uid, $rtid);
 
 	$user_rel_com = array();
 	while ($value = db_fetch_array($user_rel)) {
@@ -138,18 +144,16 @@ function projecttabs_users_you_might_know() {
 	}
 
 	if ($user_rel_com) {
-
 		foreach ($user_rel_com as $row) {
-		  $req_req_id_list .= " OR ur.requester_id = " . $row['uid'] . " OR ur.requestee_id = " . $row['uid'];
-		  $no_include_friends .= " AND u.uid <> ". $row['uid'];
+		  $req_req_id_list .= ' OR ur.requester_id = ' . $row['uid'] . ' OR ur.requestee_id = ' . $row['uid'];
+		  $no_include_friends .= ' AND u.uid <> '. $row['uid'];
 		}
 
 		// Trim the first " OR ".
 		$req_req_id_list = drupal_substr($req_req_id_list, 4);
 
 		// Get all of the current user's friends' friends and order by how many times they show up in the list.
-		$user_rel_rel = db_query("
-		SELECT u.uid
+		$user_rel_rel = db_query('SELECT u.uid
 		FROM {users} u
 		LEFT JOIN {user_relationships} ur ON (u.uid = ur.requester_id OR u.uid = ur.requestee_id)
 		WHERE (%s)
@@ -159,8 +163,7 @@ function projecttabs_users_you_might_know() {
 		  %s
 		  AND u.status <> 0
 		GROUP BY u.uid
-		ORDER BY COUNT(ur.requester_id OR ur.requestee_id) DESC
-		", $req_req_id_list, $rtid, $user->uid, $no_include_friends);
+		ORDER BY COUNT(ur.requester_id OR ur.requestee_id) DESC', $req_req_id_list, $rtid, $user->uid, $no_include_friends);
 
 		$user_rel_rel_com = array();
 		while ($value = db_fetch_array($user_rel_rel)) {
@@ -168,16 +171,13 @@ function projecttabs_users_you_might_know() {
 		}
 	} else {
 		// no connections => get random people
-
-		$user_rel_rel = db_query("
-		SELECT u.uid
+		$user_rel_rel = db_query('SELECT u.uid
 		FROM {users} u
 		LEFT JOIN {user_relationships} ur ON (u.uid = ur.requester_id OR u.uid = ur.requestee_id)
 		WHERE u.uid <> %d
 		  AND u.status <> 0
 		GROUP BY u.uid
-		ORDER BY RAND() DESC LIMIT %d
-		", $user->uid, $max);
+		ORDER BY RAND() DESC LIMIT %d', $user->uid, $max);
 
 		$user_rel_rel_com = array();
 		while ($value = db_fetch_array($user_rel_rel)) {
@@ -185,28 +185,9 @@ function projecttabs_users_you_might_know() {
 		}
 	}
 
-	// Scrambles the users non-randomly.  Does not scramble the user at the bottom of the list.
-	$z = $user_rel_rel_com;
-
-	$i = 0;
-	foreach ($user_rel_rel_com as $v) {
-	  $r = rand(0, 1);
-	  if ($r === 1 && $user_rel_rel_com[$i + 1]) {
-	    $z[$i] = $user_rel_rel_com[$i + 1];
-	    $z[$i + 1] = $v;
-	  }
-	  $i++;
-	}
-
-	if(count($user_rel_rel_com) < $max) {
-		$max = count($user_rel_rel_com);
-	}
-
-	for ($i = 0; $i < $max; $i++) {
-	  if ($z[$i] != $user->uid) {
-	    $account = user_load(array('uid' => $z[$i]));
-	    $list[] = theme('user_picture', $account) .' '. theme('username', $account);
-	  }
+	foreach($user_rel_rel_com as $u) {
+    $account = user_load(array('uid' => $u));
+    $list[] = theme('user_picture', $account) .' '. theme('username', $account);
 	}
 
 	return theme('item_list', $list);

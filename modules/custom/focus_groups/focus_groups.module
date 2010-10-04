@@ -107,7 +107,7 @@ function focus_groups_preprocess_page(&$vars) {
 			if($url[0] == 'node' && $url[1] == 'add' && $nodeIds = $_GET['gids']) {
 				// load node for node/add/blog?gids[]=31 links
 				$nodeId = reset(explode(',', reset($nodeIds)));
-			} elseif(!isset($vars['node']) && is_numeric($url[1])) { // on settings pages we don't have nodes
+			} elseif(!isset($vars['node']) && isset($url[1]) && is_numeric($url[1])) { // on settings pages we don't have nodes
 				// todo why don't nodes load on e.g. node/31/team
 				$nodeId = $url[1];
 			}
