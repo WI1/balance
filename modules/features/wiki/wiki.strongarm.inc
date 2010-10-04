@@ -128,7 +128,7 @@ function wiki_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_balancewiki';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
 
   $export['comment_form_location_balancewiki'] = $strongarm;
   $strongarm = new stdClass;
@@ -200,14 +200,15 @@ function wiki_strongarm() {
   $strongarm->name = 'content_extra_weights_balancewiki';
   $strongarm->value = array(
     'title' => '-5',
-    'revision_information' => '3',
-    'author' => '2',
-    'options' => '4',
-    'comment_settings' => '7',
-    'menu' => '1',
+    'revision_information' => '4',
+    'author' => '3',
+    'options' => '5',
+    'comment_settings' => '8',
+    'menu' => '2',
     'taxonomy' => '-4',
-    'path' => '5',
-    'attachments' => '6',
+    'path' => '6',
+    'attachments' => '7',
+    'detailed_question' => '12',
   );
 
   $export['content_extra_weights_balancewiki'] = $strongarm;
@@ -300,7 +301,7 @@ function wiki_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'rdf_db_merge_duplicates';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
 
   $export['rdf_db_merge_duplicates'] = $strongarm;
   $strongarm = new stdClass;
@@ -336,18 +337,9 @@ function wiki_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'rdf_rdfa_prefixes';
   $strongarm->value = array(
-    'dbo' => 'dbo',
-    'dbp' => 'dbp',
-    'dbpedia-owl' => 'dbpedia-owl',
-    'dbr' => 'dbr',
     'dc' => 'dc',
-    'dcterms' => 'dcterms',
     'foaf' => 'foaf',
     'rdf' => 'rdf',
-    'sioc' => 'sioc',
-    'site' => 'site',
-    'skos' => 'skos',
-    'yago' => 'yago',
   );
 
   $export['rdf_rdfa_prefixes'] = $strongarm;
@@ -355,7 +347,7 @@ function wiki_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'rdf_schema_class_balancewiki';
-  $strongarm->value = 'http://dbpedia.org/resource';
+  $strongarm->value = '';
 
   $export['rdf_schema_class_balancewiki'] = $strongarm;
   $strongarm = new stdClass;
