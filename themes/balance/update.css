@@ -153,12 +153,13 @@ body.front .node .content p { display: block; }
 /* Tabs */
 	
 	/* div */
-	#main-squeeze .tabs { border-left: #bbbbbb 1px solid !important; border-bottom: #bbbbbb 1px solid; height: 31px; margin: 20px 0; top: auto; }
+	#main-squeeze .tabs { height: 31px; margin: 20px 0; top: auto; }
+	#main-squeeze div.tabs { border-left: #bbb 1px solid !important; border-bottom: #bbb 1px solid; } 
 	
 	/* ul */	
-	#main-squeeze .tabs { margin: 0; padding: 0; border: none !important; }
+	#main-squeeze .tabs { margin: 0; padding: 0; }
 	#main-squeeze .tabs.secondary { margin: 20px 0; }
-	
+
 	/* li */
 	ul.tabs.primary li,ul.tabs.secondary li { 
 		font-weight: bold !important; 
@@ -167,7 +168,7 @@ body.front .node .content p { display: block; }
 		height: 30px; 
 		line-height: 30px; 
 		margin: 0 !important; 
-		border: #bbbbbb 1px solid !important; border-left: none !important;
+		border: #bbb 1px solid !important; border-left: none !important;
 		height: 30px !important; 
 		background: url(img/bg/tabverlauf.jpg) repeat-x; 
 	}
