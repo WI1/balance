@@ -276,17 +276,17 @@ function wiki_views_default_views() {
   $handler->display->display_options['empty']['text']['empty'] = FALSE;
   $handler->display->display_options['empty']['text']['content'] = 'Tragen Sie hier neue Definitionen für den Begriff [title] ein.';
   $handler->display->display_options['empty']['text']['format'] = '1';
-  /* Beziehung: Flags: gefallen */
+  /* Beziehung: Kennzeichnungen: gefallen */
   $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
-  /* Beziehung: Flags: gefallen counter */
+  /* Beziehung: Kennzeichnungen: gefallen Zähler */
   $handler->display->display_options['relationships']['flag_count_rel']['id'] = 'flag_count_rel';
   $handler->display->display_options['relationships']['flag_count_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['flag_count_rel']['field'] = 'flag_count_rel';
   $handler->display->display_options['relationships']['flag_count_rel']['required'] = 0;
-  /* Beziehung: Flags: Benutzer */
+  /* Beziehung: Kennzeichnungen: Benutzer */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'flag_content';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
@@ -384,7 +384,7 @@ function wiki_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
-  /* Feld: Flags: Flag link */
+  /* Feld: Kennzeichnungen: Kennzeichnungs-Link */
   $handler->display->display_options['fields']['ops']['id'] = 'ops';
   $handler->display->display_options['fields']['ops']['table'] = 'flag_content';
   $handler->display->display_options['fields']['ops']['field'] = 'ops';
@@ -399,7 +399,7 @@ function wiki_views_default_views() {
   $handler->display->display_options['fields']['ops']['hide_empty'] = 0;
   $handler->display->display_options['fields']['ops']['empty_zero'] = 0;
   $handler->display->display_options['fields']['ops']['link_type'] = 'toggle';
-  /* Feld: Flags: Flag counter */
+  /* Feld: Kennzeichnungen: Kennzeichnungszähler */
   $handler->display->display_options['fields']['count']['id'] = 'count';
   $handler->display->display_options['fields']['count']['table'] = 'flag_counts';
   $handler->display->display_options['fields']['count']['field'] = 'count';
@@ -508,17 +508,17 @@ function wiki_views_default_views() {
   $handler->display->display_options['empty']['text']['empty'] = FALSE;
   $handler->display->display_options['empty']['text']['content'] = 'Tragen Sie hier neue Definitionen für den Begriff [title] ein.';
   $handler->display->display_options['empty']['text']['format'] = '1';
-  /* Beziehung: Flags: gefallen */
+  /* Beziehung: Kennzeichnungen: gefallen */
   $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['required'] = 0;
-  /* Beziehung: Flags: gefallen counter */
+  /* Beziehung: Kennzeichnungen: gefallen Zähler */
   $handler->display->display_options['relationships']['flag_count_rel']['id'] = 'flag_count_rel';
   $handler->display->display_options['relationships']['flag_count_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['flag_count_rel']['field'] = 'flag_count_rel';
   $handler->display->display_options['relationships']['flag_count_rel']['required'] = 0;
-  /* Beziehung: Flags: Benutzer */
+  /* Beziehung: Kennzeichnungen: Benutzer */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'flag_content';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
@@ -584,7 +584,7 @@ function wiki_views_default_views() {
   $handler->display->display_options['fields']['field_wiki_link_url']['link_to_node'] = 0;
   $handler->display->display_options['fields']['field_wiki_link_url']['label_type'] = 'none';
   $handler->display->display_options['fields']['field_wiki_link_url']['format'] = 'separate';
-  /* Feld: Flags: Flag link */
+  /* Feld: Kennzeichnungen: Kennzeichnungs-Link */
   $handler->display->display_options['fields']['ops']['id'] = 'ops';
   $handler->display->display_options['fields']['ops']['table'] = 'flag_content';
   $handler->display->display_options['fields']['ops']['field'] = 'ops';
@@ -600,7 +600,7 @@ function wiki_views_default_views() {
   $handler->display->display_options['fields']['ops']['hide_empty'] = 0;
   $handler->display->display_options['fields']['ops']['empty_zero'] = 0;
   $handler->display->display_options['fields']['ops']['link_type'] = 'toggle';
-  /* Feld: Flags: Flag counter */
+  /* Feld: Kennzeichnungen: Kennzeichnungszähler */
   $handler->display->display_options['fields']['count']['id'] = 'count';
   $handler->display->display_options['fields']['count']['table'] = 'flag_counts';
   $handler->display->display_options['fields']['count']['field'] = 'count';
@@ -767,7 +767,8 @@ function wiki_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Anwenden';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Zurücksetzen';
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Beträge pro Seite';
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '10';
   $handler->display->display_options['style_options']['fill_single_line'] = 0;
@@ -797,12 +798,12 @@ print_r($user);
   $handler->display->display_options['empty']['text']['empty'] = FALSE;
   $handler->display->display_options['empty']['text']['content'] = 'Kein Mitglied interessiert sich für dieses Thema';
   $handler->display->display_options['empty']['text']['format'] = '1';
-  /* Beziehung: Flags: gefallen */
+  /* Beziehung: Kennzeichnungen: gefallen */
   $handler->display->display_options['relationships']['flag_content_rel']['id'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['flag_content_rel']['field'] = 'flag_content_rel';
   $handler->display->display_options['relationships']['flag_content_rel']['user_scope'] = 'any';
-  /* Beziehung: Flags: Benutzer */
+  /* Beziehung: Kennzeichnungen: Benutzer */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'flag_content';
   $handler->display->display_options['relationships']['uid']['field'] = 'uid';
