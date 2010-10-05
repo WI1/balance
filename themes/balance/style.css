@@ -30,7 +30,7 @@ margin-top: 16px;
 display: block;
 min-height: 800px;
 }
-.menu-edit {
+a.menu-edit {
 	display:none !important;
 }
 /*************************/

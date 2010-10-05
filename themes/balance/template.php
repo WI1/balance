@@ -321,10 +321,16 @@ function balance_og_add_blog_link($node) {
 		}
 	}
 }
+function balance_menu_local_task($link,$selected=0) {
+	if (strpos($link, 'hide="true"')) { 
+		return '';
+	}
+	return '<li '.($selected==1 ? ' class="active"': '').'>'.$link.'</li>';
+}
 function balance_menu_item_link($link) {
 	
 	if ($link['path']=='node/%/edit') { 
-		$link['localized_options']['attributes']['class'] .= ' menu-edit';
+		$link['localized_options']['attributes']['hide'] .= 'true';
 	}
 	return l($link['title'], $link['href'], $link['localized_options']);
 }
