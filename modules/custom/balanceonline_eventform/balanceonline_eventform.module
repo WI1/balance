@@ -122,7 +122,7 @@ function balanceonline_eventform_manage_event(&$iform,$node) {
 		$groupid = str_replace('g_', '', $groupid);
 		$groupnode = node_load($groupid);
 		
-		$html .=balanceonline_eventform_display_item('/'.$groupnode->field_projectlogo[0]['filepath'],'rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
+		$html .=balanceonline_eventform_display_item('/sites/balanceonline.org/themes/balance/img/badges_mitte/'.$groupnode->field_projectlogo[0]['filename'],'rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
 	}
 	$html .='<div><div style="clear:both"></div>';
 	
