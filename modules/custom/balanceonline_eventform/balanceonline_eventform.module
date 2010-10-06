@@ -47,7 +47,7 @@ function balanceonline_eventform_display_teammembers($rsvp,$node) {
 	$html ='';
 	while ($id = db_fetch_object($result)) {
 		$cuser = user_load($id->uid);
-		$html.=balanceonline_eventform_display_item('/'.$cuser->picture,'balanceonline_eventform/add/'.$cuser->uid.'/'.$node->nid,$node,$cuser->name);
+		$html.=balanceonline_eventform_display_item('/'.balanceonline_eventform_get_user_picture_url($cuser),'balanceonline_eventform/add/'.$cuser->uid.'/'.$node->nid,$node,$cuser->name);
 	}
 	if ($html!='') { 
 		$html='<div class="eventform_rsvp_row"><h3>'.t('Add teammembers').'</h3>'.$html.'<div style="clear:both"></div>';
@@ -62,7 +62,7 @@ function balanceonline_eventform_display_all_guests_row($const,$rsvp,$title,$nod
 	$html_yes.='';
 	while ($attendee = db_fetch_object($attendees)) {
 		$user = user_load($attendee->uid);
-		$html_yes.=balanceonline_eventform_display_item('/'.$user->picture,'#',$node,theme_username($user));
+		$html_yes.=balanceonline_eventform_display_item('/'.balanceonline_eventform_get_user_picture_url($user),'#',$node,$user->name);
 	}
 	if ($html_yes!='') {
 		$html.=$html_yes.'</div>';
@@ -99,11 +99,25 @@ function balanceonline_eventform_get_rsvp($node) {
 	}
 	return rsvp_api_create_invitation($node->nid, 'Invite ',date(DATE_RFC1036));
 }
+function balanceonline_eventform_get_user_picture_url($user) {
+    $html = theme('user_picture', $user);
+    $imgsrc_regex = '#<\s*img [^\>]*src\s*=\s*(["\'])(.*?)\1#im';
+    preg_match($imgsrc_regex, $html, $matches);
+    unset($imgsrc_regex);
+    unset($html);
+    if (is_array($matches) && !empty($matches)) {
+        return $matches[2];
+    } else {
+        return false;
+    }
+
+}
 
 function balanceonline_eventform_display_item($imageurl,$link,$node,$subtext='') {
 	return '<div class="eventform_rsvp_item"><a href="'.url($link,array('query'=>'destination=node/'.$node->nid.'/edit?manage_event=rsvp')).'"><img height="60" src="'.$imageurl.'"><br>'.$subtext.'</a></div>';
 }
 function balanceonline_eventform_manage_event(&$iform,$node) {
+    
 	if ($_REQUEST['manage_event']=='rsvp') { 
 	drupal_add_js('
 	$(document).ready(function (){
@@ -116,13 +130,20 @@ function balanceonline_eventform_manage_event(&$iform,$node) {
 	$rsvp  =balanceonline_eventform_get_rsvp($node);
 	$form_id = 'rsvp_overview_form';
 	$html = '';
-	$grouplist = rsvp_og_collect_groups($rsvp, true);
+    $grouplist = menu_tree_all_data('menu-fgtop');
+
+	
 	$html .='<div class="eventform_rsvp_row"><br><h3>'.t('Invite focusgroups:').'</h3>';
 	foreach  ($grouplist as $groupid =>$groupname) {
-		$groupid = str_replace('g_', '', $groupid);
+
+		$groupid = $grouplist[$groupid]['link']['link_path'];
+        if ($groupid=='<front>') {
+            continue;
+        }
+        $groupids = explode('/',$groupid);
+        $groupid = $groupids[1];
 		$groupnode = node_load($groupid);
-		
-		$html .=balanceonline_eventform_display_item('/sites/balanceonline.org/themes/balance/img/badges_mitte/'.$groupnode->field_projectlogo[0]['filename'],'rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
+		$html .=balanceonline_eventform_display_item('/sites/balanceonline.org/themes/balance/img/badges_mittel/'.$groupnode->field_projectlogo[0]['filename'],'rsvp/'.$rsvp->rid.'/attendees/og/'.$groupid,$node);
 	}
 	$html .='<div><div style="clear:both"></div>';
 	
@@ -146,13 +167,11 @@ function balanceonline_eventform_form_alter(&$form, &$form_state,$form_id){
 		//		$form['#submit'][]='balanceonline_eventform_signup_node_submit';
 		//print_r($form);
 		$eventFieldSet = $form['event'];
-
+            
 		$path = drupal_get_normal_path($_GET['q']);
 		$nids = explode('/',$path);
 		$nid = $nids[1];
 		$node = node_load($nid);
-		
-		
 		unset($form['event']['#type']);
 		$groups = $form['og_nodeapi']['visible']['og_groups'];
 		$public = $form['og_nodeapi']['visible']['og_public'];
