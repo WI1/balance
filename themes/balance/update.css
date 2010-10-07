@@ -298,3 +298,7 @@ label.over-apply { position: relative !important; padding: 5px 0 4px 0; color: #
 #block-footer_sitemap-0 li { width: auto !important; max-width: 160px; margin-right: 30px !important; }
 
 fieldset { margin: 20px 0 !important; }
+
+#forum tr td.forum {
+padding-left:25px !important;
+}
