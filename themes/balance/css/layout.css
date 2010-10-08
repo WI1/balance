@@ -26,9 +26,8 @@ h6 {font-size:1em; text-transform:uppercase;}
 ----------------------------------------------- */
 
 blockquote {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size:1.2em;
-  padding-left:1em;
+  font-style: italic;
+  padding-left: 1em;
   border-left:4px solid #ccc;
 }
 blockquote cite {
