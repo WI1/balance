@@ -59,7 +59,7 @@ function balanceonline_eventform_display_teammembers($rsvp,$node,&$guestIds) {
 		$html.=balanceonline_eventform_display_item('/'.balanceonline_eventform_get_user_picture_url($cuser),'balanceonline_eventform/add/'.$cuser->uid.'/'.$node->nid,$node,$cuser->name);
 	}
 	if ($html!='') { 
-		$html='<div class="eventform_rsvp_row"><h3>'.'Teammitglieder hinzufügen'.'</h3>'.$html.'<div style="clear:both"></div>';
+		$html='<br><div class="eventform_rsvp_row"><h3>'.'Teammitglieder hinzufügen'.'</h3>'.$html.'<div style="clear:both"></div>';
 	}
 	//print_r($ids); 
 	return $html;
@@ -86,7 +86,7 @@ function balanceonline_eventform_display_all_guests($rsvp,$node,&$guestIds) {
 	$totals = rsvp_function_load_totalguests($rsvp->rid);
 	
 	$html='';
-	$html.='<div style="clear:both"></div><br><div class="eventform_rsvp_row"><h3>'.t('Gäste (total: %total, bestätigt: %yes, abgelehnt: %no, vielleicht: %maybe, keine Rückmeldung: %none)',
+	$html.='<div style="clear:both"></div><br><br><div class="eventform_rsvp_row"><h3>'.t('Gäste (total: %total, bestätigt: %yes, abgelehnt: %no, vielleicht: %maybe, keine Rückmeldung: %none)',
 	array(
 	'%total'=>$totals['all'],
 	'%yes'=>$totals['yes'],
@@ -130,7 +130,13 @@ function balanceonline_eventform_get_user_picture_url($user) {
 }
 
 function balanceonline_eventform_display_item($imageurl,$link=null,$node,$subtext='') {
-	return '<div class="eventform_rsvp_item"><a href="'.url($link,array('query'=>'destination=node/'.$node->nid.'/edit?manage_event=rsvp')).'"><img height="60" src="'.$imageurl.'"><br>'.$subtext.'</a></div>';
+    $linkstart='';
+    $linkend='';
+    if ($link!=null) {
+        $linkstart='<a href="'.url($link,array('query'=>'destination=node/'.$node->nid.'/edit?manage_event=rsvp')).'">';
+        $linkend='</a>';
+    }
+	return '<div class="eventform_rsvp_item">'.$linkstart.'<img height="60" src="'.$imageurl.'"><br>'.$subtext.$linkend.'</div>';
 }
 function balanceonline_eventform_manage_event(&$iform,$node) {
     $iform['rsvp_overview_created_form']['#type']='fieldset';
