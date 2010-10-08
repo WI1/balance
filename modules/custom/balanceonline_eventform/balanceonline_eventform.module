@@ -14,17 +14,16 @@ function balanceonline_eventform_menu() {
 }
 
 function balanceonline_eventform_add_member_access($uid) {
- 	return true;
- 	global $user;
- 	
- 	if ($uid->uid==$user->uid) {
- 		return true;  
- 	}else {
- 		return false; 
- 	}
- 	
- }
-
+ 	return true;	
+}
+/**
+ * Add an user to an invitation.
+ *
+ * @param object $user
+ *   The rsvp object...
+ * @param object $node
+ *   The current node
+ */
 function balanceonline_eventform_add_member($user,$node) {
 
 
@@ -38,6 +37,17 @@ function balanceonline_eventform_add_member($user,$node) {
 
 	drupal_goto();
 }
+/**
+ * Displays all teammembers
+ *
+ * @param object $rsvp
+ *   The rsvp object...
+ * @param object $node
+ *   The current node
+ * @param array $guestIds
+ *   A list of guest ids. Users which are part of the guestIds array will not be displayed.
+ * @return string The rendered html
+ */
 function balanceonline_eventform_display_teammembers($rsvp,$node,&$guestIds) {
 	$nodeids = $node->og_groups;
 	if (count($nodeids)==0) { 
@@ -64,7 +74,21 @@ function balanceonline_eventform_display_teammembers($rsvp,$node,&$guestIds) {
 	//print_r($ids); 
 	return $html;
 }
-
+/**
+ * Displays guests segements. The segments could are accepted, declined, maybe and no response.
+ *
+ * @param int $const
+ *   The const could be: RSVP_ATT_YES,RSVP_ATT_NO,RSVP_ATT_MAYBE,RSVP_ATT_NONE
+ * @param object $rsvp
+ *   The rsvp object...
+ * @param string $title
+ *   The title of the segement
+ * @param object $node
+ *   The current node
+ * @param array $guestIds
+ *   A list of guest ids.
+ * @return string The rendered html
+ */
 function balanceonline_eventform_display_all_guests_row($const,$rsvp,$title,$node,&$guestIds){
 	$html='<div class="eventform_rsvp_row"><h4>'.t($title).'</h4>';
 	$attendees = rsvp_function_load_guests($rsvp->rid,$const);
@@ -81,7 +105,17 @@ function balanceonline_eventform_display_all_guests_row($const,$rsvp,$title,$nod
 	}
 	return $html;
 }
-
+/**
+ * Displays the guests of the rsvp invitation
+ *
+ * @param object $rsvp
+ *   The  rsvp object...
+ * @param object $node
+ *   The current node
+ * @param object $guestsIds
+ *   A list reference of. The mehtod fills the array with all ids of the guests. 
+ * @return string The rendered html
+ */
 function balanceonline_eventform_display_all_guests($rsvp,$node,&$guestIds) {
 	$totals = rsvp_function_load_totalguests($rsvp->rid);
 	
@@ -102,6 +136,14 @@ function balanceonline_eventform_display_all_guests($rsvp,$node,&$guestIds) {
 	$html.='</div><div style="clear:both"></div>';
 	return $html;
 }
+/**
+ * Returns the first rsvp object of the obmitted node.
+ * If no rsvp object exists an new rsvp invitation will be created. 
+ *
+ * @param object $node
+ *   The  node...
+ * @return int The rsvp object
+ */
 function balanceonline_eventform_get_rsvp($node) {
     global $user;
 
@@ -115,6 +157,14 @@ function balanceonline_eventform_get_rsvp($node) {
  ',date(DATE_RFC1036));
     return $rsvp;
 }
+/**
+ * Extract the image link from theme(user_picture)
+ *
+ * @param object $user
+ *   The user...
+ * @return string The image url of the obmitted user
+
+ */
 function balanceonline_eventform_get_user_picture_url($user) {
     $html = theme('user_picture', $user);
     $imgsrc_regex = '#<\s*img [^\>]*src\s*=\s*(["\'])(.*?)\1#im';
@@ -128,7 +178,19 @@ function balanceonline_eventform_get_user_picture_url($user) {
     }
 
 }
+/**
+ * Display an list item. The item could be an focusgroup or an user
+ *
+ * @param string $imageurl
+ *   The url of the image which should be displayed
+ * @param string $link
+ *   the link of the list item. If null no link will be generated
+ * @param object $node
+ *   The current node
+ * @param string $subtext
+ *   The text under the image
 
+ */
 function balanceonline_eventform_display_item($imageurl,$link=null,$node,$subtext='') {
     $linkstart='';
     $linkend='';
@@ -138,6 +200,17 @@ function balanceonline_eventform_display_item($imageurl,$link=null,$node,$subtex
     }
 	return '<div class="eventform_rsvp_item">'.$linkstart.'<img height="60" src="'.$imageurl.'"><br>'.$subtext.$linkend.'</div>';
 }
+
+/**
+ * Adds Teilnehmer hinzufuegen tab to tab menu.
+ *
+ * @param array $iform
+ *   The form to alter
+ * @param array $node
+ *   The current node
+
+ */
+
 function balanceonline_eventform_manage_event(&$iform,$node) {
     $iform['rsvp_overview_created_form']['#type']='fieldset';
 	$iform['rsvp_overview_created_form']['html']['#type']='markup';
@@ -185,7 +258,14 @@ function balanceonline_eventform_manage_event(&$iform,$node) {
 	$html .= '<div style="clear:both"><a style ="margin-bottom:20px;margin-top:20px;padding:4px;display:block;background-color:#E1E1E1;color:#333333" href="'.url('rsvp/'.$rsvp->rid.'/attendees/send',array('query'=>'destination=node/'.$node->nid.'/edit?manage_event=rsvp')).'">'.t('Einladung verschicken').'</a></div>';
 	$iform['rsvp_overview_created_form']['html']['#value'] = $html;
 }
+/**
+ * Modifies the event_node_form form
+ *
+ * @uses rsvp module
+ * @param array $form
+ * @param array $form_state
 
+ */
 function balanceonline_eventform_form_alter(&$form, &$form_state,$form_id){
 
 	if ($form_id=='event_node_form') {
@@ -202,7 +282,8 @@ function balanceonline_eventform_form_alter(&$form, &$form_state,$form_id){
 		unset($form['event']['#type']);
 		$groups = $form['og_nodeapi']['visible']['og_groups'];
 		$public = $form['og_nodeapi']['visible']['og_public'];
-		$form['body_field']['og_groups'] = $groups;
+
+        $form['body_field']['og_groups'] = $groups;
 		$form['body_field']['og_public'] = $public;
 		unset($form['og_nodeapi']['visible']['og_groups']);
 		unset($form['og_nodeapi']['visible']['og_public']);
