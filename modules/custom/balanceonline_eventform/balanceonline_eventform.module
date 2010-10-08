@@ -145,7 +145,7 @@ function balanceonline_eventform_manage_event(&$iform,$node) {
 	//$iform['rsvp_overview_created_form']=$form['rsvp_overview_created_form'];
 	$iform['rsvp_overview_created_form']['#title']=t('Teilnehmer verwalten');
     if ($node->nid==null) {
-        $iform['rsvp_overview_created_form']['html']['#value'] = 'Bitte speichern Sie die Veranstaltung bevor Sie Teilnehmer hinzufügen';
+        $iform['rsvp_overview_created_form']['html']['#value'] = '<div>Bitte speichern Sie die Veranstaltung bevor Sie Teilnehmer hinzufügen</div>';
         return ;
     }
 	if ($_REQUEST['manage_event']=='rsvp') { 
