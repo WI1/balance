@@ -11,12 +11,6 @@
 	<?php endif; ?>
 
   <div class="content">
-  <code>
-  <ul id="node-navigation">
-    <li class="next"><?php print pn_node($node, 'n'); ?></li>
-    <li class="prev"><?php print pn_node($node, 'p'); ?></li>
-  </ul>
-</code>
     <?php print $content ?>
   </div>
 
