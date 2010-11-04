@@ -62,6 +62,7 @@ $grid = array(
 							<?php endif; ?>
 							</div>
 						</div>
+						<?php print $left; ?>
 					</div><!-- /sidebar-left -->
 
 					<div id="main" class="column">
