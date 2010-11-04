@@ -313,5 +313,18 @@ function focus_groups_form_alter(&$form, &$form_state, $form_id){
 			unset($form['buttons']['preview']);
 			unset($form['buttons']['preview_changes']);
 		break;
+
+		case 'user_register':
+			foreach($form['og_register']['og_register']['#options'] as $nid => &$name) {
+				if($node = node_load($nid)) {
+					if($node->field_projectlogo && !empty($node->field_projectlogo[0]['filepath'])) {
+						$pic = theme('imagecache', 'projectlogo_1-2c', $node->field_projectlogo[0]['filepath']);
+					}
+				} else {
+					$pic = '';
+				}
+				$name = $pic . ' ' . $name;
+			}
+		break;
   }
 }
