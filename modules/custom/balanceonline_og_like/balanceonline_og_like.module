@@ -10,44 +10,41 @@ function balanceonline_og_like_views_api() {
 }
 
 
-//function balanceonline_og_like_og_links_alter(&$links) {
-//  global $user;
-//
-//	if(isset($links['create_blog'])){
-//		$links=array('create'=>'<div style="color:#000000;">Inhalt erstellen</div>') + $links;
-//	}
-//}
+// function balanceonline_og_like_og_links_alter(&$links) {
+// 	$links['become_fan'] = l('Projektnews abonnieren', 'fan/subscribe/' . arg(1));
+// }
+
 /**
  * Implementation of hook_menu().
  */
 
 function balanceonline_og_like_menu() {
   // Anon users should be able to get to the join page
-  $items['ogc/subscribe/%node'] = array(
+  $items['ogc/%node/subscribe'] = array(
     'type' => MENU_CALLBACK,
     'file path' => drupal_get_path('module', 'og'),
     'file' => 'og.pages.inc',
     'page callback' => 'balanceonline_og_like_subscribe',
-    'page arguments' => array(2),
+    'page arguments' => array(1),
     'access callback' => 'node_access',
-    'access arguments' => array('view', 2),
+    'access arguments' => array('view', 1),
     'title' => 'Join group'
   );
 // Anon users should be able to get to the join page
-  $items['fan/subscribe/%node'] = array(
+  $items['fan/%node/subscribe'] = array(
     'type' => MENU_CALLBACK,
     'page callback' => 'balanceonline_og_like_page',
     'access callback' => 'node_access',
-    'access arguments' => array('view', 2),
-    'page arguments' => array(2),
+    'access arguments' => array('view', 1),
+    'page arguments' => array(1),
     'title' => 'Be a group fan'
   );
-  $items['fan/unsubscribe/%node'] = array(
+  $items['fan/%node/unsubscribe'] = array(
     'type' => MENU_CALLBACK,
     'page callback' => 'balanceonline_og_like_unsubscribe_page',
     'access callback' => 'node_access',
-    'access arguments' => array('view', 2),
-    'page arguments' => array(2),
+    'access arguments' => array('view', 1),
+    'page arguments' => array(1),
     'title' => 'Be not longer a group fan'
   );
     return $items;
@@ -169,10 +166,10 @@ function balanceonline_og_like_block_details() {
     if ($user->uid) {
     if($subscription != 'requested'){
         if(!array_key_exists(10, $user_roles) && !array_key_exists(7, $user_roles)){
-          $links_manage['like'] = l("Gefällt mir", "fan/subscribe/$node->nid");
+          $links_manage['like'] = l("Projektnews abonnieren", "fan/$node->nid/subscribe");
         }
         if(array_key_exists(10, $user_roles)){
-          $links_manage['unlike'] = l("Gefällt mir nicht mehr", "fan/unsubscribe/$node->nid");
+          $links_manage['unlike'] = l("Projektnews abbestellen", "fan/$node->nid/unsubscribe");
         }
     }
     }
@@ -186,8 +183,7 @@ function balanceonline_og_like_block_details() {
     	$htitle = "";
 	}
 	
-	
-    $block['content'] = $htitle.theme('item_list', $links)."<h3>Gruppe verwalten</h3>".theme('item_list', $links_manage);
+    $block['content'] = $htitle.theme('item_list', $links)."<h3>Gruppe</h3>" . theme('item_list', $links_manage);
     $block['subject'] = l($node->title, "node/$node->nid");
     return $block;
   }
