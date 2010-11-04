@@ -204,7 +204,6 @@ function focus_groups_get_focus_group($gids) {
 	return db_fetch_object($result);
 }
 
-
 /**
  * Implements hook_menu()
  *
@@ -308,6 +307,11 @@ function focus_groups_form_alter(&$form, &$form_state, $form_id){
   switch($form_id){
     case 'blog_node_form':
       $form['field_coautors']['field_coautors_add_more']['#value'] = 'Weitere Autoren hinzufügen';
-      return $form;
+		break;
+
+		case 'project_node_form':
+			unset($form['buttons']['preview']);
+			unset($form['buttons']['preview_changes']);
+		break;
   }
 }
