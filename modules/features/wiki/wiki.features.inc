@@ -69,6 +69,16 @@ function wiki_imagecache_default_presets() {
         '0' => array(
           'weight' => '0',
           'module' => 'imagecache',
+          'action' => 'imagecache_deprecated_scale',
+          'data' => array(
+            'fit' => 'inside',
+            'width' => '500',
+            'height' => '1000',
+          ),
+        ),
+        '1' => array(
+          'weight' => '0',
+          'module' => 'imagecache',
           'action' => 'imagecache_scale_and_crop',
           'data' => array(
             'width' => '70',
