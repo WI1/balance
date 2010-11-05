@@ -317,13 +317,13 @@ function focus_groups_form_alter(&$form, &$form_state, $form_id){
 		case 'user_register':
 			foreach($form['og_register']['og_register']['#options'] as $nid => &$name) {
 				if($node = node_load($nid)) {
-					if($node->field_projectlogo && !empty($node->field_projectlogo[0]['filepath'])) {
-						$pic = theme('imagecache', 'projectlogo_1-2c', $node->field_projectlogo[0]['filepath']);
+					if($node->field_projectlogo && ($node->field_projectlogo[0]['filepath'] !== null)) {
+						$path = $node->field_projectlogo[0]['filepath'];
+					} else {
+						$path = file_directory_path() . '/logos/Balance-Logo_30.png';
 					}
-				} else {
-					$pic = '';
 				}
-				$name = $pic . ' ' . $name;
+				$name = theme('imagecache', 'projectlogo_1-2c', $path) . ' ' . $name;
 			}
 		break;
   }
