@@ -14,8 +14,7 @@
         <span class="country"><?php print $account->location['country_name']; ?></span><br />
 <?php endif ?>
         <span class="email"><?php print l($account->mail, 'mailto:' . $account->mail); ?></span><br /><br />
-		<?php print l('Alle Profile auf einer Karte', 'map/user'); ?>
-    </div>
+	</div>
 </div>
 <ul>
 	<?php if($account->profile_facebook): ?><li><?php print l('Facebook Account', sprintf('http://www.facebook.com/profile.php?id=%s', $account->profile_facebook)); ?></li><?php endif; ?>
@@ -23,10 +22,3 @@
 	<?php if($account->profile_twitter): ?><li><?php print l('Twitter Account', sprintf('http://twitter.com/%s', $account->profile_twitter)); ?></li><?php endif; ?>
 	<?php if($account->profile_xing): ?><li><?php print l('XING Account', sprintf('http://www.xing.com/profile/%s', $account->profile_xing)); ?></li><?php endif; ?>
 </ul>
-<?php print views_embed_view('bo_user_flagged_items', 'default', $account->uid); ?>
-<?php if(user_edit_access($account)): ?>
-  <h2>Angemeldet zu folgenden Veranstaltungen</h2>
-<?php print views_embed_view('signup_current_signups', 'block', $account->uid); ?>
-  <h2>Mögliche Anmeldungen</h2>
-<?php print views_embed_view('signup_available_signups', 'block', $account->uid); ?>
-<?php endif; ?>
