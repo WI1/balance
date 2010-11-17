@@ -62,11 +62,7 @@ $grid = array(
 						<?php print $profile_content; ?>
 						<?php endif; ?>
 
-						<?php if($related_groups): ?>
-						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Gruppen</h2>
-						<?php print phptemplate_group_list($related_groups); ?>
-						<?php endif; ?>
-                    </div><!-- /sidebar-left -->
+					</div><!-- /sidebar-left -->
 
 
                     <div id="main" class="column">
