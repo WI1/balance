@@ -293,11 +293,11 @@ function phptemplate_group_list_item($g, $withTitle = TRUE, $withCreateLink = TR
 		if($withTitle) {
 			$out .= '<li class="group_title">' . l($g->title, 'node/' . $g->nid, array('html' => TRUE)) . '</li>';
 		}
-
+/*
 		if($withCreateLink) {
 			$out .= '<li class="node_add">' . l('Beitrag schreiben', 'node/add/blog', array('query' => 'gids[]='. $g->nid)) . '</li>';
 		}
-
+*/
 		$out .= '</ul>';
 	}
 
