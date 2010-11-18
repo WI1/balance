@@ -219,7 +219,7 @@ body.front .node .content p { display: block; }
 /* Gefällt mir */
 body.node-type-balancewiki div.links.wiki { top: inherit !important; }
 
-.node .links { float: none !important; }
+/*.node .links { float: none !important; } Removed to make line on equal height as share button */ 
 .node .links li { float: none !important; }
 
 /* Suche */
