@@ -25,6 +25,7 @@ scripts[] = addthis_widget.js
 
 admin[admin_inline] = 0
 
+stylesheets[all][] = style.css
 stylesheets[all][] = css/reset.css
 stylesheets[all][] = css/960.css
 stylesheets[all][] = css/text.css
@@ -34,5 +35,5 @@ stylesheets[all][] = css/focusgroups.css
 
 stylesheets[all][] = famfamfam-silk-sprite.css
 
-stylesheets[all][] = style.css
+
 stylesheets[all][] = update.css
