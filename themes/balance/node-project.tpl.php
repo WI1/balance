@@ -11,6 +11,9 @@
 <dt>Projektexposé</dt>
  <dd><?php print $node->field_synopsis[0]['view'] ?></dd>
 
+ <dt>Projektsteckbrief</dt>
+ <dd><?php print $node->field_steckbrief[0]['view'] ?></dd>
+ 
 <dt>Projektmitglieder</dt>
 <dd><ul class="field-items">
 <?php foreach((array)$node->field_projectmembers as $user): ?>
