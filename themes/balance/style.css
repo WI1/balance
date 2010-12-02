@@ -1,14 +1,5 @@
 /* BALANCE Stylesheet */
 
-@import url('css/reset.css');
-@import url('css/960.css');
-@import url('css/text.css');
-@import url('css/layout.css');
-@import url('css/nav.css');
-@import url('css/focusgroups.css');
-
-@import url('famfamfam-silk-sprite.css');
-
 .mendeley_title {
 	text-decoration: underline;
 }
