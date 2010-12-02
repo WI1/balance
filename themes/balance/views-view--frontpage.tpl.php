@@ -29,15 +29,6 @@
  * @ingroup views_templates
  */
 ?>
-<script type="text/javascript">
-  $(document).ready(function(){
-     $('.form-select').add('.form-text').change(function(){
-      $('#views-exposed-form-frontpage-page').submit();
-
- })
-
-  })
-</script>
 <div class="<?php print $classes; ?>">
   <?php if ($admin_links): ?>
     <div class="views-admin-links views-hide">
