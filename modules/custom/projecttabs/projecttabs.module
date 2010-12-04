@@ -290,22 +290,6 @@ function projecttabs_get_approvable_actions() {
 }
 
 /**
- * Implements hook_og_links_alter
- * Modifies the group details block
- *
- * @param array $links
- */
-function projecttabs_og_links_alter(&$links, $node) {
-	global $user;
-	unset($links['subscribers']);
-
-  if (isset($user->og_groups[$node->nid]) && $user->og_groups[$node->nid]['is_admin'] == 1) {
-    // Adds link to the user management to approve and decline membership requests
-    $links['users'] = l(t('Manage Users'), 'og/users/' . $node->nid);
-  }
-}
-
-/**
  * Implements theme_breadcrumb
  * Disables breadcrumb
  *
@@ -411,9 +395,8 @@ function projecttabs_preprocess_page(&$vars) {
 /**
  * Adds body classes for node
  *
- * @param object $node
+ * @param StdClass $node
  * @param string $body_classes
- * @param bool $logged_in
  * @return string
  */
 function projecttabs_get_body_classes($node, $body_classes = '') {
