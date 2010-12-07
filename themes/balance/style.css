@@ -1168,6 +1168,7 @@ margin: 0;
 background: #ee6622;
 }
 
-#sidebar-left .views-exposed-form select {
+#sidebar-left .views-exposed-form select,
+#sidebar-left .views-exposed-form .form-text {
 	width: 124px;
 }
