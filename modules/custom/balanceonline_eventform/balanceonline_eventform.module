@@ -68,7 +68,7 @@ function balanceonline_eventform_display_teammembers($rsvp, $node, &$guestIds) {
 		$html .= balanceonline_eventform_display_item(balanceonline_eventform_get_user_picture_url($cuser), 'balanceonline_eventform/add/' . $cuser->uid . '/' . $node->nid, $node, $cuser->name);
 	}
 	if ($html != '') {
-		$html = '<br /><div class="eventform_rsvp_row"><h3>' . 'Teammitglieder hinzufügen' . '</h3>' . $html . '<div style="clear:both"></div>';
+		$html = '<br /><div class="eventform_rsvp_row"><h3>' . 'Teammitglieder hinzufügen' . '</h3>' . $html . '</div><div style="clear:both"></div>';
 	}
 	//print_r($ids);
 	return $html;
@@ -89,18 +89,15 @@ function balanceonline_eventform_display_teammembers($rsvp, $node, &$guestIds) {
  * @return string The rendered html
  */
 function balanceonline_eventform_display_all_guests_row($const, $rsvp, $title, $node, &$guestIds) {
-	$html      = '<div class="eventform_rsvp_row"><h4>' . t($title) . '</h4>';
+	$html      = '';
 	$attendees = rsvp_function_load_guests($rsvp->rid, $const);
-	$html_yes .= '';
 	while ($attendee = db_fetch_object($attendees)) {
 		$user                     = user_load($attendee->uid);
 		$guestIds[$attendee->uid] = true;
-		$html_yes .= balanceonline_eventform_display_item(balanceonline_eventform_get_user_picture_url($user), null, $node, $user->name);
+		$html .= balanceonline_eventform_display_item(balanceonline_eventform_get_user_picture_url($user), null, $node, $user->name);
 	}
-	if ($html_yes != '') {
-		$html .= $html_yes . '</div>';
-	} else {
-		$html = '';
+	if ($html != '') {
+		$html = '<div class="eventform_rsvp_row"><h4>' . t($title) . '</h4>' . $html . '</div>';
 	}
 	return $html;
 }
@@ -241,10 +238,8 @@ function balanceonline_eventform_manage_event(&$iform, $node) {
 	}
 	$html .= '<div><div style="clear:both"></div>';
 	$guestIds = array();
-	$ghtml    = balanceonline_eventform_display_all_guests($rsvp, $node, $guestIds);
 
-
-	$html .= balanceonline_eventform_display_teammembers($rsvp, $node, $guestIds) . $ghtml;
+	$html .= balanceonline_eventform_display_teammembers($rsvp, $node, $guestIds) . balanceonline_eventform_display_all_guests($rsvp, $node, $guestIds);
 
 	$html .= '<div style="clear:both"><a style ="margin-bottom:20px;margin-top:20px;padding:4px;display:block;background-color:#E1E1E1;color:#333333" href="' . url('rsvp/' . $rsvp->rid . '/attendees/send', array(
 		'query' => 'destination=node/' . $node->nid . '/edit?manage_event=rsvp'
