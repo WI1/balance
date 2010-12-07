@@ -246,6 +246,7 @@ function focus_groups_menu() {
  */
 function focus_groups_menu_alter(&$items) {
 	unset($items['node/%node/broadcast']); // remove og broadcast
+	unset($items['user/%user/messagelog']); // remove messaging log
 }
 
 /**
