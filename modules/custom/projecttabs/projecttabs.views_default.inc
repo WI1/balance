@@ -441,5 +441,157 @@ $handler->override_option('block_description', '');
 $handler->override_option('block_caching', -1);
 
 $views[$view->name] = $view;
+
+	/**
+	 * View frontpage
+	 */
+	$view = new view;
+	$view->name = 'frontpage';
+	$view->description = 'Emulates the default Drupal front page; you may set the default home page path to this view to make it your front page.';
+	$view->tag = 'default';
+	$view->view_php = '';
+	$view->base_table = 'node';
+	$view->is_cacheable = FALSE;
+	$view->api_version = '3.0-alpha1';
+	$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+	/* Display: Defaults */
+	$handler = $view->new_display('default', 'Defaults', 'default');
+	$handler->display->display_options['use_ajax'] = TRUE;
+	$handler->display->display_options['use_more_text'] = 'mehr';
+	$handler->display->display_options['access']['type'] = 'none';
+	$handler->display->display_options['cache']['type'] = 'none';
+	$handler->display->display_options['query']['type'] = 'views_query';
+	$handler->display->display_options['exposed_form']['type'] = 'basic';
+	$handler->display->display_options['exposed_form']['options']['submit_button'] = 'Anwenden';
+	$handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Zurücksetzen';
+	$handler->display->display_options['pager']['type'] = 'full';
+	$handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Beträge pro Seite';
+	$handler->display->display_options['style_plugin'] = 'default';
+	$handler->display->display_options['row_plugin'] = 'node';
+	$handler->display->display_options['row_options']['links'] = 1;
+	$handler->display->display_options['exposed_block'] = TRUE;
+	/* Sortierkriterien: Node: am Anfang von Listen */
+	$handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+	$handler->display->display_options['sorts']['sticky']['table'] = 'node';
+	$handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+	$handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
+	/* Sortierkriterien: Node: Beitragsdatum */
+	$handler->display->display_options['sorts']['created']['id'] = 'created';
+	$handler->display->display_options['sorts']['created']['table'] = 'node';
+	$handler->display->display_options['sorts']['created']['field'] = 'created';
+	$handler->display->display_options['sorts']['created']['order'] = 'DESC';
+	/* Filter: Node: Auf der Startseite */
+	$handler->display->display_options['filters']['promote']['id'] = 'promote';
+	$handler->display->display_options['filters']['promote']['table'] = 'node';
+	$handler->display->display_options['filters']['promote']['field'] = 'promote';
+	$handler->display->display_options['filters']['promote']['value'] = '1';
+	$handler->display->display_options['filters']['promote']['expose']['operator'] = FALSE;
+	/* Filter: Node: Veröffentlicht */
+	$handler->display->display_options['filters']['status']['id'] = 'status';
+	$handler->display->display_options['filters']['status']['table'] = 'node';
+	$handler->display->display_options['filters']['status']['field'] = 'status';
+	$handler->display->display_options['filters']['status']['value'] = '1';
+	$handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+	/* Filter: Organische Gruppen: Zielgruppen */
+	$handler->display->display_options['filters']['group_nid']['id'] = 'group_nid';
+	$handler->display->display_options['filters']['group_nid']['table'] = 'og_ancestry';
+	$handler->display->display_options['filters']['group_nid']['field'] = 'group_nid';
+	$handler->display->display_options['filters']['group_nid']['value'] = array(
+	  '45' => '45',
+	  '41' => '41',
+	  '75' => '75',
+	  '82' => '82',
+	  '62' => '62',
+	  '87' => '87',
+	  '466' => '466',
+	  '51' => '51',
+	  '54' => '54',
+	  '59' => '59',
+	  '72' => '72',
+	  '56' => '56',
+	  '74' => '74',
+	  '64' => '64',
+	  '68' => '68',
+	  '78' => '78',
+	  '66' => '66',
+	  '42' => '42',
+	  '63' => '63',
+	  '39' => '39',
+	  '69' => '69',
+	  '70' => '70',
+	  '44' => '44',
+	  '40' => '40',
+	  '71' => '71',
+	  '80' => '80',
+	  '38' => '38',
+	  '76' => '76',
+	  '73' => '73',
+	  '55' => '55',
+	  '31' => '31',
+	  '834' => '834',
+	  '91' => '91',
+	  '43' => '43',
+	  '67' => '67',
+	  '65' => '65',
+	  '58' => '58',
+	  '52' => '52',
+	  '57' => '57',
+	  '53' => '53',
+	  '47' => '47',
+	  '49' => '49',
+	  '79' => '79',
+	  '46' => '46',
+	  '50' => '50',
+	  '77' => '77',
+	  '60' => '60',
+	  '48' => '48',
+	  '61' => '61',
+	  '83' => '83',
+	  '347' => '347',
+	  '81' => '81',
+	);
+	$handler->display->display_options['filters']['group_nid']['exposed'] = TRUE;
+	$handler->display->display_options['filters']['group_nid']['expose']['operator'] = 'group_nid_op';
+	$handler->display->display_options['filters']['group_nid']['expose']['label'] = 'Gruppen / Projekte';
+	$handler->display->display_options['filters']['group_nid']['expose']['identifier'] = 'group_nid';
+	$handler->display->display_options['filters']['group_nid']['expose']['reduce'] = 1;
+	/* Filter: Node: Typ */
+	$handler->display->display_options['filters']['type']['id'] = 'type';
+	$handler->display->display_options['filters']['type']['table'] = 'node';
+	$handler->display->display_options['filters']['type']['field'] = 'type';
+	$handler->display->display_options['filters']['type']['value'] = array(
+	  'blog' => 'blog',
+	  'event' => 'event',
+	  'gallery' => 'gallery',
+	  'page' => 'page',
+	  'pressemeldung' => 'pressemeldung',
+	);
+	$handler->display->display_options['filters']['type']['exposed'] = TRUE;
+	$handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+	$handler->display->display_options['filters']['type']['expose']['label'] = 'Beitragstyp';
+	$handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+	$handler->display->display_options['filters']['type']['expose']['reduce'] = 1;
+
+	/* Display: Page */
+	$handler = $view->new_display('page', 'Page', 'page');
+	$handler->display->display_options['path'] = 'frontpage';
+
+	/* Display: Feed */
+	$handler = $view->new_display('feed', 'Feed', 'feed');
+	$handler->display->display_options['defaults']['title'] = FALSE;
+	$handler->display->display_options['title'] = 'Newsfeed der Startseite';
+	$handler->display->display_options['style_plugin'] = 'rss';
+	$handler->display->display_options['style_options']['mission_description'] = 1;
+	$handler->display->display_options['row_plugin'] = 'node_rss';
+	$handler->display->display_options['path'] = 'rss.xml';
+	$handler->display->display_options['displays'] = array(
+	  'default' => 'default',
+	  'page' => 'page',
+	);
+	$handler->display->display_options['sitename_title'] = '1';
+
+	$views[$view->name] = $view;
+
   return $views;
 }

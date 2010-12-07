@@ -1,4 +1,12 @@
 <?php
+function projecttabs_form_views_exposed_form_alter(&$form, $form_state) {
+	$filters = array('group_nid', 'type');
+	foreach($filters as $f) {
+		if(isset($form[$f]['#options']['All'])) {
+			$form[$f]['#options']['All'] = '--';  // the value seems hardcoded since translating it didn't help
+		}
+	}
+}
 
 /**
  * Implements hook_views_api().
