@@ -15,11 +15,11 @@
 
   <div class="content">
     <?php print $content ?>
-		<?php if (!$page): ?>
-		<?php print balance_node_more_link($node); ?>
+		<?php if (!$page && $node_read_more): ?>
+		<p><?php print $node_read_more; ?></p>
 		<?php endif; ?>
 		<?php print balance_addthis_button(); ?>
   </div>
 
-  <div class="links"><?php print $submitted; ?> | <a href="/comment/reply/<?php print $node->nid; ?>#comment-form" title="Dieser Seite einen neuen Kommentar hinzufügen.">Neuen Kommentar schreiben</a></div>
+  <div class="links"><?php print $submitted; ?> | <?php print $links; ?></div>
 </div>
