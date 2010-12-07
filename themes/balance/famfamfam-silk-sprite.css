@@ -612,7 +612,7 @@
 .famfam-package_go {background-position: -80px -300px;}
 .famfam-package_green {background-position: -100px -300px;}
 .famfam-package_link {background-position: -120px -300px;}
-.famfam-page, .balance-page, .balance-panel {background-position: -140px -300px;}
+.famfam-page {background-position: -140px -300px;}
 .famfam-page_add {background-position: -160px -300px;}
 .famfam-page_attach {background-position: -180px -300px;}
 .famfam-page_code {background-position: -200px -300px;}
@@ -633,7 +633,7 @@
 .famfam-page_red {background-position: -500px -300px;}
 .famfam-page_refresh {background-position: -520px -300px;}
 .famfam-page_save {background-position: -540px -300px;}
-.famfam-page_white {background-position: -560px -300px;}
+.famfam-page_white, .balance-page, .balance-panel {background-position: -560px -300px;}
 .famfam-page_white_acrobat {background-position: -580px -300px;}
 .famfam-page_white_actionscript {background-position: -600px -300px;}
 .famfam-page_white_add {background-position: -620px -300px;}
@@ -674,7 +674,7 @@
 .famfam-page_white_php {background-position: -520px -320px;}
 .famfam-page_white_picture {background-position: -540px -320px;}
 .famfam-page_white_powerpoint {background-position: -560px -320px;}
-.famfam-page_white_put, .balance-page {background-position: -580px -320px;}
+.famfam-page_white_put, .balance-download {background-position: -580px -320px;}
 .famfam-page_white_ruby {background-position: -600px -320px;}
 .famfam-page_white_stack {background-position: -620px -320px;}
 .famfam-page_white_star {background-position: -640px -320px;}
