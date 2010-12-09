@@ -60,7 +60,7 @@ function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
  * @todo merge with focus_groups_load_group_details
  * @param array $vars
  */
-function focus_groups_preprocess_node(&$vars, $hook) {
+function focus_groups_preprocess_node(&$vars, $hook) {	
 	$vars['related_groups'] = array();
 	$vars['focusgroup'] = array();
 	$node_classes_group_ids = array();
@@ -257,10 +257,15 @@ function focus_groups_menu_alter(&$items) {
  */
 function focus_groups_og_links_alter(&$links, $node) {
 	global $user;
-	unset($links['subscribers']);
+	$unset = array('subscribers', 'subscribe');
+	foreach($unset as $u) {
+		if(isset($links[$u])) {
+			unset($links[$u]);
+		}
+	}
 
 	if(strpos($links['my_membership'], '/og/subscribe') !== false) {
-		unset($links['my_membership']); // my_membership contains the subscription link which we don't want, but also the my user page which we want. So we only delete the first.
+		unset($links['my_membership']); // 'my_membership' contains the subscription link which we don't want, but also the my user page which we want. So we only delete the first.
 	}
 
   if (isset($user->og_groups[$node->nid]) && $user->og_groups[$node->nid]['is_admin'] == 1) {
