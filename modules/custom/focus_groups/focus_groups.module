@@ -268,7 +268,7 @@ function focus_groups_og_links_alter(&$links, $node) {
 		unset($links['my_membership']); // 'my_membership' contains the subscription link which we don't want, but also the my user page which we want. So we only delete the first.
 	}
 
-  if (isset($user->og_groups[$node->nid]) && $user->og_groups[$node->nid]['is_admin'] == 1) {
+  if (isset($user->og_groups[$node->nid]) && ($user->og_groups[$node->nid]['is_admin'] == 1)) {
     // Adds link to the user management to approve and decline membership requests
     $links['users'] = l(t('Manage Users'), 'og/users/' . $node->nid);
     $links['edit'] = l(t('Edit'), 'node/' . $node->nid . '/edit');

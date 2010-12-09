@@ -87,29 +87,8 @@ function balanceonline_og_like_menu() {
   }
 }
 
-
-/**
- * Implementation of hook_block().
- */
-function balanceonline_og_like_block($op = 'list', $delta = 0, $edit = array()) {
-  if ($op == 'list') {
-    $blocks[0]['info'] = t('Custom Group details');
-    $blocks[0]['cache'] = BLOCK_NO_CACHE;
-    return $blocks;
-  }
-  elseif ($op == 'view') {
-    switch ($delta) {
-      case 0:
-        return balanceonline_og_like_block_details();
-    }
-  }
-}
-
-function balanceonline_og_like_block_details() {
+function balanceonline_og_like_og_links_alter(&$links, $node) {
   global $user;
-
-  // Only display group details if we have a group context.
-  if (($node = og_get_group_context()) && node_access('view', $node)) {
 
   $user_roles = og_user_roles_get_og_roles($user->uid, $node->nid);
 
@@ -120,44 +99,6 @@ function balanceonline_og_like_block_details() {
     }
 
     list($txt, $subscription) = og_subscriber_count_link($node);
-    if ($subscription == 'active' && $onlyfan || user_access('administer nodes')) {
-      $links = module_invoke_all('og_create_links', $node);
-      // We want to open this up for OG_INVITE_ONLY but we need to handle invitation workflow much better. See http://drupal.org/node/170332
-      if ($node->og_selective < OG_INVITE_ONLY) {
-        $links['invite'] = l(t('Invite friend'), "og/invite/$node->nid");
-      }
-
-      $links_manage['subscribers'] = $txt;
-
-      // Site admins get a Join link if they are not yet subscribed.
-      $subscribe = isset($subscription) && og_is_group_member($node->nid, FALSE) ? l(t('My membership'), "og/manage/$node->nid") : og_subscribe_link($node);
-      if(isset($subscribe)) {
-        $links_manage['my_membership'] = $subscribe;
-      }
-    }
-    elseif ($subscription == 'requested') {
-      $links_manage['approval'] = t('Your membership request awaits approval.');
-      $links_manage['delete'] = l(t('Delete request'), "og/unsubscribe/$node->nid/$user->uid", array('query' => 'destination=og'));
-    }
-    elseif (!$user->uid) {
-      $dest = drupal_get_destination();
-      if (variable_get('user_register', 1) == 0) {
-        $links_manage['must_login'] = t('You must <a href="!login">login</a> in order to post into this group.', array('!login' => url("user/login", array('query' => $dest))));
-      }
-      else {
-        $links_manage['must_login'] = t('You must <a href="!register">register</a> or <a href="!login">login</a> in order to post into this group.', array('!register' => url("user/register", array('query' => $dest)), '!login' => url("user/login", array('query' => $dest))));
-      }
-    }
-    elseif ($node->og_selective < OG_INVITE_ONLY) {
-      $links_manage['subscribe'] = balanceonline_og_like_subscribe_link($node);
-    }
-    elseif ($node->og_selective == OG_INVITE_ONLY) {
-      $links_manage['closed'] = t('This is an <em>invite only</em> group. The group administrators add/remove members as needed.');
-    }
-    elseif ($node->og_selective == OG_CLOSED) {
-      $links_manage['closed'] = t('This is a <em>closed</em> group. The group administrators add/remove members as needed.');
-    }
-
 
     /*Like Button */
 
@@ -166,27 +107,13 @@ function balanceonline_og_like_block_details() {
     if ($user->uid) {
     if($subscription != 'requested'){
         if(!array_key_exists(10, $user_roles) && !array_key_exists(7, $user_roles)){
-          $links_manage['like'] = l("Projektnews abonnieren", "fan/$node->nid/subscribe");
+          $links['like'] = l("Projektnews abonnieren", "fan/$node->nid/subscribe");
         }
         if(array_key_exists(10, $user_roles)){
-          $links_manage['unlike'] = l("Projektnews abbestellen", "fan/$node->nid/unsubscribe");
+          $links['unlike'] = l("Projektnews abbestellen", "fan/$node->nid/unsubscribe");
         }
     }
-    }
-
-    // Modify these links by reference. If you want control of the whole block, see og_block_details().
-    drupal_alter('og_links', $links, $node);
-	drupal_alter('og_links', $links_manage, $node);
-	
-	$htitle = "<h3>Inhalt erstellen</h3>";
-	if (empty($links) == true) {
-    	$htitle = "";
 	}
-	
-    $block['content'] = $htitle.theme('item_list', $links)."<h3>Gruppe</h3>" . theme('item_list', $links_manage);
-    $block['subject'] = l($node->title, "node/$node->nid");
-    return $block;
-  }
 }
 
 function balanceonline_og_like_subscribe_link($node) {
