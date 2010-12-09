@@ -2,13 +2,12 @@
 
 /**
  * Implementation of hook_views_api().
-*/
+ */
 function balanceonline_og_like_views_api() {
-  return array(
-    'api' => 2.0,
-  );
+	return array(
+		'api' => 2.0
+	);
 }
-
 
 // function balanceonline_og_like_og_links_alter(&$links) {
 // 	$links['become_fan'] = l('Projektnews abonnieren', 'fan/subscribe/' . arg(1));
@@ -19,165 +18,198 @@ function balanceonline_og_like_views_api() {
  */
 
 function balanceonline_og_like_menu() {
-  // Anon users should be able to get to the join page
-  $items['ogc/%node/subscribe'] = array(
-    'type' => MENU_CALLBACK,
-    'file path' => drupal_get_path('module', 'og'),
-    'file' => 'og.pages.inc',
-    'page callback' => 'balanceonline_og_like_subscribe',
-    'page arguments' => array(1),
-    'access callback' => 'node_access',
-    'access arguments' => array('view', 1),
-    'title' => 'Join group'
-  );
-// Anon users should be able to get to the join page
-  $items['fan/%node/subscribe'] = array(
-    'type' => MENU_CALLBACK,
-    'page callback' => 'balanceonline_og_like_page',
-    'access callback' => 'node_access',
-    'access arguments' => array('view', 1),
-    'page arguments' => array(1),
-    'title' => 'Be a group fan'
-  );
-  $items['fan/%node/unsubscribe'] = array(
-    'type' => MENU_CALLBACK,
-    'page callback' => 'balanceonline_og_like_unsubscribe_page',
-    'access callback' => 'node_access',
-    'access arguments' => array('view', 1),
-    'page arguments' => array(1),
-    'title' => 'Be not longer a group fan'
-  );
-    return $items;
+	// Anon users should be able to get to the join page
+	$items['ogc/%node/subscribe']   = array(
+		'type' => MENU_CALLBACK,
+		'file path' => drupal_get_path('module', 'og'),
+		'file' => 'og.pages.inc',
+		'page callback' => 'balanceonline_og_like_subscribe',
+		'page arguments' => array(
+			1
+		),
+		'access callback' => 'node_access',
+		'access arguments' => array(
+			'view',
+			1
+		),
+		'title' => 'Join group'
+	);
+	// Anon users should be able to get to the join page
+	$items['fan/%node/subscribe']   = array(
+		'type' => MENU_CALLBACK,
+		'page callback' => 'balanceonline_og_like_page',
+		'access callback' => 'node_access',
+		'access arguments' => array(
+			'view',
+			1
+		),
+		'page arguments' => array(
+			1
+		),
+		'title' => 'Be a group fan'
+	);
+	$items['fan/%node/unsubscribe'] = array(
+		'type' => MENU_CALLBACK,
+		'page callback' => 'balanceonline_og_like_unsubscribe_page',
+		'access callback' => 'node_access',
+		'access arguments' => array(
+			'view',
+			1
+		),
+		'page arguments' => array(
+			1
+		),
+		'title' => 'Be not longer a group fan'
+	);
+	return $items;
 }
 
-  function balanceonline_og_like_subscribe($node, $uid = NULL) {
-  global $user;
-  
-  if (is_null($uid)) {
-    if ($user->uid) {
-      $account = $user;
-    }
-    else {
-      $dest = drupal_get_destination();
-      if (variable_get('user_register', 1) == 0) {
-        drupal_set_message(t('In order to join this group, you must <a href="!login">login</a>. After you have successfully done so, you will need to request membership again.', array('!login' => url("user/login", array('query' => $dest)))));
-      }
-      else {
-        drupal_set_message(t('In order to join this group, you must <a href="!login">login</a> or <a href="!register">register</a> a new account. After you have successfully done so, you will need to request membership again.', array('!register' => url("user/register", array('query' => $dest)), '!login' => url("user/login", array('query' => $dest)))));
-      }
-      drupal_goto('user');
-    }
-  }
-  else {
-    $account = user_load(array('uid' => $uid));
-  }
-
-  if ($node->og_selective >= OG_INVITE_ONLY || $node->status == 0 || !og_is_group_type($node->type)) {
-    drupal_access_denied();
-    exit();
-  }
-
-  // Only admins can add another member.
-  if ($account->uid != $user->uid && !og_is_group_admin($node)) {
-    drupal_access_denied();
-    exit();
-  }
-  else {
-    return drupal_get_form('og_confirm_subscribe', $node->nid, $node, $account);
-  }
+function balanceonline_og_like_subscribe($node, $uid = NULL) {
+	global $user;
+	
+	if (is_null($uid)) {
+		if ($user->uid) {
+			$account = $user;
+		} else {
+			$dest = drupal_get_destination();
+			if (variable_get('user_register', 1) == 0) {
+				drupal_set_message(t('In order to join this group, you must <a href="!login">login</a>. After you have successfully done so, you will need to request membership again.', array(
+					'!login' => url("user/login", array(
+						'query' => $dest
+					))
+				)));
+			} else {
+				drupal_set_message(t('In order to join this group, you must <a href="!login">login</a> or <a href="!register">register</a> a new account. After you have successfully done so, you will need to request membership again.', array(
+					'!register' => url("user/register", array(
+						'query' => $dest
+					)),
+					'!login' => url("user/login", array(
+						'query' => $dest
+					))
+				)));
+			}
+			drupal_goto('user');
+		}
+	} else {
+		$account = user_load(array(
+			'uid' => $uid
+		));
+	}
+	
+	if ($node->og_selective >= OG_INVITE_ONLY || $node->status == 0 || !og_is_group_type($node->type)) {
+		drupal_access_denied();
+		exit();
+	}
+	
+	// Only admins can add another member.
+	if ($account->uid != $user->uid && !og_is_group_admin($node)) {
+		drupal_access_denied();
+		exit();
+	} else {
+		return drupal_get_form('og_confirm_subscribe', $node->nid, $node, $account);
+	}
 }
 
 function balanceonline_og_like_og_links_alter(&$links, $node) {
-  global $user;
-
-  $user_roles = og_user_roles_get_og_roles($user->uid, $node->nid);
-
-
-    $onlyfan=true;
-    if(array_key_exists(10, $user_roles) && !array_key_exists(7, $user_roles)){
-      $onlyfan=false;
-    }
-
-    list($txt, $subscription) = og_subscriber_count_link($node);
-
-    /*Like Button */
-
-    //10 = Fan
-    // 7 = Project Member
-    if ($user->uid) {
-    if($subscription != 'requested'){
-        if(!array_key_exists(10, $user_roles) && !array_key_exists(7, $user_roles)){
-          $links['like'] = l("Projektnews abonnieren", "fan/$node->nid/subscribe");
-        }
-        if(array_key_exists(10, $user_roles)){
-          $links['unlike'] = l("Projektnews abbestellen", "fan/$node->nid/unsubscribe");
-        }
-    }
+	global $user;
+	
+	$user_roles = og_user_roles_get_og_roles($user->uid, $node->nid);
+	
+	
+	$onlyfan = true;
+	if (array_key_exists(10, $user_roles) && !array_key_exists(7, $user_roles)) {
+		$onlyfan = false;
+	}
+	
+	list($txt, $subscription) = og_subscriber_count_link($node);
+	
+	/*Like Button */
+	
+	//10 = Fan
+	// 7 = Project Member
+	if ($user->uid) {
+		if ($subscription != 'requested') {
+			if (!array_key_exists(10, $user_roles) && !array_key_exists(7, $user_roles)) {
+				$links['like'] = l("Projektnews abonnieren", "fan/$node->nid/subscribe");
+			}
+			if (array_key_exists(10, $user_roles)) {
+				$links['unlike'] = l("Projektnews abbestellen", "fan/$node->nid/unsubscribe");
+			}
+		}
 	}
 }
 
 function balanceonline_og_like_subscribe_link($node) {
-  if ($node->og_selective == OG_MODERATED) {
-    $txt = t('Request membership');
-  }
-  elseif ($node->og_selective == OG_OPEN) {
-    $txt = t('Join');
-  }
-  if(isset($txt))
-    return l($txt, "ogc/subscribe/$node->nid", array('attributes' => array('rel' => 'nofollow'), 'query' => drupal_get_destination()));
+	if ($node->og_selective == OG_MODERATED) {
+		$txt = t('Request membership');
+	} elseif ($node->og_selective == OG_OPEN) {
+		$txt = t('Join');
+	}
+	if (isset($txt))
+		return l($txt, "ogc/subscribe/$node->nid", array(
+			'attributes' => array(
+				'rel' => 'nofollow'
+			),
+			'query' => drupal_get_destination()
+		));
 }
 
 
-function balanceonline_og_like_page($node){
-   return drupal_get_form('fan_subscribe_form',$node->nid);
-};
+function balanceonline_og_like_page($node) {
+	return drupal_get_form('fan_subscribe_form', $node->nid);
+}
+;
 
-function balanceonline_og_like_unsubscribe_page($node){
-   return drupal_get_form('fan_unsubscribe_form',$node->nid);
-};
+function balanceonline_og_like_unsubscribe_page($node) {
+	return drupal_get_form('fan_unsubscribe_form', $node->nid);
+}
+;
 
-function fan_subscribe_form($form_state,$nid) {
-  $form['nid'] = array('#type' => 'hidden', '#value' => $nid);
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Save'),
-  );
-  return $form;
+function fan_subscribe_form($form_state, $nid) {
+	$form['nid']    = array(
+		'#type' => 'hidden',
+		'#value' => $nid
+	);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Save')
+	);
+	return $form;
 }
 
-function fan_unsubscribe_form($form_state,$nid) {
-  $form['nid'] = array('#type' => 'hidden', '#value' => $nid);
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Save'),
-  );
-  return $form;
+function fan_unsubscribe_form($form_state, $nid) {
+	$form['nid']    = array(
+		'#type' => 'hidden',
+		'#value' => $nid
+	);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => t('Save')
+	);
+	return $form;
 }
 
 function fan_subscribe_form_submit($form, &$form_state) {
-  global $user;
-  //$message = 'You have submitted the ' . $form_id . ' form which contains the following data:<pre>' . print_r($form_values,true) . '</pre>';
-  $group_id = $form_state['values']['nid'];
-  $user_id = $user->uid;
-  //fan group ID = 10
-  $role_id = 10;
-   og_user_roles_role_join($user_id, $role_id, $group_id);
-   og_save_subscription($group_id, $user_id, array('is_active' => 1));
-
-   $form_state['redirect'] = "node/$group_id";
-  //drupal_set_message(t($form_values['values']['nid']));
+	global $user;
+	//$message = 'You have submitted the ' . $form_id . ' form which contains the following data:<pre>' . print_r($form_values,true) . '</pre>';
+	$group_id = $form_state['values']['nid'];
+	$user_id  = $user->uid;
+	//fan group ID = 10
+	$role_id  = 10;
+	og_user_roles_role_join($user_id, $role_id, $group_id);
+	
+	$form_state['redirect'] = "node/$group_id";
+	//drupal_set_message(t($form_values['values']['nid']));
 }
 
 function fan_unsubscribe_form_submit($form, &$form_state) {
-  global $user;
-  //$message = 'You have submitted the ' . $form_id . ' form which contains the following data:<pre>' . print_r($form_values,true) . '</pre>';
-  $group_id = $form_state['values']['nid'];
-  $user_id = $user->uid;
-  //fan group ID = 10
-  $role_id = 10;
-   og_user_roles_role_delete($user_id, $role_id, $group_id);
-   og_delete_subscription($group_id, $user_id);
-   $form_state['redirect'] = "node/$group_id";
-  //drupal_set_message(t($form_values['values']['nid']));
+	global $user;
+	//$message = 'You have submitted the ' . $form_id . ' form which contains the following data:<pre>' . print_r($form_values,true) . '</pre>';
+	$group_id = $form_state['values']['nid'];
+	$user_id  = $user->uid;
+	//fan group ID = 10
+	$role_id  = 10;
+	og_user_roles_role_delete($user_id, $role_id, $group_id);
+	$form_state['redirect'] = "node/$group_id";
+	//drupal_set_message(t($form_values['values']['nid']));
 }
-?>
