@@ -21,5 +21,5 @@
 		<?php print balance_addthis_button(); ?>
   </div>
 
-  <div class="links"><?php print $submitted; ?> | <?php print $links; ?></div>
+  <div class="links"><?php print $submitted; ?><?php if($links): ?> | <?php print $links; ?><?php endif; ?></div>
 </div>

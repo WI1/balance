@@ -57,16 +57,17 @@ $grid = array(
                     <div id="sidebar-left" class="column sidebar grid_<?=$grid['left']?>">
 
                         <div id="user-picture" style="height: 200px">
-							<?php print theme('imagecache', 'userpic_2c_portrait', $profile->picture ? $profile->picture : 'dummy.jpg'); ?>
+													<?php print theme('imagecache', 'userpic_2c_portrait', $profile->picture ? $profile->picture : 'dummy.jpg'); ?>
                         </div>
 
                         <?php print $left; ?>
 
-						<?php if(!empty($profile_content)): ?>
-						<?php print $profile_content; ?>
-						<?php endif; ?>
+												<?php if(!empty($profile_content)): ?>
+												<?php print $profile_content; ?>
+												<?php endif; ?>
+												<?php print l(t('Personal contact form'), 'user/' . $profile->uid . '/contact'); ?>
 
-					</div><!-- /sidebar-left -->
+										</div><!-- /sidebar-left -->
 
 
                     <div id="main" class="column">
@@ -77,12 +78,12 @@ $grid = array(
                          <?php endif; ?>
                             <?php if (!empty($title)): ?>
                         <h1 id="page-title" class="title">
-	<?php if($title == $profile->name): ?>
-<?php print implode(' ', array($profile->profile_title, $profile->profile_firstname, $profile->profile_middlename, $profile->profile_lastname)); ?>
-<?php else: ?>
-	<?php print $title; ?>
-	<?php endif; ?>
-						</h1>
+													<?php if($title == $profile->name): ?>
+														<?php print implode(' ', array($profile->profile_title, $profile->profile_firstname, $profile->profile_middlename, $profile->profile_lastname)); ?>
+													<?php else: ?>
+														<?php print $title; ?>
+													<?php endif; ?>
+												</h1>
 
                         <?php endif; ?>
                         <div id="main-squeeze" class="grid_<?=$grid['middle']?>">
