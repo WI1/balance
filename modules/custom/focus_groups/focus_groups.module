@@ -35,7 +35,7 @@ function focus_groups_views_api() {
 function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
 	switch ($op) {
 		case 'list':
-			$blocks[0]['info'] = 'Balance Group Menu';
+			$blocks[0]['info'] = t('Balance Gruppenmenü', NULL, 'de');
 			return $blocks;
 
 		case 'view':
@@ -44,8 +44,8 @@ function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
 
 			switch($delta) {
 				case 0:
-					$block['subject'] = t('My Groups');
-					$block['content'] = $user->og_groups ? phptemplate_group_list(focus_groups_load_group_details($user->og_groups)) : '<p>Sie sind in keiner Gruppe angemeldet. Werden Sie Mitglied in Ihrer Gruppe, indem Sie diese im Menü auswählen und die Mitgliedschaft beantragen.</p>';
+					$block['subject'] = t('Meine Gruppen', NULL, 'de');
+					$block['content'] = $user->og_groups ? phptemplate_group_list(focus_groups_load_group_details($user->og_groups)) : '<p>' . t('Sie sind in keiner Gruppe angemeldet', NULL, 'de') . '</p>';
 				break;
 			}
 
@@ -340,7 +340,7 @@ function focus_groups_load_group_details($groups) {
 function focus_groups_form_alter(&$form, &$form_state, $form_id){
   switch($form_id){
     case 'blog_node_form':
-      $form['field_coautors']['field_coautors_add_more']['#value'] = 'Weitere Autoren hinzufügen';
+      $form['field_coautors']['field_coautors_add_more']['#value'] = t('Weitere Autoren hinzufügen', NULL, 'de');
 		break;
 
 		case 'project_node_form':
