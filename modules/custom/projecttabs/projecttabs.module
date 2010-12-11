@@ -254,7 +254,7 @@ function projecttabs_get_approvable_actions() {
 	if(module_exists('user_relationships_ui')) {
 		// gets pending relationship requests
 		if($user_relationships_count = count(user_relationships_load(array('requestee_id' => $user->uid, 'approved' => FALSE)))) {
-			$approve[] = l(format_plural($user_relationships_count, '1 new relationship request', '@count new relationship requests'), variable_get('user_relationships_requests_link', 'relationships/requests'));
+			$approve[] = l(format_plural($user_relationships_count, '1 new relationship request', '@count new relationship requests'), variable_get('user_relationships_requests_link', 'relationships/requests'), array('attributes' => array('class' => 'pending-relationships')));
 		}
 	}
 
@@ -262,7 +262,7 @@ function projecttabs_get_approvable_actions() {
 		// gets invites to a group
 		// og/all page view needs to be extended for multiple arguments
 		if($og_invites = og_invite_load_pending()) {
-			$approve[] = l(format_plural(count($og_invites), '1 new group invite', '@count new group invites'), 'og/all/' . implode(',', array_keys($og_invites)));
+			$approve[] = l(format_plural(count($og_invites), '1 new group invite', '@count new group invites'), 'og/all/' . implode(',', array_keys($og_invites)), array('attributes' => array('class' => 'pending-og-invite')));
 		}
 	}
 
@@ -289,7 +289,7 @@ function projecttabs_get_approvable_actions() {
 					$rsvpLink = 'user/' . $user->uid . '/rsvp';
 				}
 
-				$approve[] = l(format_plural($invitationsCount, '1 new appointment invite', '@count new appointment invites'), $rsvpLink);
+				$approve[] = l(format_plural($invitationsCount, '1 new appointment invite', '@count new appointment invites'), $rsvpLink, array('attributes' => array('class' => 'pending-event-invite')));
 			}
 		}
 	}
