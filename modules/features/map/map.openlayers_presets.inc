@@ -20,12 +20,12 @@ function map_openlayers_presets() {
     'hide_empty_map' => 0,
     'center' => array(
       'initial' => array(
-        'centerpoint' => '8.7011718746513, 51.426614495565',
+        'centerpoint' => '10.371093749585, 51.041393896627',
         'zoom' => '6',
       ),
       'restrict' => array(
         'restrictextent' => 1,
-        'restrictedExtent' => '',
+        'restrictedExtent' => '486750.996033,5997554.986293,1817366.784183,7352630.623489',
       ),
     ),
     'behaviors' => array(
@@ -33,39 +33,45 @@ function map_openlayers_presets() {
       'openlayers_behavior_popup' => array(
         'layers' => array(
           'bo_gmap_forschungsladnkarte_openlayers_1' => 'bo_gmap_forschungsladnkarte_openlayers_1',
+          'bo_gmap_forschungsladnkarte_openlayers_2' => 'bo_gmap_forschungsladnkarte_openlayers_2',
         ),
       ),
+      'openlayers_behavior_fullscreen' => array(
+        'activated' => 0,
+      ),
       'openlayers_behavior_keyboarddefaults' => array(),
+      'openlayers_behavior_layerswitcher' => array(
+        'ascending' => 1,
+      ),
       'openlayers_behavior_navigation' => array(
         'zoomWheelEnabled' => 1,
       ),
       'openlayers_behavior_panzoombar' => array(),
-      'openlayers_behavior_cluster' => array(
-        'clusterlayer' => array(
-          'bo_gmap_forschungsladnkarte_openlayers_1' => 'bo_gmap_forschungsladnkarte_openlayers_1',
-        ),
-        'distance' => '20',
-        'threshold' => 'null',
-      ),
     ),
-    'default_layer' => 'google_normal',
+    'default_layer' => 'google_physical',
     'layers' => array(
-      'google_normal' => 'google_normal',
+      'google_physical' => 'google_physical',
       'bo_gmap_forschungsladnkarte_openlayers_1' => 'bo_gmap_forschungsladnkarte_openlayers_1',
+      'bo_gmap_forschungsladnkarte_openlayers_2' => 'bo_gmap_forschungsladnkarte_openlayers_2',
     ),
     'layer_styles' => array(
-      'bo_gmap_forschungsladnkarte_openlayers_1' => 'default_select',
+      'bo_gmap_forschungsladnkarte_openlayers_1' => 'forschungslandkarte_kreise',
+      'bo_gmap_forschungsladnkarte_openlayers_2' => 'forschungslandkarte_quadrate',
     ),
     'layer_activated' => array(
       'bo_gmap_forschungsladnkarte_openlayers_1' => 'bo_gmap_forschungsladnkarte_openlayers_1',
+      'bo_gmap_forschungsladnkarte_openlayers_2' => 'bo_gmap_forschungsladnkarte_openlayers_2',
     ),
-    'layer_switcher' => array(),
+    'layer_switcher' => array(
+      'bo_gmap_forschungsladnkarte_openlayers_1' => 'bo_gmap_forschungsladnkarte_openlayers_1',
+      'bo_gmap_forschungsladnkarte_openlayers_2' => 'bo_gmap_forschungsladnkarte_openlayers_2',
+    ),
     'projection' => '900913',
     'displayProjection' => '4326',
     'styles' => array(
-      'default' => 'default',
-      'select' => 'default',
-      'temporary' => 'default',
+      'default' => 'forschungslandkarte_kreise',
+      'select' => 'forschungslandkarte_kreise',
+      'temporary' => 'forschungslandkarte_kreise',
     ),
   );
 
