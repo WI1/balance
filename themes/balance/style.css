@@ -1166,3 +1166,31 @@ background: #ee6622;
 #sidebar-left .views-exposed-form .form-text {
 	width: 124px;
 }
+
+/* Exhibit */
+/* Image Facet */
+.exhibit-imageFacet-value .countDiv {
+    border: 1px solid black;
+    bottom: 4px;
+    font-size: 6pt;
+    height: 10px;
+    line-height: 0;
+    margin-right: 3px;
+    position: absolute;
+    right: -3px;
+    width: 10px;
+}
+
+.exhibit-imageFacet-value .countDiv div.text {
+    bottom: 0.1em;
+    height: 5px;
+    left: 0.2em;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0.5em;
+    width: 
+}
+.exhibit-imageFacet-value div.wrapper {
+padding: 0 !important;
+}
