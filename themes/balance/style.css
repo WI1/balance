@@ -1213,6 +1213,20 @@ display: block;
 width: 900px;
 }
 
+#map-image-facet {
+height: 287px;
+}
+
+.node-1802 span.exhibit-flowingFacet-value-count {
+    float: right;
+    position: relative;
+    top: -16px;
+}
+
+.exhibit-flowingFacet-value-linkexhibit-flowingFacet-value-link p {
+margin-bottom: 0;
+}
+
 .node-1802 .messages,
 .node-1802 #balance-node-edit,
 .node-1802 .tabs {
