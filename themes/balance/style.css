@@ -1214,7 +1214,7 @@ width: 900px;
 }
 
 .node-1802 .messages,
-.node-1802 .balance-node-edit,
-.node-1802 .tabs.primary {
+.node-1802 #balance-node-edit,
+.node-1802 .tabs {
 display: none;
 }
