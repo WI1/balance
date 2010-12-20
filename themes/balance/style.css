@@ -1170,7 +1170,7 @@ background: #ee6622;
 /* Exhibit */
 /* Image Facet */
 .exhibit-imageFacet-value .countDiv {
-    border: 1px solid black;
+    border: 0;
     bottom: 4px;
     font-size: 6pt;
     height: 10px;
