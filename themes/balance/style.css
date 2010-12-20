@@ -1194,3 +1194,21 @@ background: #ee6622;
 .exhibit-imageFacet-value div.wrapper {
 padding: 0 !important;
 }
+
+/* Forschungslandkarte */
+#node-1802 .exhibit-mapView-map {
+top: -44px;
+width: 750px;
+height: 550px;
+}
+
+#node-1802 .exhibit-views-header {
+position: relative; 
+left: 420px; 
+top: -54px;
+}
+
+#node-1802 .exhibit-cloudFacet-body {
+display: block; 
+width: 900px;
+}
