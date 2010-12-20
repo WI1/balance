@@ -27,7 +27,7 @@ $grid = array(
 		<?php print $styles; ?>
 	</head>
 
-	<body class="<?php print $body_classes; ?>">
+	<body class="<?php print $body_classes; ?> node-<?php print $node->nid; ?>">
 		<div id="page">
 			<div id="pageInner">
 					<?php if (!empty($balance_bar)): ?>
