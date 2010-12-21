@@ -28,11 +28,19 @@
 
 <dt>Beteiligte Institutionen</dt>
 <dd>
+<!--
  <ul class="field-items">
     <?php foreach ((array)$node->field_projectinstitutions as $item) { ?>
       <li class="field-item"><?php print $item['view'] ?></li>
     <?php } ?>
   </ul>
+  -->
+   
+  <p>Projekmitglieder</p>
+  <?php print views_view_embed('bo_project_memberorgs', 'default', $node->nid); ?>
+  <p>Umsetzungspartner</p>
+  <?php print views_view_embed('bo_project_valuepartner', 'default', $node->nid); ?>
+  
 </dd>
 
 <dt>Forschungsfragen</dt>
