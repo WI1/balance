@@ -37,9 +37,9 @@
   -->
    
   <p>Projekmitglieder</p>
-  <?php print views_view_embed('bo_project_memberorgs', 'default', $node->nid); ?>
+  <?php print views_embed_view('bo_project_memberorgs', 'default', $node->nid); ?>
   <p>Umsetzungspartner</p>
-  <?php print views_view_embed('bo_project_valuepartner', 'default', $node->nid); ?>
+  <?php print views_embed_view('bo_project_valuepartner', 'default', $node->nid); ?>
   
 </dd>
 
