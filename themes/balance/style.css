@@ -1169,6 +1169,10 @@ background: #ee6622;
 
 /* Exhibit */
 /* Image Facet */
+div.exhibit-facet-header {
+    padding: 2px 0;
+}
+
 .exhibit-imageFacet-value .countDiv {
     border: 0;
     bottom: 4px;
@@ -1213,8 +1217,15 @@ display: block;
 width: 900px;
 }
 
+.node-1802 #map-type-facet {
+height: 70px;
+margin-top: 10px;
+}
+
 .node-1802 #map-image-facet {
 height: 287px;
+   position: relative;
+    top: -4px;
 }
 
 .node-1802 span.exhibit-flowingFacet-value-count {
