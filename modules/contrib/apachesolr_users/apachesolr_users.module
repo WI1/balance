@@ -118,7 +118,6 @@ function apachesolr_users_user_to_document($account, $namespace) {
   }
   // boost the html tags!
   apachesolr_add_tags_to_document($document, $text);
-  
   return $document;
 }
 
