@@ -1243,3 +1243,29 @@ margin-bottom: 0 !important;
 .node-1802 .tabs {
 display: none;
 }
+
+/*Videos VIEW */
+
+.view-bo-videos td {
+vertical-align: top !important;
+ }
+
+.view-bo-videos .views-field-field-video-code-embed {
+border: 1px solid #ccc !important;
+border-bottom: 0 !important;
+}
+
+.view-bo-videos .views-field-title table {
+border: 1px solid #ccc !important;
+border-top: 0 !important;
+}
+
+.view-bo-videos .views-field-title table img {
+float: right;
+margin-bottom: 3px
+}
+
+.view-bo-videos span td {
+border: 0;
+}
+
