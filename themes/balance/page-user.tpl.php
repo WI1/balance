@@ -114,12 +114,7 @@ $grid = array(
                     </div>
                     <?php if (!empty($right)): ?>
                     <div id="sidebar-right" class="column sidebar grid_<?=$grid['right']?>">
-                      <?php if($related_groups): ?>
-						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Gruppen</h2>
-						<?php print phptemplate_group_list($related_groups); ?>
-					  <?php endif; ?>
-				
-							<?php print $right; ?>
+                      	<?php print $right; ?>
                     </div><!-- /sidebar-right -->
                     <?php endif; ?>
                 </div><!-- /container -->
