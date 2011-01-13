@@ -66,8 +66,7 @@ $grid = array(
 												<?php print $profile_content; ?>
 												<?php endif; ?>
 												<?php print l(t('Personal contact form'), 'user/' . $profile->uid . '/contact'); ?>
-
-										</div><!-- /sidebar-left -->
+						</div><!-- /sidebar-left -->
 
 
                     <div id="main" class="column">
@@ -115,7 +114,12 @@ $grid = array(
                     </div>
                     <?php if (!empty($right)): ?>
                     <div id="sidebar-right" class="column sidebar grid_<?=$grid['right']?>">
-                            <?php print $right; ?>
+                      <?php if($related_groups): ?>
+						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Gruppen</h2>
+						<?php print phptemplate_group_list($related_groups); ?>
+					  <?php endif; ?>
+				
+							<?php print $right; ?>
                     </div><!-- /sidebar-right -->
                     <?php endif; ?>
                 </div><!-- /container -->
