@@ -274,7 +274,7 @@ function phptemplate_group_list($groups) {
  * @param boolean with_text
  * @return string
  */
-function phptemplate_group_list_item($g, $withTitle = TRUE, $withCreateLink = TRUE) {
+function phptemplate_group_list_item($g, $withTitle = TRUE, $withCreateLink = FALSE) {
 	if($g->field_projectlogo[0]['filepath']) {
 		$image = theme('imagecache', 'projectlogo_1-2c', $g->field_projectlogo[0]['filepath']);
 	} else {
@@ -284,16 +284,22 @@ function phptemplate_group_list_item($g, $withTitle = TRUE, $withCreateLink = TR
 	$out = l($image, 'node/' . $g->nid, array('html' => TRUE, 'attributes' => array('title' => $g->title)));
 
 	if($withTitle || $withCreateLink) {
+		if(isset($g->user_is_active) && $g->user_is_active === '0') {
+			$pending = '<br />' . t('Wartet auf Bestätigung', NULL, 'de');
+		} else {
+			$pending = '';
+		}
+		
 		$out .= '<ul>';
 
 		if($withTitle) {
-			$out .= '<li class="group_title">' . l($g->title, 'node/' . $g->nid, array('html' => TRUE)) . '</li>';
+			$out .= '<li class="group_title">' . l($g->title, 'node/' . $g->nid, array('html' => TRUE)) . $pending . '</li>';
 		}
-/*
+
 		if($withCreateLink) {
 			$out .= '<li class="node_add">' . l('Beitrag schreiben', 'node/add/blog', array('query' => 'gids[]='. $g->nid)) . '</li>';
 		}
-*/
+
 		$out .= '</ul>';
 	}
 

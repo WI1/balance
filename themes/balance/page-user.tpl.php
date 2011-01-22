@@ -104,8 +104,8 @@ $grid = array(
 
                                 <br class="clear" />
                                 <?php if (!empty($help)): print $help; endif; ?>
-			                    <?php if (!empty($messages)): print $messages; endif; ?>
                                 <div id="content-content" class="clear-block">
+								                    <?php if (!empty($messages)): print $messages; endif; ?>
                                     <?php print $content; ?>
                                 </div><!-- /content-content -->
                                 <?php print $feed_icons; ?>

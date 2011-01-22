@@ -33,23 +33,31 @@ function focus_groups_views_api() {
  * @return string
  */
 function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
+	
 	switch ($op) {
 		case 'list':
 			$blocks[0]['info'] = t('Balance Gruppenmenü', NULL, 'de');
 			return $blocks;
 
 		case 'view':
-			global $user;
-			$user = user_load($user->uid);
-
 			switch($delta) {
 				case 0:
 					$block['subject'] = t('Meine Gruppen', NULL, 'de');
-					$block['content'] = $user->og_groups ? phptemplate_group_list(focus_groups_load_group_details($user->og_groups)) : '<p>' . t('Sie sind in keiner Gruppe angemeldet', NULL, 'de') . '</p>';
+					$block['content'] = focus_groups_block_my_groups();
 				break;
 			}
 
 			return $block;
+	}
+}
+
+function focus_groups_block_my_groups() {
+	global $user;
+	$groups = og_get_subscriptions($user->uid, 0);
+	if($groups) {
+		return phptemplate_group_list(focus_groups_load_group_details($groups));
+	} else {
+		return '<p>' . t('Sie sind in keiner Gruppe angemeldet', NULL, 'de') . '</p>';
 	}
 }
 
@@ -328,6 +336,10 @@ function focus_groups_load_group_details($groups) {
 
 			if($current_group->type == 'focusgroup' && !user_access('view focus groups')) {
 				continue;
+			}
+
+			if(isset($g['is_active'])) { // when given an user->og_groups array, we populate the group node with the context info
+				$current_group->user_is_active = $g['is_active'];
 			}
 
 			$return_groups[$current_group->nid] = $current_group;

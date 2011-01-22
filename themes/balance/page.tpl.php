@@ -98,9 +98,9 @@ $grid = array(
 									<?php print $tabs; ?></div>
 								<?php endif; ?>
 							<div id="content">
-			 					<?php if (!empty($messages)): print $messages; endif; ?>
 								<?php if (!empty($help)): print $help; endif; ?>
 								<div id="content-content" class="clear-block">
+				 					<?php if (!empty($messages)): print $messages; endif; ?>
 									<?php if (!empty($meta_content)): ?>
 										<?php print $meta_content; ?>
 									<?php endif; ?>

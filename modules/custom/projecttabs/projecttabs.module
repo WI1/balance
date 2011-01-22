@@ -331,6 +331,7 @@ function projecttabs_form_comment_form_alter(&$form, &$form_state) {
 function projecttabs_form_user_register_alter(&$form, &$form_state) {
   $form['Benutzerinformation']['#weight'] = -5;
   $form['og_register']['#title'] = t('Projekt auswählen', NULL, 'de');
+	$form['submit']['#value'] = t('Neu registrieren', NULL, 'de');
 
 	$agb = &$form['Benutzerinformation']['profile_agb'];
 	$agb['#title'] = str_replace('AGB', l(t('AGB', NULL, 'de'), 'nutzungsbedingungenagb'), $agb['#title']);

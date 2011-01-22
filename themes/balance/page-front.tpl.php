@@ -35,7 +35,6 @@
 				<?php endif; ?>
 			</div>
 			<?php endif; ?>
-			<?php if (!empty($messages)): print $messages; endif; ?>
 		</div><!-- /header -->
 
 		<div class="clear"></div>
@@ -100,6 +99,7 @@
 						<?php endif; ?>
 						<?php if (!empty($help)): print $help; endif; ?>
 						<div id="content-content" class="clear-block">
+							<?php if (!empty($messages)): print $messages; endif; ?>
 							<?php print $content; ?>
 						</div><!-- /content-content -->
 						<?php print $feed_icons; ?>

@@ -1193,7 +1193,6 @@ div.exhibit-facet-header {
     padding: 0;
     position: absolute;
     top: 0.5em;
-    width: 
 }
 .exhibit-imageFacet-value div.wrapper {
 padding: 0 !important;
@@ -1269,3 +1268,10 @@ margin-bottom: 3px
 border: 0;
 }
 
+.messages {
+	padding: 10px;
+}
+
+.messages ul {
+	margin: 0;
+}
