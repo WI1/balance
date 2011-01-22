@@ -65,7 +65,9 @@ $grid = array(
 												<?php if(!empty($profile_content)): ?>
 												<?php print $profile_content; ?>
 												<?php endif; ?>
-												<?php print l(t('Personal contact form'), 'user/' . $profile->uid . '/contact'); ?>
+												<?php if($profile->uid !== $user->uid): ?>
+												<?php print l(t('Kontaktieren', NULL, 'de'), 'user/' . $profile->uid . '/contact'); ?>
+												<?php endif; ?>
 						</div><!-- /sidebar-left -->
 
 

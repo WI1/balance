@@ -323,14 +323,15 @@ function balance_og_add_blog_link($node) {
 		}
 	}
 }
+
 function balance_menu_local_task($link,$selected=0) {
 	if (strpos($link, 'hide="true"')) { 
 		return '';
 	}
 	return '<li '.($selected==1 ? ' class="active"': '').'>'.$link.'</li>';
 }
+
 function balance_menu_item_link($link) {
-	
 	if ($link['path']=='node/%/edit') { 
 		$link['localized_options']['attributes']['hide'] .= 'true';
 	}
@@ -343,7 +344,7 @@ function balance_menu_item_link($link) {
  * @return string
  */
 function phptemplate_business_card($uid) {
-	$hcardOutput = 'Noch keine Person eingetragen';
+	$hcardOutput = t('Noch keine Person eingetragen', NULL, 'de');
 
 	if($uid) {
 		$user = user_load($uid);
@@ -375,8 +376,8 @@ function phptemplate_business_card($uid) {
 		<span class="postal-code">' . $hcard['postal-code'] . '</span> <span class="locality">' . $hcard['locality'] . '</span>
 		<div class="country-name hide">' . $hcard['country-name'] . '</div>
 	</div>
-	<div class="tel"><span class="type">Tel.</span>: <span class="value">' . $hcard['phone-work-value'] . '</span></div>
-	<div class="tel"><span class="type">Fax</span>: <span class="value">' . $hcard['fax-work-value'] . '</span></div>
+	<div class="tel"><span class="type">' . t('Tel.', NULL, 'de') . '</span>: <span class="value">' . $hcard['phone-work-value'] . '</span></div>
+	<div class="tel"><span class="type">' . t('Fax', NULL, 'de') . '</span>: <span class="value">' . $hcard['fax-work-value'] . '</span></div>
 </div>';
 	}
 

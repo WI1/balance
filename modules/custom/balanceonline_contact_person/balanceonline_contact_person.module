@@ -25,15 +25,15 @@ function balanceonline_contact_person_block_details() {
 		  $account->picture = 'dummy.jpg';
 		}
 
-		$content = l($content .= theme('imagecache', 'userpic-1c-square', $account->picture, 'Bild', 'Ansprechpartner').'<br />' .  $account->profile_title.' '.$account->profile_firstname.' '.$account->profile_lastname . '</a><br />', 'user/' . $account->uid, array('html' => TRUE));
+		$content = l($content .= theme('imagecache', 'userpic-1c-square', $account->picture, 'Bild', t('Ansprechpartner', NULL, 'de')).'<br />' .  $account->profile_title.' '.$account->profile_firstname.' '.$account->profile_lastname . '</a><br />', 'user/' . $account->uid, array('html' => TRUE));
 
 		if($userobj['addresses']['phone']){
-			$content .= 'Telefon: ' . $userobj['addresses']['phone'] . '<br />';
+			$content .= t('Telefon', NULL, 'de') . ': ' . $userobj['addresses']['phone'] . '<br />';
 		}
-    $content .= l('Kontaktieren', 'user/' . $account->uid . '/contact');
+    $content .= l(t('Kontaktieren', NULL, 'de'), 'user/' . $account->uid . '/contact');
 		
 		$block['content'] = $content;
-    $block['subject'] = 'Ansprechpartner';
+    $block['subject'] = t('Ansprechpartner', NULL, 'de');
     return $block;
 	}
 }

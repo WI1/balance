@@ -93,53 +93,72 @@ function projecttabs_block($op = 'list', $delta = 0, $edit = array()) {
 			return $blocks;
 
 		case 'view':
-			global $user;
-			$user = user_load($user->uid);
-
 			switch($delta) {
 				case 0:
-					$approval_actions = projecttabs_get_approvable_actions();
-
-					$block['content'] = theme_item_list($approval_actions);
+					$block['content'] = projecttabs_user_block_content();
 				break;
 
 				case 1:
-					if($user->uid)  {
-						$profile_completeness = projecttabs_get_profile_completeness();
-
-						$block['content'] = sprintf('<p class="login_text">%s<strong>%s,<br />%s</strong></p><p>%s | %s</p>%s',
-							theme('imagecache', 'userpic-1c-square', (empty($user->picture) ? 'dummy.jpg' : $user->picture)),
-							t('Herzlich willkommen', NULL, 'de'),
-							l(implode(' ', array($user->profile_firstname, $user->profile_lastname)), 'user/' . $user->uid),
-							l(t('Abmelden', NULL, 'de'), 'logout'),
-							l(t('Kontakte', NULL, 'de'), 'relationships'),
-							$profile_completeness < 80 ? '<p>' . t('Ihr Profil ist zu !profile_completeness% ausgefüllt.', array('%profile_completeness' => $profile_completeness), 'de') . l(t('Vervollständigen Sie Ihr Profil', NULL, 'de') ,'user/' . $user->uid . '/edit') . '!</p>' : ''
-						);
-					} else  {
-						$block['content'] = sprintf('<form action="/drupal/?q=user&amp;%s" method="post" id="user-login"><ul>
-					    <li><label for="edit-name">%s:</label><input type="text" maxlength="60" name="name" id="edit-name" size="15" value="" class="form-text required" title="Name" /></li>
-					    <li><label for="edit-pass">%s:</label><input type="password" maxlength="" name="pass" id="edit-pass" size="15" class="form-text required" title="Passwort" /></li></ul>
-						<input type="submit" name="op" value="%s" class="form-submit" /><br>
-						<div class="description"><a href="/drupal/?q=user/register" title="Create account">%s</a> | <a href="/drupal/?q=user/password" title="Retrieve lost password">%s?</a></div>
-						<input type="hidden" name="form_id" id="edit-user-login" value="user_login" />
-					</form>', 
-						drupal_get_destination(),
-						t('Name', NULL, 'de'),
-						t('Passwort', NULL, 'de'),
-						t('Login', NULL, 'de'),
-						t('Registrieren', NULL, 'de'),
-						t('Passwort vergessen', NULL, 'de'));
-					}
+					$block['content'] = projecttabs_frontpage_status_block_content();
 				break;
 
 				case 2:
 					$block['subject'] = t('Mitglieder die Sie kennen könnten', NULL, 'de');
-					$block['content'] = projecttabs_users_you_might_know(1, 3) . theme_more_link('users-you-might-know', t('Mehr User ansehen', NULL, 'de'));
+					$block['content'] = projecttabs_users_you_might_know_block_content();
 				break;
 			}
 
 			return $block;
 	}
+}
+
+/**
+ * @return string
+ */
+function projecttabs_user_block_content() {
+	return theme_item_list(projecttabs_get_approvable_actions());
+}
+
+/**
+ * @return string
+ */
+function projecttabs_frontpage_status_block_content() {
+	global $user;
+	$user = user_load($user->uid);
+
+	if($user->uid)  {
+		$profile_completeness = projecttabs_get_profile_completeness();
+
+		return sprintf('<p class="login_text">%s<strong>%s,<br />%s</strong></p><p>%s | %s</p>%s',
+			theme('imagecache', 'userpic-1c-square', (empty($user->picture) ? 'dummy.jpg' : $user->picture)),
+			t('Herzlich willkommen', NULL, 'de'),
+			l(implode(' ', array($user->profile_firstname, $user->profile_lastname)), 'user/' . $user->uid),
+			l(t('Abmelden', NULL, 'de'), 'logout'),
+			l(t('Kontakte', NULL, 'de'), 'relationships'),
+			$profile_completeness < 80 ? '<p>' . t('Ihr Profil ist zu !profile_completeness% ausgefüllt.', array('!profile_completeness' => $profile_completeness), 'de') . l(t('Vervollständigen Sie Ihr Profil', NULL, 'de') ,'user/' . $user->uid . '/edit') . '!</p>' : ''
+		);
+	} else  {
+		return sprintf('<form action="/drupal/?q=user&amp;%s" method="post" id="user-login"><ul>
+	    <li><label for="edit-name">%s:</label><input type="text" maxlength="60" name="name" id="edit-name" size="15" value="" class="form-text required" title="Name" /></li>
+	    <li><label for="edit-pass">%s:</label><input type="password" maxlength="" name="pass" id="edit-pass" size="15" class="form-text required" title="Passwort" /></li></ul>
+		<input type="submit" name="op" value="%s" class="form-submit" /><br>
+		<div class="description"><a href="/drupal/?q=user/register" title="Create account">%s</a> | <a href="/drupal/?q=user/password" title="Retrieve lost password">%s?</a></div>
+		<input type="hidden" name="form_id" id="edit-user-login" value="user_login" />
+	</form>', 
+		drupal_get_destination(),
+		t('Name', NULL, 'de'),
+		t('Passwort', NULL, 'de'),
+		t('Login', NULL, 'de'),
+		t('Registrieren', NULL, 'de'),
+		t('Passwort vergessen', NULL, 'de'));
+	}
+}
+
+/**
+ * @return string
+ */
+function projecttabs_users_you_might_know_block_content() {
+	return projecttabs_users_you_might_know(1, 3) . theme_more_link('users-you-might-know', t('Mehr User ansehen', NULL, 'de'));
 }
 
 /**
