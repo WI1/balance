@@ -372,5 +372,12 @@ function focus_groups_form_alter(&$form, &$form_state, $form_id){
 				$name = theme('imagecache', 'projectlogo_1-2c', $path) . ' ' . $name;
 			}
 		break;
+
+		case 'comment_form':
+			// don't show the preview button if preview is optional
+			if(isset($form['submit'])) {
+				unset($form['preview']);
+			}
+		break;
   }
 }
