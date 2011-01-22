@@ -49,6 +49,10 @@ function projecttabs_menu_alter(&$items) {
 	$items['relationships/requests']['title'] = t('Kontaktanfragen', NULL, 'de');
 	$items['relationships/1']['title'] = t('Nutzer suchen', NULL, 'de');
 
+	if(isset($items['search/apachesolr_search/%menu_tail']) && $items['search/apachesolr_search/%menu_tail']['title'] == 'Content') {
+		$items['search/apachesolr_search/%menu_tail']['title'] = t('Alle Ergebnisse', NULL, 'de');;
+	}
+
 	// disable tabs (and the urls) for the user profile
 	// use the following to remove the tab but let the URL
 	// $items['user/%user/example']['type'] = MENU_CALLBACK;
