@@ -601,6 +601,15 @@ background: url("img/button_weiter_down.png") no-repeat scroll 0 0 transparent;
 /******** Frontpage **************************/
 /********************************************/
 
+.page-frontpage.logged-in .tabs {
+margin-bottom: 16px !important;
+}
+
+.page-frontpage.logged-in #content {
+margin-top: 0;
+padding-top: 1px !important;
+}
+
 #teaser_1, #teaser_2, #teaser_3 {
 border: 1px solid #f29820;
 margin-top: 6px;
@@ -1275,3 +1284,4 @@ border: 0;
 .messages ul {
 	margin: 0;
 }
+
