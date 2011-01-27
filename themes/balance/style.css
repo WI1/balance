@@ -1285,3 +1285,8 @@ border: 0;
 	margin: 0;
 }
 
+/* Temp Fix for Tabs on Frontpage */
+
+.not-logged-in.front .tabs {
+display: none;
+}
