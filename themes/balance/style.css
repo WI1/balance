@@ -1208,6 +1208,14 @@ padding: 0 !important;
 }
 
 /* Forschungslandkarte */
+.node-1802 .content {
+padding-bottom: 0 !important;
+}
+
+.node-1802 #node-1802 {
+margin-bottom: 0 !important;
+}
+
 .node-1802 .exhibit-mapView-map {
 top: -44px;
 width: 750px;
