@@ -2,11 +2,21 @@
 	float:left;
 	padding-left:4px;
 	width:64px;
-	height:74px;
-	
+	height:105px;
 	padding-bottom:4px;
 	overflow:hidden;
 }
 .og-audience{
     width:100% !important;
+}
+.event-form-submit {
+	margin: 5px auto;
+	display:block;
+	width:130px;
+	text-align:center;
+	clear:both;
+	padding:5px;
+	background-color:#ccc;
+	font-weight: bold;
+	color: #008;
 }
