@@ -42,7 +42,7 @@ function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
 		case 'view':
 			switch($delta) {
 				case 0:
-					$block['subject'] = t('Meine Gruppen', NULL, 'de');
+					$block['subject'] = t('Gruppen', NULL, 'de');
 					$block['content'] = focus_groups_block_my_groups();
 				break;
 			}
@@ -52,8 +52,14 @@ function focus_groups_block($op = 'list', $delta = 0, $edit = array()) {
 }
 
 function focus_groups_block_my_groups() {
-	global $user;
-	$groups = og_get_subscriptions($user->uid, 0);
+	$url = arg();
+	if($url[0] = 'user' && is_numeric($url[1])) {
+		$uid = $url[1];
+	} else {
+		global $user;
+		$uid = $user->uid;
+	}
+	$groups = og_get_subscriptions($uid, 0);
 	if($groups) {
 		return phptemplate_group_list(focus_groups_load_group_details($groups));
 	} else {
