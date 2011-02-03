@@ -247,7 +247,7 @@ function projecttabs_get_profile_completeness() {
 	global $user;
 
 	$filled_out = 0;
-	$fields = 0;
+	$fields = -1; // agb never filled out
 
 	foreach($user as $field_name => $value) {
 		if($field_name == 'location' && is_array($value)) {
