@@ -139,10 +139,6 @@ function focus_groups_preprocess_page(&$vars) {
           $vars['fg'] = focus_groups_get_focus_group($vars['parent']->nid);
   			break;
 
-  			case 'blog':
-  				$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
-  			break;
-
   			case 'focusgroup':
   				if(!user_access('view focus groups')) {
   					drupal_goto('/');
@@ -157,6 +153,7 @@ function focus_groups_preprocess_page(&$vars) {
     	// add proprietary focusgroup short to color a page
       if(!$vars['fg'] && isset($vars['node']->og_groups)) {
         $vars['fg'] = focus_groups_get_focus_group($vars['node']->og_groups);
+				$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
       }
       
       if($vars['fg']) {

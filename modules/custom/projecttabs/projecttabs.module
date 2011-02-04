@@ -420,6 +420,7 @@ function projecttabs_preprocess_page(&$vars) {
 	} elseif(isset($vars['node']->type)) {
 		switch($vars['node']->type) {
 			case 'blog':
+			case 'event':
 				// set authors and groups of active blog post
 				$authors[] = user_load($vars['node']->uid);
 				$vars['authors'] = $authors;

@@ -150,17 +150,17 @@ $grid = array(
 							<?php endif; ?>
 								</ul>
 							</div>
+						<?php endif; ?>
 
-							<?php if(isset($related_groups)): ?>
-								<div class="block" id="related_groups">
-									<h2>Gruppen dieses Beitrags</h2>
-									<ul class="no-bullets">
-								    <?php foreach($related_groups as $g): ?>
-										<li><?php print phptemplate_group_list_item($g); ?></li>
-									<?php endforeach; ?>
-									</ul>
-								</div>
-							<?php endif; ?>
+						<?php if(isset($related_groups)): ?>
+							<div class="block" id="related_groups">
+								<h2>Gruppen dieses Beitrags</h2>
+								<ul class="no-bullets">
+							    <?php foreach($related_groups as $g): ?>
+									<li><?php print phptemplate_group_list_item($g); ?></li>
+								<?php endforeach; ?>
+								</ul>
+							</div>
 						<?php endif; ?>
 
 						<?php if(!empty($project_sidebar)): ?>
