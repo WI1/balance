@@ -431,6 +431,29 @@ function projecttabs_preprocess_page(&$vars) {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ * 
+ * @param array
+ */
+function balance_preprocess_node(&$vars) {
+	// put read more link in own variable
+	if(isset($vars['node']->links['node_read_more'])) {
+		$l = $vars['node']->links['node_read_more'];
+		$vars['node_read_more'] = l($l['title'], $l['href'], $l);
+	}
+
+	$links = array();
+	// remove all unnecessary links in nodes from $links
+	if(isset($vars['node']->links['comment_add'])) {
+		$links[] = $vars['node']->links['comment_add'];
+	}
+	if(isset($vars['node']->links['flag-gefallen'])) {
+		$links[] = $vars['node']->links['flag-gefallen'];
+	}
+	$vars['links'] = theme('links', $links, array('class'=>'links inline'));
+}
+
+/**
  * Adds body classes for node
  *
  * @param StdClass $node

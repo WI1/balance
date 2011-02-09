@@ -482,20 +482,3 @@ function phptemplate_preprocess_custom_pager(&$vars) {
   $vars['first'] = empty($vars['nav_array']['first']) ? '' : l('Erste', 'node/' . $vars['nav_array']['first']);
   $vars['last'] = empty($vars['nav_array']['last']) ? '' : l('Letzte', 'node/' . $vars['nav_array']['last']);
 }
-
-function balance_preprocess_node(&$vars) {
-	// put read more link in own variable
-	if(isset($vars['node']->links['node_read_more'])) {
-		$l = $vars['node']->links['node_read_more'];
-		$vars['node_read_more'] = l($l['title'], $l['href'], $l);
-	}
-	// remove all but the comment link in nodes from $links
-	if(isset($vars['node']->links['comment_add'])) {
-		$c = $vars['node']->links['comment_add'];
-		$links = l($c['title'], $c['href'], $c);
-	} else {
-		$links = null;
-	}
-
-	$vars['links'] = $links;
-}

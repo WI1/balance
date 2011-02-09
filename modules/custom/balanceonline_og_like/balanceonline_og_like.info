@@ -1,6 +1,6 @@
 ; $Id$
-name = OG Like Funktion
-description = OG Like Funktion
-dependencies[] = og_user_roles
+name = OG Like
+description = OG Like
+dependencies[] = flag
 core = 6.x
-package = Custom
+package = Balance
