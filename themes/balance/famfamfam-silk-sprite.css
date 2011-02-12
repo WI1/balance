@@ -1,5 +1,5 @@
 /* icon set header - required*/
-.famfam { text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; display: inline-block; width: 20px; height: 20px; }
+.famfam { text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; display: inline-block; width: 20px; height: 20px; margin-bottom: -5px;}
 .famfam.active { background-image: url('images/famfamfam-silk-sprites/famfam-active.png'); cursor:pointer;}
 .famfam.hover{background-image: url('images/famfamfam-silk-sprites/famfam-hover.png'); cursor:pointer;}
 .famfam.inactive{background-image: url('images/famfamfam-silk-sprites/famfam-inactive.png'); cursor:default;}
@@ -97,7 +97,7 @@
 .famfam-bin_closed {background-position: -180px -40px;}
 .famfam-bin_empty {background-position: -200px -40px;}
 .famfam-bomb {background-position: -220px -40px;}
-.famfam-book , .balance-balancewiki{background-position: -240px -40px;}
+.famfam-book , .balance-biblio {background-position: -240px -40px;}
 .famfam-book_add {background-position: -260px -40px;}
 .famfam-book_addresses {background-position: -280px -40px;}
 .famfam-book_delete {background-position: -300px -40px;}
@@ -906,7 +906,7 @@
 .famfam-text_align_left {background-position: -360px -440px;}
 .famfam-text_align_right {background-position: -380px -440px;}
 .famfam-text_allcaps {background-position: -400px -440px;}
-.famfam-text_bold {background-position: -420px -440px;}
+.famfam-text_bold , .balance-balancewiki{background-position: -420px -440px;}
 .famfam-text_columns {background-position: -440px -440px;}
 .famfam-text_dropcaps {background-position: -460px -440px;}
 .famfam-text_heading_1 {background-position: -480px -440px;}
