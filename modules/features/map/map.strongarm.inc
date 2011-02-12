@@ -73,15 +73,17 @@ function map_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'content_extra_weights_organisation';
   $strongarm->value = array(
-    'title' => '-5',
-    'body_field' => '0',
-    'revision_information' => '20',
-    'author' => '20',
-    'options' => '25',
-    'comment_settings' => '30',
-    'menu' => '-2',
-    'path' => '30',
-    'locations' => '0',
+    'title' => '34',
+    'body_field' => '37',
+    'revision_information' => '41',
+    'author' => '40',
+    'options' => '42',
+    'comment_settings' => '43',
+    'menu' => '35',
+    'book' => '38',
+    'path' => '44',
+    'detailed_question' => '39',
+    'locations' => '36',
   );
 
   $export['content_extra_weights_organisation'] = $strongarm;

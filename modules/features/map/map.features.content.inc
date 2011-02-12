@@ -6,14 +6,94 @@
 function map_content_default_fields() {
   $fields = array();
 
+  // Exported field: field_companylogo
+  $fields['organisation-field_companylogo'] = array(
+    'field_name' => 'field_companylogo',
+    'type_name' => 'organisation',
+    'display_settings' => array(
+      'weight' => '33',
+      'parent' => '',
+      'label' => array(
+        'format' => 'above',
+      ),
+      'teaser' => array(
+        'format' => 'hidden',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'projectlogo_9c_imagelink',
+        'exclude' => 0,
+      ),
+      '5' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'image_plain',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'filefield',
+    'required' => '0',
+    'multiple' => '0',
+    'module' => 'filefield',
+    'active' => '1',
+    'list_field' => '0',
+    'list_default' => 1,
+    'description_field' => '0',
+    'widget' => array(
+      'file_extensions' => 'png gif jpg jpeg',
+      'file_path' => '',
+      'progress_indicator' => 'bar',
+      'max_filesize_per_file' => '',
+      'max_filesize_per_node' => '',
+      'max_resolution' => '0',
+      'min_resolution' => '0',
+      'alt' => '',
+      'custom_alt' => 0,
+      'title' => '',
+      'custom_title' => 0,
+      'title_type' => 'textfield',
+      'default_image' => NULL,
+      'use_default_image' => 0,
+      'label' => 'Logo',
+      'weight' => '33',
+      'description' => '',
+      'type' => 'imagefield_widget',
+      'module' => 'imagefield',
+    ),
+  );
+
   // Exported field: field_org_project
   $fields['organisation-field_org_project'] = array(
     'field_name' => 'field_org_project',
     'type_name' => 'organisation',
     'display_settings' => array(
+      'weight' => '45',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -92,7 +172,7 @@ function map_content_default_fields() {
       ),
       'default_value_php' => NULL,
       'label' => 'Mitgliedschaft in Projekten',
-      'weight' => '31',
+      'weight' => '45',
       'description' => '',
       'type' => 'nodereference_select',
       'module' => 'nodereference',
@@ -104,9 +184,10 @@ function map_content_default_fields() {
     'field_name' => 'field_org_project_vp',
     'type_name' => 'organisation',
     'display_settings' => array(
+      'weight' => '46',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -181,7 +262,7 @@ function map_content_default_fields() {
       'default_value' => NULL,
       'default_value_php' => NULL,
       'label' => 'Beteiligung als Umsetungspartner',
-      'weight' => '32',
+      'weight' => '46',
       'description' => '',
       'type' => 'nodereference_select',
       'module' => 'nodereference',
@@ -191,6 +272,7 @@ function map_content_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Beteiligung als Umsetungspartner');
+  t('Logo');
   t('Mitgliedschaft in Projekten');
 
   return $fields;
