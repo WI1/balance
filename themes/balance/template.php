@@ -64,7 +64,7 @@ function balance_edit_link($node) {
 
 	if(arg(2) != 'edit') {
 		if(node_access('update', $node)) {
-			$output = '<div id="balance-node-edit"><span class="famfam active balance-node-edit"></span>' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</div>';
+			$output = '<div id="balance-edit-node"><span class="famfam active balance-edit-node"></span>' . l(t('Edit'), 'node/' . $node->nid . '/edit') . '</div>';
 		}
 	} else {
 		$output = '<span id="balance-node-edit-back">' . l('Zurück', 'node/' . $node->nid) . '</span>';
@@ -319,7 +319,7 @@ function balance_og_add_blog_link($node) {
 	if(($subscription == 'active' && module_invoke('blog', 'access', 'create', 'blog', $user)) || user_access('administer nodes')) {
 		$links = module_invoke_all('og_create_links', $node);
 		if($links['create_blog']) {
-			return '<span class="famfam active balance-add-node"></span><span id="balance-add-node">' . $links['create_blog'] . '</span>';
+			return '<span class="famfam active balance-node-add"></span><span id="balance-add-node">' . $links['create_blog'] . '</span>';
 		}
 	}
 }
