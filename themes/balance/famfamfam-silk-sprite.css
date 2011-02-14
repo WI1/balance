@@ -5,8 +5,8 @@
 .famfam.inactive{background-image: url('images/famfamfam-silk-sprites/famfam-inactive.png'); cursor:default;}
 
 /* icon set items - include only the rules for the icons you wish to use in your page*/
-.famfam-accept, .balance-node-save {background-position: -0px -0px;}
-.famfam-add, .balance-node-add {background-position: -20px -0px;}
+.famfam-accept, .balance-save-node {background-position: -0px -0px;}
+.famfam-add, .balance-add-node {background-position: -20px -0px;}
 .famfam-anchor {background-position: -40px -0px;}
 .famfam-application {background-position: -60px -0px;}
 .famfam-application_add {background-position: -80px -0px;}
@@ -241,9 +241,9 @@
 .famfam-clock_red {background-position: -660px -100px;}
 .famfam-clock_stop {background-position: -680px -100px;}
 .famfam-cog, .balance-node {background-position: -700px -100px;}
-.famfam-cog_add, .balance-node-add {background-position: -720px -100px;}
-.famfam-cog_delete, .balance-node-delete {background-position: -740px -100px;}
-.famfam-cog_edit, .balance-node-edit {background-position: -760px -100px;}
+.famfam-cog_add {background-position: -720px -100px;}
+.famfam-cog_delete, .balance-delete-node {background-position: -740px -100px;}
+.famfam-cog_edit, .balance-edit-node {background-position: -760px -100px;}
 .famfam-cog_error, .balance-node-error {background-position: -780px -100px;}
 .famfam-cog_go {background-position: -0px -120px;}
 .famfam-coins {background-position: -20px -120px;}
