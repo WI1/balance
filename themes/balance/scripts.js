@@ -46,18 +46,6 @@ $('label', '#user-login-form').labelOver('over-apply');
 $('label', '#edit-search-block-form-1-wrapper').labelOver('over-apply');
 
 $(document).ready(function() {
-	// redirect javascript clients to a richer page
-	var link = $('.menu-path-publikationen a');
-	var seoPage = link.attr('href');
-	var exhibitPage = '/publications-exhibit';
-	link.click(function(e) {
-		window.location = exhibitPage;
-		e.preventDefault();
-	});
-	if(window.location.pathname == seoPage) {
-		window.location = exhibitPage;
-	}
-
   $('#block-nice_menus-1 li').hover(
     function() {
       $('ul:first', $(this)).show();
