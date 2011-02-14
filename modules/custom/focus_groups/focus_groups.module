@@ -165,6 +165,9 @@ function focus_groups_preprocess_page(&$vars) {
 		$profile = user_load($url[1]);
 		$vars['related_groups'] = focus_groups_load_group_details($profile->og_groups);
 	}
+
+	// add node id as args to a tab because the exhibit module uses it for arguments in their views. this is a horrible implementation but i think it's the only way which can be done efficiently.
+	$vars['tabs'] = str_replace('/publications"', '/publications?args=' . $vars['node']->nid . '"', $vars['tabs']);
 }
 
 /**
@@ -316,11 +319,13 @@ function focus_groups_info_tab_call_back($node) {
  * @return string
  */
 function focus_groups_publications_tab_call_back($node) {
-  if(!empty($node->field_mendeley_shared_collection[0]['value'])) {
-    return mendeley_publications($node->field_mendeley_shared_collection[0]['value']);
-  } else {
-   	return '<p><em>Noch keine Publikationen hinterlegt.</em></p>';
-  }
+	if(!empty($_GET['args'])) {
+		$exhibitArgumentsUrl = 'exhibit-args';
+		$nid = arg(1, drupal_get_normal_path($exhibitArgumentsUrl));
+	  return node_view(node_load($nid));
+	} else {
+		return '<p><em>' . t('Es sind noch keine Publikationen in dieser Gruppe veröffentlicht.') . '</em></p>';
+	}
 }
 
 /**
