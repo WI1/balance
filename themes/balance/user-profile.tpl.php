@@ -8,10 +8,10 @@
         <!--(<span class="username"><?php print $account->name; ?></span>)-->
     </div>
     <div class="contact">
-<?php if(isset($account->location)): ?>
-        <span class="street-address"><?php print $account->location['street']; ?></span><br />
-        <span class="postal-code"><?php print $account->location['postal_code']; ?></span> <span class="locality"><?php print $account->location['city']; ?></span><br />
-        <span class="country"><?php print $account->location['country_name']; ?></span><br />
+<?php if(isset($account->addresses)): ?>
+        <span class="street-address"><?php print $account->addresses['street']; ?></span><br />
+        <span class="postal-code"><?php print $account->addresses['postal_code']; ?></span> <span class="locality"><?php print $account->addresses['city']; ?></span><br />
+        <span class="country"><?php print $account->addresses['country_name']; ?></span><br />
 <?php endif ?>
         <span class="email"><?php print l($account->mail, 'mailto:' . $account->mail); ?></span><br /><br />
 	</div>
