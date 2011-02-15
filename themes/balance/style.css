@@ -1224,6 +1224,11 @@ list-style-type: none;
 display: block;
 }
 
+.exhibit-collectionView-body h3,
+.exhibit-collectionView-body h3 {
+clear: both;
+}
+
 /* Forschungslandkarte */
 .node-1802 .content {
 padding-bottom: 0 !important;
