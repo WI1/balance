@@ -1214,11 +1214,14 @@ border-bottom: 1px solid #ccc;
 margin-left: 11px !important;
 }
 
-.exhibit-collectionView-group ul,
-.exhibit-collectionView-group li {
+.exhibit-collectionView-group ol,
+.exhibit-collectionView-group li,
+.exhibit-collectionView-body ol,
+.exhibit-collectionView-body li {
 margin-left: 0;
 padding-left: 0;
 list-style-type: none;
+display: block;
 }
 
 /* Forschungslandkarte */
