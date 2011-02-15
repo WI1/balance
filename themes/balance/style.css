@@ -1207,6 +1207,20 @@ div.exhibit-facet-header {
 padding: 0 !important;
 }
 
+/* List Groupings */
+.exhibit-collectionView-group h1 {
+font-size: 11px !important;
+border-bottom: 1px solid #ccc;
+margin-left: 11px !important;
+}
+
+.exhibit-collectionView-group ul,
+.exhibit-collectionView-group li {
+margin-left: 0;
+padding-left: 0;
+list-style-type: none;
+}
+
 /* Forschungslandkarte */
 .node-1802 .content {
 padding-bottom: 0 !important;
