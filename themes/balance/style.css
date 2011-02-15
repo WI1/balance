@@ -1224,8 +1224,8 @@ list-style-type: none;
 display: block;
 }
 
-.exhibit-collectionView-body h3,
-.exhibit-collectionView-body h3 {
+.exhibit-collectionView-body h2,
+.exhibit-collectionView-body h2 {
 clear: both;
 }
 
