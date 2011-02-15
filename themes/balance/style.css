@@ -558,6 +558,11 @@ list-style-type: square;
 	padding: 0 !important
 }
 
+.view-id-og_members_faces table td, .view-id-og_members_block {
+    text-align: center;
+    vertical-align: top;
+}
+
 #authors.block {
 margin-top: 142px;
 }
