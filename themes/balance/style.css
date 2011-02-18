@@ -1235,60 +1235,60 @@ clear: both;
 }
 
 /* Forschungslandkarte */
-.node-1802 .content {
+body.node-1802 .content {
 padding-bottom: 0 !important;
 z-index: 0;
 }
 
-.node-1802 .sidebar-right {
+body.node-1802 #sidebar-right {
 display: none;
 }
 
-.node-1802 #node-1802 {
+body.node-1802 #node-1802 {
 margin-bottom: 0 !important;
 }
 
-.node-1802 .exhibit-mapView-map {
+body.node-1802 .exhibit-mapView-map {
 top: -44px;
 width: 750px;
 height: 550px;
 }
 
-.node-1802 .exhibit-views-header {
+body.node-1802 .exhibit-views-header {
 position: relative; 
 left: 420px; 
 top: -54px;
 }
 
-.node-1802 .exhibit-cloudFacet-body {
+body.node-1802 .exhibit-cloudFacet-body {
 display: block; 
 width: 900px;
 }
 
-.node-1802 #map-type-facet {
+body.node-1802 #map-type-facet {
 height: 70px;
 margin-top: 10px;
 }
 
-.node-1802 #map-image-facet {
+body.node-1802 #map-image-facet {
 height: 287px;
    position: relative;
     top: -4px;
 }
 
-.node-1802 span.exhibit-flowingFacet-value-count {
+body.node-1802 span.exhibit-flowingFacet-value-count {
     float: right;
     position: relative;
     top: -16px;
 }
 
-.node-1802 .exhibit-flowingFacet-value-link p {
+body.node-1802 .exhibit-flowingFacet-value-link p {
 margin-bottom: 0 !important;
 }
 
-.node-1802 .messages,
-.node-1802 #balance-node-edit,
-.node-1802 .tabs {
+body.node-1802 .messages,
+body.node-1802 #balance-node-edit,
+body.node-1802 .tabs {
 display: none;
 }
 
