@@ -1237,6 +1237,11 @@ clear: both;
 /* Forschungslandkarte */
 .node-1802 .content {
 padding-bottom: 0 !important;
+z-index: 0;
+}
+
+.node-1802 .sidebar-right {
+display: none;
 }
 
 .node-1802 #node-1802 {
