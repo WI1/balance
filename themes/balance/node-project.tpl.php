@@ -13,14 +13,6 @@
 
  <dt>Projektsteckbrief</dt>
  <dd><?php print $node->field_steckbrief[0]['view'] ?></dd>
- 
-<dt>Projektmitglieder</dt>
-<dd><ul class="field-items">
-<?php foreach((array)$node->field_projectmembers as $user): ?>
-	<li class="field-item"><?php print phptemplate_business_card($user['uid']); ?></li>
-<?php endforeach; ?>
-</ul>
-</dd>
 
 <dt>Homepage</dt>
 <dd><?php print $node->field_projecthomepage[0]['view'] ?></dd>
