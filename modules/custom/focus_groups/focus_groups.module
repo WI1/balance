@@ -324,7 +324,7 @@ function focus_groups_publications_tab_call_back($node) {
 		$nid = arg(1, drupal_get_normal_path($exhibitArgumentsUrl));
 	  return node_view(node_load($nid));
 	} else {
-		return '<p><em>' . t('Es sind noch keine Publikationen in dieser Gruppe veröffentlicht.') . '</em></p>';
+		return '<p><em>' . t('Es sind noch keine Publikationen in dieser Gruppe veröffentlicht.', NULL, 'de') . '</em></p>';
 	}
 }
 
