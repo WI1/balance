@@ -147,13 +147,17 @@ function focus_groups_preprocess_page(&$vars) {
         	// load color for focus group
   				$vars['fg'] = focus_groups_get_focus_group($vars['node']->nid);
   			break;
+
+				case 'blog':
+				case 'event':
+					$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
+				break;
   		}
 
 			// load color for nodes which belong to a project
     	// add proprietary focusgroup short to color a page
       if(!$vars['fg'] && isset($vars['node']->og_groups)) {
         $vars['fg'] = focus_groups_get_focus_group($vars['node']->og_groups);
-				$vars['related_groups'] = focus_groups_load_group_details($vars['node']->og_groups);
       }
       
       if($vars['fg']) {
