@@ -39,7 +39,7 @@ function balanceonline_og_like_block_content() {
 	  // Load node to get nid
 	  $node = node_load(arg(1));
 	  // Print Flag link
-	  return flag_create_link('gefallen', $node->nid);
+	  return '<span class="balance-og-like"></span>' . flag_create_link('gefallen', $node->nid);
 	}
 }
 
