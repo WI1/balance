@@ -324,7 +324,7 @@ function focus_groups_info_tab_call_back($node) {
  */
 function focus_groups_publications_tab_call_back($node) {
 	if(!empty($_GET['args'])) {
-		$exhibitArgumentsUrl = 'exhibit-args';
+		$exhibitArgumentsUrl = 'publications-exhibit-groups';
 		$nid = arg(1, drupal_get_normal_path($exhibitArgumentsUrl));
 	  return node_view(node_load($nid));
 	} else {
