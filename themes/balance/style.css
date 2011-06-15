@@ -1002,7 +1002,7 @@ background-color: #efefef;
 
 .fg a img {
 float: right;
-padding: 0 0 5px 5px;
+margin: 0 0 5px 5px;
 }
 
 .vcard .hide {
