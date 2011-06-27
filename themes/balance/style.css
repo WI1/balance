@@ -1330,3 +1330,7 @@ border: 0;
 .not-logged-in.front .tabs {
 display: none;
 }
+
+div.view-display-id-node_content_2  {
+float: none;
+}
