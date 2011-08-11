@@ -300,7 +300,7 @@ function focus_groups_og_links_alter(&$links, $node) {
  * @return bool
  */
 function focus_groups_is_project($node) {
-	if (in_array($node->type, array('project', 'focusgroup'))) {
+	if (in_array($node->type, array('project', 'focusgroup', 'workshop', 'conftoolgroup'))) {
 		return TRUE;
 	} else {
 		return FALSE;
