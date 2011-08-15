@@ -2,3 +2,4 @@
 <?php print $node->content['view']['#value']; ?>
 <?php elseif(arg(2) == 'info'): ?>
 <?php print 'test'; ?>
+<?php endif; ?>
