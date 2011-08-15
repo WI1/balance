@@ -240,7 +240,7 @@ body.node-type-balancewiki div.links.wiki { top: inherit !important; }
 
 /* Tabellen */
 thead th { background: #e5e5e5; border-bottom: #404040 1px solid; }
-tbody tr th, tbody tr td { padding: 4px 8px !important;  }
+.node .content tbody tr th, .node .content tbody tr td { padding: 4px 8px !important;  }
 tbody td { border: none; }
 tr.even, tr.odd { background: #F9F9F9; }
 
