@@ -1334,3 +1334,9 @@ display: none;
 div.view-display-id-node_content_2  {
 float: none;
 }
+
+/** Table caption used for views table groupings **/
+caption {
+text-align: left;
+margin-top: 2em !important;
+}
