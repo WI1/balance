@@ -1355,8 +1355,9 @@ height: 250px;
 }
 
 
-div.infobox li.field-type-date {
+div.infobox li {
 margin: 0 !important;
+margin-bottom: 1em !important;
 padding: 0 !important;
 list-style-type: none;
 }
