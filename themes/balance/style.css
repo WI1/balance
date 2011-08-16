@@ -1349,7 +1349,7 @@ background-color: #eeeeee !important;
 border: 1px solid #ccc;
 }
 
-div.infobox {
+div.infobox  h6{
 clear: both;
 }
 
