@@ -1340,3 +1340,23 @@ caption {
 text-align: left;
 margin-top: 2em !important;
 }
+
+/** Infoboxes on Workpshop sites **/
+
+div.infobox .grid_2, div.infobox .grid_3 {
+margin: 0 !important;
+padding: 0 10px;
+display: block;
+background-color: #eeeeee !important;
+border: 1px solid #ccc;
+border-left: 0;
+border-right: 0;
+height: 250px;
+}
+
+
+div.infobox li.field-type-date {
+margin: 0 !important;
+padding: 0 !important;
+list-style-type: none;
+}
