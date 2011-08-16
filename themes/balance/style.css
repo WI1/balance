@@ -1343,15 +1343,20 @@ margin-top: 2em !important;
 
 /** Infoboxes on Workpshop sites **/
 div.infobox {
+display: block;
 margin-bottom: 2em;
+background-color: #eeeeee !important;
+border: 1px solid #ccc;
+}
+
+div.infobox {
+clear: both;
 }
 
 div.infobox .grid_4, div.infobox .grid_3 {
 margin: 0 !important;
 padding: 0  0 0 5px;
 display: block;
-background-color: #eeeeee !important;
-border: 1px solid #ccc;
 border-left: 0;
 border-right: 0;
 }
