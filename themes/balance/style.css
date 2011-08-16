@@ -1349,10 +1349,6 @@ background-color: #eeeeee !important;
 border: 1px solid #ccc;
 }
 
-div.infobox  h6{
-clear: both;
-}
-
 div.infobox .grid_4, div.infobox .grid_3 {
 margin: 0 !important;
 padding: 0  0 0 5px;
