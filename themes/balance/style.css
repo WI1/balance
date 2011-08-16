@@ -1351,11 +1351,10 @@ background-color: #eeeeee !important;
 border: 1px solid #ccc;
 border-left: 0;
 border-right: 0;
-height: 250px;
 }
 
 
-div.infobox li {
+div.infobox li , div.infobox table{
 margin: 0 !important;
 margin-bottom: 1em !important;
 padding: 0 !important;
