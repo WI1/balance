@@ -1343,7 +1343,7 @@ margin-top: 2em !important;
 
 /** Infoboxes on Workpshop sites **/
 
-div.infobox .grid_2, div.infobox .grid_3 {
+div.infobox .grid_1, div.infobox .grid_2, div.infobox .grid_3 {
 margin: 0 !important;
 padding: 0  0 0 5px;
 display: block;
