@@ -1345,7 +1345,7 @@ margin-top: 2em !important;
 
 div.infobox .grid_2, div.infobox .grid_3 {
 margin: 0 !important;
-padding: 0 10px;
+padding: 0  0 0 5px;
 display: block;
 background-color: #eeeeee !important;
 border: 1px solid #ccc;
