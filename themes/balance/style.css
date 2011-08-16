@@ -1342,6 +1342,9 @@ margin-top: 2em !important;
 }
 
 /** Infoboxes on Workpshop sites **/
+div.infobox {
+margin-bottom: 2em;
+}
 
 div.infobox .grid_4, div.infobox .grid_3 {
 margin: 0 !important;
