@@ -1,5 +1,5 @@
 <?php
-if ($node->type == 'balancewiki') {
+if ($node->type == 'balancewiki' || $node->type == 'dokuwiki') {
 $grid = array(
 	'left' => 2,
 	'middle' => 10,
