@@ -1375,7 +1375,7 @@ float: left;
 display: none;
 } 
 ´
- .node-type-dokuwiki .node-form div.vertical-tabs-list, 
+ .node-type-dokuwiki .node-form ul.vertical-tabs-list, 
 .node-type-dokuwiki .node-form div.vertical-tabs-panes {
  display: none;
  }
