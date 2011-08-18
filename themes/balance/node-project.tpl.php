@@ -1,5 +1,5 @@
 <?php if(arg(2) === null): ?>
-<?php print $node->content['view']['#value']; ?>
+<?php print $node->content['view']['#value']; $node=node_load(arg(1)); drupal_set_title($node->title); ?>
 <?php elseif(arg(2) == 'info'): ?>
 <dl>
   <dt>Förderkennzeichen (FKZ)</dt>
