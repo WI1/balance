@@ -73,8 +73,7 @@ $grid = array(
 						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Gruppen</h2>
 						<?php print phptemplate_group_list($related_groups); ?>
 						<?php endif; ?>
-                    </div><!-- /sidebar-left -->
-						</div><!-- /sidebar-left -->
+                  	</div><!-- /sidebar-left -->
 
 
                     <div id="main" class="column">
