@@ -1379,3 +1379,9 @@ display: none;
 .node-type-dokuwiki .node-form div.vertical-tabs-panes {
  display: none;
  }
+ 
+ /** User Profile Groups **/
+ 
+.page-user  #sidebar-left .group-list-item {height: 38px;clear: both; vertical-align: top !important; margin-bottom: 2em !important;}
+.page-user  #sidebar-left .group-list-item a { margin: 0; margin-right: 15px;  }
+.page-user  #sidebar-left .group-list-item ul {margin: 0; width: 100px; overflow: hidden;}
