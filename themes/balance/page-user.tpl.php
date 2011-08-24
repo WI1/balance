@@ -68,6 +68,12 @@ $grid = array(
 												<?php if($profile->uid !== $user->uid): ?>
 												<?php print l(t('Kontaktieren', NULL, 'de'), 'user/' . $profile->uid . '/contact'); ?>
 												<?php endif; ?>
+												
+						<?php if($related_groups): ?>
+						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Gruppen</h2>
+						<?php print phptemplate_group_list($related_groups); ?>
+						<?php endif; ?>
+                    </div><!-- /sidebar-left -->
 						</div><!-- /sidebar-left -->
 
 
