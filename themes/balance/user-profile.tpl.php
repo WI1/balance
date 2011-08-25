@@ -22,13 +22,16 @@
 	<?php if($account->profile_twitter): ?><li><?php print l('Twitter Account', sprintf('http://twitter.com/%s', $account->profile_twitter)); ?></li><?php endif; ?>
 	<?php if($account->profile_xing): ?><li><?php print l('XING Account', sprintf('http://www.xing.com/profile/%s', $account->profile_xing)); ?></li><?php endif; ?>
 </ul>
-<?php if($related_groups): ?>
-<h3><?php print phptemplate_owner($profile->profile_firstname); ?> Workshops</h2>
+<?php 
+ $related_groups = $account->og_groups;
+if($related_groups): ?>
+<h3><?php print phptemplate_owner($account->profile_firstname); ?> Workshops</h2>
 <?php 
 // Quick fix for the problem, should actually be put into a function with the possibility to set different arguments for each group node type
 foreach($related_groups as $group) {
-  if ($group->type == 'conftoolgroup' || $group->type == 'workshop') {
-	 print '<div class="group-list-item">' . phptemplate_group_list_item($group) . '</div>';
+  $group_obj = (object) $group;
+  if ($group_obj->type == 'conftoolgroup' || $group_obj->type == 'workshop') {
+	 print '<div class="group-list-item">' . phptemplate_group_list_item($group_obj) . '</div>';
 	}
 }
 ?>
