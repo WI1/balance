@@ -70,8 +70,17 @@ $grid = array(
 												<?php endif; ?>
 												
 						<?php if($related_groups): ?>
-						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Gruppen</h2>
-						<?php print phptemplate_group_list($related_groups); ?>
+						<h2><?php print phptemplate_owner($profile->profile_firstname); ?> Projekte</h2>
+						<?php 
+						// Quick fix for the problem, should actually be put into a function with the possibility to set different arguments for each group node type
+						foreach($related_groups as $group) {
+						  if ($group->type == 'project' || $group->type == 'focusgroup') {
+					         print '<div class="group-list-item">' . phptemplate_group_list_item($group) . '</div>';
+							}
+						}
+						?>
+						
+						
 						<?php endif; ?>
                   	</div><!-- /sidebar-left -->
 
