@@ -1385,3 +1385,15 @@ display: none;
 .page-user  #sidebar-left .group-list-item {height: 38px;clear: both; vertical-align: top !important; margin-bottom: 2em !important;}
 .page-user  #sidebar-left .group-list-item a { margin: 0; margin-right: 15px;  }
 .page-user  #sidebar-left .group-list-item ul {margin: 0; width: 100px; overflow: hidden;}
+
+.view-bo-tracks-workshops table {
+display:table;
+}
+
+.view-bo-tracks-workshops .views-field.views-field-field-date-value {
+width:24%;
+}
+
+.view-bo-tracks-workshops .views-field.views-field-title {
+width:60%
+}
