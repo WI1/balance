@@ -1401,3 +1401,19 @@ width:60%
 #content-content .view-content .calendar-calendar .date-prev {
 right:74px;
 }
+
+#block-menu_block-2 .expanded.first {
+border-bottom-style:none;
+}
+
+#block-menu_block-2 li {
+border-bottom-style:none !important;
+}
+
+#sidebar-left #block-menu_block-2 .menu li.expanded {
+list-style-image:url("/misc/menu-expanded.png") !important;
+}
+
+#sidebar-left #block-menu_block-2 .menu li.expanded li {
+list-style:disc !important;
+}
