@@ -1397,3 +1397,7 @@ width:24%;
 .view-bo-tracks-workshops .views-field.views-field-title {
 width:60%
 }
+
+#content-content .view-content .calendar-calendar .date-prev {
+right:74px;
+}
