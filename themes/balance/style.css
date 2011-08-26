@@ -1417,3 +1417,10 @@ list-style-image:url("/misc/menu-expanded.png") !important;
 #sidebar-left #block-menu_block-2 .menu li.expanded li {
 list-style:disc !important;
 }
+
+.calendar-calendar .month-view .full td.single-day div.monthview, .calendar-calendar .week-view td.single-day div.weekview, .calendar-calendar div.dayview {
+background:#FF8C00 !important;
+border-radius:1px 1px 1px 1px !important;
+position:static !important;
+font-size:small !important;
+}
