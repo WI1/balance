@@ -1424,3 +1424,7 @@ border-radius:1px 1px 1px 1px !important;
 position:static !important;
 font-size:small !important;
 }
+
+.search-results.apachesolr_search-results {
+margin: 7px;
+}
