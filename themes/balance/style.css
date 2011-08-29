@@ -1433,3 +1433,6 @@ margin: 7px;
 display:none;
 }
 
+.exhibit-flowingFacet-body .exhibit-imageFacet-value .countDiv {
+width:19px; font-weight:bold;
+}
