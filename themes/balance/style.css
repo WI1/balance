@@ -1432,3 +1432,8 @@ margin: 7px;
 .exhibit-flowingFacet-body .exhibit-imageFacet-value .countDiv {
 width:19px; font-weight:bold;
 }
+
+.block-apachesolr .item-list ul {
+background:#ebebeb; font-size:small; width:25%; border: solid 1px
+}
+
