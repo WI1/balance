@@ -750,6 +750,21 @@ body.front .node.event-nodeapi {
 clear: both;
 }
 
+.confbutton
+{
+    background-color: #58585A;
+    border-color: #757577 #474749 #474749 #757577;
+    border-width: 1px;
+    color: #FFFFFF;
+    font-size: 12px;
+    height: 25px;
+    width: 150px;
+}
+
+.confbutton:hover { 
+background-color: #646466 
+}
+
 /*************************/
 /***** Profile	    ******/
 /*************************/
