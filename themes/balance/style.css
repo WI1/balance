@@ -586,20 +586,27 @@ padding:0 1em 1em 13em;
 }
 
 #announcement .block a {
-width: 120px;
-height: 30px;
-overflow: hidden;
-text-indent: -1000px;
-background: url("img/button_weiter.png") no-repeat scroll 0 0 transparent;
-display: block;
+background-color: #58585A;
+border-color: #757577 #474749 #474749 #757577;
+border-width: 1px;
+border-style: solid;
+color: #FFFFFF;
+font-size: 12px;
+text-align: center;
+cursor:pointer;
+text-decoration: none;
+padding: 5px;
 }
 
 #announcement .block a:hover{
-background: url("img/button_weiter_hover.png") no-repeat scroll 0 0 transparent;
+background-color: #646466;
 }
 
 #announcement .block a:focus{
-background: url("img/button_weiter_down.png") no-repeat scroll 0 0 transparent;
+background-color: #646466;
+border-color: #474749 #757577 #757577 #474749;
+border-width: 1px;
+border-style: solid;
 }
 
 /**********************************************/
@@ -748,21 +755,6 @@ body.front .node.event-nodeapi {
 
 #block-views-og_members_block-block_2 {
 clear: both;
-}
-
-.confbutton
-{
-    background-color: #58585A;
-    border-color: #757577 #474749 #474749 #757577;
-    border-width: 1px;
-    color: #FFFFFF;
-    font-size: 12px;
-    height: 25px;
-    width: 150px;
-}
-
-.confbutton:hover { 
-background-color: #646466 
 }
 
 /*************************/
