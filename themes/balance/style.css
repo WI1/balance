@@ -1419,10 +1419,8 @@ border-bottom-style:none !important;
 
 #sidebar-left li.leaf, #sidebar-left li.expanded {
 list-style-position: inside !important;
-
 border-bottom: 0;
 width: 125px !important;
-
 text-indent: -15px;
 padding-left: 20px
 }
@@ -1435,10 +1433,11 @@ padding-left: 6px;
 
 #sidebar-left li.leaf li, #sidebar-left li.expanded li {
 border: 0;
-background: #fff;
+background-color: #fff;
 list-style-type: none !important;
 margin: 0;
 display: block;
+text-indent: 0;
 }
 
 .calendar-calendar .month-view .full td.single-day div.monthview, .calendar-calendar .week-view td.single-day div.weekview, .calendar-calendar div.dayview {
