@@ -1424,6 +1424,7 @@ width: 125px !important;
 text-indent: -15px;
 padding: 2px 2px;
 padding-left: 20px
+background-color: #6f6f6f;
 }
 
 #sidebar-left li.leaf ul, #sidebar-left li.expanded ul {
