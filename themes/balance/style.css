@@ -1422,6 +1422,7 @@ list-style-position: inside !important;
 border-bottom: 0;
 width: 125px !important;
 text-indent: -15px;
+padding: 2px 2px;
 padding-left: 20px
 }
 

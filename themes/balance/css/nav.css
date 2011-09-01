@@ -341,23 +341,6 @@ ul.main li ul li a {
 /******* Navigation ****************************/
 /***********************************************/
 
-#sidebar-left ul.menu, #footer ul.menu {
-
-margin-left: 0 !important;
-}
-
-#sidebar-left li.leaf,#sidebar-left li.expanded {
-
-margin-left: -10px !important;
-padding: 2px 2px;
-border-bottom: 1px dashed #999;
-width: 120px !important;
-}
-
-#sidebar-left li.leaf a ,#sidebar-left li.expanded a {
-color: #999;
-}
-
 #block-user-1 li {
 padding: 0;
 width: inherit;
