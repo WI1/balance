@@ -342,12 +342,12 @@ ul.main li ul li a {
 /***********************************************/
 
 #sidebar-left ul.menu, #footer ul.menu {
-list-style: none !important;
+
 margin-left: 0 !important;
 }
 
 #sidebar-left li.leaf,#sidebar-left li.expanded {
-list-style: none !important;
+
 margin-left: -10px !important;
 padding: 2px 2px;
 border-bottom: 1px dashed #999;
