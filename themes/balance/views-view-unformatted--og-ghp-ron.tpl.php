@@ -11,7 +11,9 @@ $realpath = drupal_get_normal_path($_REQUEST['q']);
 $realpath = explode("/", $realpath);
 $groupnode = node_load($realpath[1]);
 
+if ($groupnode->type == 'project' || $groupnode->type == 'focusgroups') {
 echo $groupnode->body;
+}
 
 ?>
 <?php if (!empty($title)): ?>

@@ -54,7 +54,7 @@ $grid = array(
 				</div><!-- /header -->
 
 				<div id="container" class="clear-block container_12">
-					<div id="sidebar-left" class="column sidebar grid_<?=$grid['left']?>">
+					<div id="sidebar-left" class="column sidebar grid_<?php print$grid['left']?>">
 						<div id="logo-title">
 							<div class="logo-title">
 							<?php if($fg): // page with fg context ?>
@@ -70,7 +70,7 @@ $grid = array(
 					</div><!-- /sidebar-left -->
 
 					<div id="main" class="column">
-						<div id="main-squeeze" class="grid_<?=$grid['middle']?>">
+						<div id="main-squeeze" class="grid_<?php print $grid['middle']?>">
 
 							<?php if (!empty($mission)): ?>
 							<div id="mission">
@@ -115,7 +115,7 @@ $grid = array(
 								<?php print $feed_icons; ?>
 							</div><!-- /content -->
 						</div><!-- /main-squeeze -->
-						<div id="sidebar-right" class="column sidebar grid_<?=$grid['right']?>">
+						<div id="sidebar-right" class="column sidebar grid_<?php print $grid['right']?>">
 							<?php if($node->type !== 'focusgroup' && isset($node->field_projectlogo) && ($projectlogo = $node->field_projectlogo[0])): ?>
 								<div class="logo-title">
 									<?php print l(theme('imagecache', 'pic_2c_square', $projectlogo['filepath']), 'node/' . $node->nid, array('html' => TRUE)) ?>
