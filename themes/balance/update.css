@@ -117,7 +117,7 @@ body.front .node .content p { display: block; }
 	
 	#sidebar-left li.leaf, #sidebar-left li.expanded { border-color: #404040; border-style: solid; padding: 6px 2px; }
 	#sidebar-left li.leaf a, #sidebar-left li.expanded a { color: #404040; }
-	#sidebar-left li.leaf.active, #sidebar-left li.expanded.active { background: #f6f6f6; }
+	#sidebar-left li.leaf.active, #sidebar-left li.expanded.active { font-weight: bold;}
 
 /* Blöcke */
 	
