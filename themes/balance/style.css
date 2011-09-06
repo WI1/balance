@@ -1461,3 +1461,6 @@ width:19px; font-weight:bold;
 background:#ebebeb; font-size:small; width:25%; border: solid 1px
 }
 
+#sidebar-left #block-menu_block-2 .menu-block-2.menu-name-primary-links.menu-level-2 li.expanded.active ul {
+font-weight:normal !important;
+}
