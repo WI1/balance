@@ -472,6 +472,139 @@ background: #999;
 font-weight: bold;
 }
 
+/***** CONTENT EDIT FORM *****/
+
+#node-form input#edit-submit {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #68A64C;
+    border-color: #98C286 #3B6E22 #3B6E22 #98C286 !important;
+    border-right: 1px solid #3B6E22!important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100px;
+}
+
+#node-form input#edit-submit:hover {
+    background-color: #609946;
+}
+
+#node-form input#edit-submit:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #68A64C;
+    border-color: #3B6E22 #98C286 #98C286 #3B6E22 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
+#node-form input#edit-delete {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #C02F0B;
+    border-color: #F44124 #A0230A #A0230A #F44124 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100px;
+}
+#node-form input#edit-delete:hover {
+    background-color: #A0230A;
+}
+#node-form input#edit-delete:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #C02F0B;
+    border-color: #A0230A #F44124 #F44124 #A0230A !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
+#node-form input#edit-preview {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F6C326;
+    border-color: #FACF72 #E8AC0A #E8AC0A #FACF72 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100px;
+}
+#node-form input#edit-preview:hover {
+    background-color: #F6B60A;
+}
+#node-form input#edit-preview:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F6C326;
+    border-color: #E8AC0A #FACF72 #FACF72 #E8AC0A !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
+#node-form input#edit-preview-changes {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F6C326;
+    border-color: #FACF72 #E8AC0A #E8AC0A #FACF72 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100px;
+}
+#node-form input#edit-preview-changes:hover {
+    background-color: #F6B60A;
+}
+#node-form input#edit-preview-changes:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F6C326;
+    border-color: #E8AC0A #FACF72 #FACF72 #E8AC0A !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
 /****************************/
 /***** highlight 3-4-3 ******/
 /****************************/
@@ -778,6 +911,38 @@ margin-left: 1em;
 #sidebar-left .group-list-item  ul  li  a {
 width: inherit;
 height: inherit;
+}
+
+a.contactbtn {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F29A00;
+    border-color: #FFAE2F #DC8700 #DC8700 #FFAE2F !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0px 5px;
+    text-align: center;
+	text-decoration: none;
+}
+a.contactbtn:hover {
+    background-color: #FFA10D;
+}
+a.contactbtn:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F29A00;
+    border-color: #DC8700 #FFAE2F #FFAE2F #DC8700 !important;
+    border-style: solid !important;
+    border-width: 1px !important;
 }
 
 /* User List */

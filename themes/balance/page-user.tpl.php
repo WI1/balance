@@ -66,7 +66,7 @@ $grid = array(
 												<?php print $profile_content; ?>
 												<?php endif; ?>
 												<?php if($profile->uid !== $user->uid): ?>
-												<?php print l(t('Kontaktieren', NULL, 'de'), 'user/' . $profile->uid . '/contact'); ?>
+												<?php print l(t('Kontaktieren', NULL, 'de'), 'user/' . $profile->uid . '/contact', array('class' => 'contactbtn')); ?>
 												<?php endif; ?>
 												
 						<?php if($related_groups): ?>
