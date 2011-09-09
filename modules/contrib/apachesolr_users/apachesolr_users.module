@@ -107,7 +107,8 @@ function apachesolr_users_user_to_document($account, $namespace) {
   }
   
   // Grab all the 'indexable' fields
-  module_invoke_all('user', 'index', array(), $account);
+  $rray = array();
+  module_invoke_all('user', 'index', $rray, $account);
   $text = drupal_render($account->content);
   $document->body = apachesolr_clean_text($text);
   
