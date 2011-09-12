@@ -1629,3 +1629,12 @@ background:#ebebeb; font-size:small; width:25%; border: solid 1px
 #sidebar-left #block-menu_block-2 .menu-block-2.menu-name-primary-links.menu-level-2 li.expanded.active ul {
 font-weight:normal !important;
 }
+
+
+.background-grey {
+background:#E0E0E0;
+}
+
+.border-grey {
+border:1px solid #BBBBBB;
+}
