@@ -834,17 +834,52 @@ float: right;
 }
 
 #balance-node-edit, #balance-user-edit {
+-moz-border-bottom-colors: none;
+-moz-border-image: none;
+-moz-border-left-colors: none;
+-moz-border-right-colors: none;
+-moz-border-top-colors: none;
+background-color: #FFA10D;
+border-color: #FFAE2F #DC8700 #DC8700 #FFAE2F !important;
+border-style: solid !important;
+border-width: 1px !important;
+opacity: 0.5;
 float: right; 
-background-color: #eee; 
 position: relative; 
 top: -1.2em; 
 right: -1.4em; 
-padding: 0.2em 0.6em 0.2em 0.4em;
+padding: 0em 0.6em 0em 0.4em;
 }
 
 #balance-node-edit a, #balance-user-edit a {
 margin-left:2px;
 vertical-align:super;
+color: #FFFFFF;
+cursor: pointer;
+font-size: 12px;
+padding: 0px 5px;
+text-align: center;
+text-decoration: none;
+}
+
+#balance-node-edit:hover, #balance-user-edit:hover {
+opacity: 1;
+}
+
+#balance-node-edit:hover a, #balance-user-edit:hover a {
+color: #FFFFFF !important;
+}
+
+#balance-node-edit:focus, #balance-user-edit:focus {
+-moz-border-bottom-colors: none;
+-moz-border-image: none;
+-moz-border-left-colors: none;
+-moz-border-right-colors: none;
+-moz-border-top-colors: none;
+background-color: #F29A00;
+border-color: #DC8700 #FFAE2F #FFAE2F #DC8700 !important;
+border-style: solid !important;
+border-width: 1px !important;
 }
 
 body.front .node .title,

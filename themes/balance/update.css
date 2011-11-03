@@ -277,7 +277,7 @@ label.over-apply { position: relative !important; padding: 5px 0 4px 0; color: #
 #authors.block { margin-top: 0; }
 #authors .picture { margin-bottom: 20px; }
 .feed-icon { float: right; }
-#balance-node-edit, #balance-user-edit { right: inherit !important; float: none !important; padding: 2px 4px; }
+#balance-node-edit, #balance-user-edit { right: inherit !important; }
 /*
 #sidebar-right li, #content li { list-style-image: url(img/bg/list-icon.jpg) !important; list-style-type: none !important; }
 #block-projecttabs-2 ul, #block-projecttabs-2 ul li, #block-focus_groups-0 ul li, ul.no-bullets li { list-style-image: none !important; }
