@@ -54,13 +54,12 @@ function groups_fieldgroup_default_groups() {
     'fields' => array(
       '0' => 'field_projectlogo',
       '1' => 'field_fgident',
-      '2' => 'field_fgnumber',
-      '3' => 'field_focusgroup_speaker',
-      '4' => 'field_contactdlrpicture',
-      '5' => 'field_contactdlr',
-      '6' => 'field_contactbalance',
-      '7' => 'field_projects',
-      '8' => 'field_frontpageimage',
+      '2' => 'field_focusgroup_speaker',
+      '3' => 'field_contactdlrpicture',
+      '4' => 'field_contactdlr',
+      '5' => 'field_contactbalance',
+      '6' => 'field_projects',
+      '7' => 'field_frontpageimage',
     ),
   );
 
@@ -110,7 +109,9 @@ function groups_fieldgroup_default_groups() {
       '1' => 'field_project_rssfeed',
       '2' => 'field_projectaccount',
       '3' => 'field_projectinstitutions',
-      '4' => 'field_valuepartner',
+      '4' => 'field_ref_projectinstitutions',
+      '5' => 'field_valuepartner',
+      '6' => 'field_ref_valuepartner',
     ),
   );
 

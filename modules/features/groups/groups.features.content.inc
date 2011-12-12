@@ -338,69 +338,6 @@ function groups_content_default_fields() {
     ),
   );
 
-  // Exported field: field_fgnumber
-  $fields['focusgroup-field_fgnumber'] = array(
-    'field_name' => 'field_fgnumber',
-    'type_name' => 'focusgroup',
-    'display_settings' => array(
-      'weight' => '-3',
-      'parent' => '',
-      'label' => array(
-        'format' => 'above',
-      ),
-      'teaser' => array(
-        'format' => 'hidden',
-        'exclude' => 1,
-      ),
-      'full' => array(
-        'format' => 'hidden',
-        'exclude' => 1,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'number_integer',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'number',
-    'active' => '1',
-    'prefix' => '',
-    'suffix' => '',
-    'min' => '',
-    'max' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'default_value' => array(
-        '0' => array(
-          'value' => '',
-          '_error_element' => 'default_value_widget][field_fgnumber][0][value',
-        ),
-      ),
-      'default_value_php' => NULL,
-      'label' => 'Nummer',
-      'weight' => '16',
-      'description' => '',
-      'type' => 'number',
-      'module' => 'number',
-    ),
-  );
-
   // Exported field: field_focusgroup_speaker
   $fields['focusgroup-field_focusgroup_speaker'] = array(
     'field_name' => 'field_focusgroup_speaker',
@@ -539,69 +476,6 @@ function groups_content_default_fields() {
       'description' => '',
       'type' => 'imagefield_widget',
       'module' => 'imagefield',
-    ),
-  );
-
-  // Exported field: field_mendeley_shared_collection
-  $fields['focusgroup-field_mendeley_shared_collection'] = array(
-    'field_name' => 'field_mendeley_shared_collection',
-    'type_name' => 'focusgroup',
-    'display_settings' => array(
-      'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
-      ),
-      'teaser' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'full' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '4' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '2' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      '3' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'email_plain' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'email_html' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-      'token' => array(
-        'format' => 'default',
-        'exclude' => 0,
-      ),
-    ),
-    'widget_active' => '1',
-    'type' => 'number_integer',
-    'required' => '0',
-    'multiple' => '0',
-    'module' => 'number',
-    'active' => '1',
-    'prefix' => '',
-    'suffix' => '',
-    'min' => '',
-    'max' => '',
-    'allowed_values' => '',
-    'allowed_values_php' => '',
-    'widget' => array(
-      'label' => 'Mendeley Shared Collection ',
-      'weight' => '26',
-      'description' => '',
-      'type' => 'number',
-      'module' => 'number',
     ),
   );
 
@@ -1022,7 +896,7 @@ function groups_content_default_fields() {
       '2' => 2,
       '8' => 8,
       '7' => 7,
-      '9' => 9,
+      '10' => 0,
     ),
     'referenceable_status' => '1',
     'advanced_view' => '--',
@@ -1041,8 +915,8 @@ function groups_content_default_fields() {
       'label' => 'Ansprechpartner/-in',
       'weight' => '23',
       'description' => '',
-      'type' => 'userreference_autocomplete',
-      'module' => 'userreference',
+      'type' => 'realname_userreference_auto',
+      'module' => 'realname_userreference',
     ),
   );
 
@@ -1463,8 +1337,8 @@ function groups_content_default_fields() {
       'label' => 'Projektmitglieder',
       'weight' => '15',
       'description' => '',
-      'type' => 'userreference_autocomplete',
-      'module' => 'userreference',
+      'type' => 'realname_userreference_auto',
+      'module' => 'realname_userreference',
     ),
   );
 
@@ -1618,6 +1492,208 @@ function groups_content_default_fields() {
       'description' => '',
       'type' => 'text_textarea',
       'module' => 'text',
+    ),
+  );
+
+  // Exported field: field_ref_projectinstitutions
+  $fields['project-field_ref_projectinstitutions'] = array(
+    'field_name' => 'field_ref_projectinstitutions',
+    'type_name' => 'project',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'nodereference',
+    'required' => '0',
+    'multiple' => '10',
+    'module' => 'nodereference',
+    'active' => '1',
+    'referenceable_types' => array(
+      'organisation' => 'organisation',
+      'balancewiki' => 0,
+      'blog' => 0,
+      'conftoolgroup' => 0,
+      'definition' => 0,
+      'download' => 0,
+      'exhibit' => 0,
+      'faq' => 0,
+      'focusgroup' => 0,
+      'forum' => 0,
+      'gallery_image' => 0,
+      'gallery' => 0,
+      'headerimage' => 0,
+      'image' => 0,
+      'link' => 0,
+      'simplenews' => 0,
+      'page' => 0,
+      'panel' => 0,
+      'pressemeldung' => 0,
+      'project' => 0,
+      'biblio' => 0,
+      'sparql' => 0,
+      'story' => 0,
+      'poll' => 0,
+      'event' => 0,
+      'video' => 0,
+      'wiki' => 0,
+    ),
+    'advanced_view' => 'bo_organisation_select',
+    'advanced_view_args' => '',
+    'widget' => array(
+      'autocomplete_match' => 'contains',
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'nid' => NULL,
+          '_error_element' => 'default_value_widget][field_ref_projectinstitutions][0][nid][nid',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Beteiligte Institutionen',
+      'weight' => '25',
+      'description' => '',
+      'type' => 'nodereference_autocomplete',
+      'module' => 'nodereference',
+    ),
+  );
+
+  // Exported field: field_ref_valuepartner
+  $fields['project-field_ref_valuepartner'] = array(
+    'field_name' => 'field_ref_valuepartner',
+    'type_name' => 'project',
+    'display_settings' => array(
+      'label' => array(
+        'format' => 'above',
+        'exclude' => 0,
+      ),
+      '5' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'teaser' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'full' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '4' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '2' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      '3' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_plain' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'email_html' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+      'token' => array(
+        'format' => 'default',
+        'exclude' => 0,
+      ),
+    ),
+    'widget_active' => '1',
+    'type' => 'nodereference',
+    'required' => '0',
+    'multiple' => '10',
+    'module' => 'nodereference',
+    'active' => '1',
+    'referenceable_types' => array(
+      'organisation' => 'organisation',
+      'balancewiki' => 0,
+      'blog' => 0,
+      'conftoolgroup' => 0,
+      'definition' => 0,
+      'download' => 0,
+      'exhibit' => 0,
+      'faq' => 0,
+      'focusgroup' => 0,
+      'forum' => 0,
+      'gallery_image' => 0,
+      'gallery' => 0,
+      'headerimage' => 0,
+      'image' => 0,
+      'link' => 0,
+      'simplenews' => 0,
+      'page' => 0,
+      'panel' => 0,
+      'pressemeldung' => 0,
+      'project' => 0,
+      'biblio' => 0,
+      'sparql' => 0,
+      'story' => 0,
+      'poll' => 0,
+      'event' => 0,
+      'video' => 0,
+      'wiki' => 0,
+    ),
+    'advanced_view' => 'bo_organisation_select',
+    'advanced_view_args' => '',
+    'widget' => array(
+      'autocomplete_match' => 'contains',
+      'size' => '60',
+      'default_value' => array(
+        '0' => array(
+          'nid' => NULL,
+          '_error_element' => 'default_value_widget][field_ref_valuepartner][0][nid][nid',
+        ),
+      ),
+      'default_value_php' => NULL,
+      'label' => 'Umsetzungspartner',
+      'weight' => '27',
+      'description' => '',
+      'type' => 'nodereference_autocomplete',
+      'module' => 'nodereference',
     ),
   );
 
@@ -1891,10 +1967,8 @@ function groups_content_default_fields() {
   t('Hintergrundbild für die Startseite');
   t('Homepage');
   t('Kürzel');
-  t('Mendeley Shared Collection ');
   t('Methoden');
   t('Mitglied in Fokusgruppe');
-  t('Nummer');
   t('Projekte');
   t('Projektexposé');
   t('Projektkürzel');

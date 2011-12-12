@@ -11,3 +11,5 @@ description = "Provides a List for Persons and Groups displaying activity messag
 features[rules_categories][] = "heartbeat"
 name = "activity"
 package = "Features"
+project status url = "http://features.wi1projects.com/fserver"
+version = "6.x-1.0"
