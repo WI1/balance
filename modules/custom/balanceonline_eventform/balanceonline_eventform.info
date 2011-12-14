@@ -1,7 +1,0 @@
-; $Id$
-name = Event Form
-description = Simplifies the backend event form 
-core = 6.x
-package = Balance Meta
-dependencies[] = rsvp
-dependencies[] = og

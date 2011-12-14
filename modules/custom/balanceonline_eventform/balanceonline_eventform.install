@@ -1,8 +1,0 @@
-<?php
-function balanceonline_eventform_install() {
-  db_query("UPDATE {system} SET weight = 100 WHERE name = 'balanceonline_eventform'");
-}
-function balanceonline_eventform_uninstall() {
-}
-
-?>

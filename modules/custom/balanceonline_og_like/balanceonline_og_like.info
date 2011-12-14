@@ -1,6 +1,0 @@
-; $Id$
-name = OG Like
-description = OG Like
-dependencies[] = flag
-core = 6.x
-package = Balance

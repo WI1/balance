@@ -1,5 +1,0 @@
-; $Id$
-name = Contact Person
-description = Display Group Contact Person
-core = 6.x
-package = Custom

@@ -1,6 +1,0 @@
-; $Id$
-name = Custom Forms
-description = Remove Form Items
-dependencies[] = og_user_roles
-core = 6.x
-package = Custom
