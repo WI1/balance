@@ -474,7 +474,7 @@ projects[publications][version] = "1.0"
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[videos][download][type] = "git"
-projects[videos][download][url] = "git://github.com/WI1/BALANCE_videos.git"
+projects[videos][download][url] = "git://github.com/WI1/BALANCE_video.git"
 projects[videos][type] = "module"
 projects[videos][subdir] = "sites/balanceonline.org/modules/features/videos"
 projects[videos][version] = "1.0"
