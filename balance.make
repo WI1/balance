@@ -435,7 +435,7 @@ projects[activity][download][url] = "git://github.com/WI1/BALANCE_activity.git"
 projects[events][download][type] = "git"
 projects[events][download][url] = "git://github.com/WI1/BALANCE_events.git"
 projects[events][type] = "module"
-projects[events][subdir] = "sites/balanceonline.org/modules/features/events"
+projects[events][subdir] = "sites/default/modules/features/events"
 projects[events][version] = "1.0"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
@@ -443,23 +443,24 @@ projects[events][version] = "1.0"
 projects[groups][download][type] = "git"
 projects[groups][download][url] = "git://github.com/WI1/BALANCE_groups.git"
 projects[groups][type] = "module"
-projects[groups][subdir] = "sites/balanceonline.org/modules/features/groups"
+projects[groups][subdir] = "sites/default/modules/features/groups"
 projects[groups][version] = "1.1"
-projects[map][version] = "1.0"
+
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[map][download][type] = "git"
 projects[map][download][url] = "git://github.com/WI1/BALANCE_map.git"
 projects[map][type] = "module"
-projects[map][subdir] = "sites/balanceonline.org/modules/features/map"
+projects[map][subdir] = "sites/default/modules/features/map"
+projects[map][version] = "1.0"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[pressclippings][download][type] = "git"
 projects[pressclippings][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[pressclippings][type] = "module"
-projects[pressclippings][subdir] = "sites/balanceonline.org/modules/features/pressclippings"
+projects[pressclippings][subdir] = "sites/default/modules/features/pressclippings"
 projects[pressclippings][version] = "1.0"
 projects[activity][type] = "module"
 
@@ -468,7 +469,7 @@ projects[activity][type] = "module"
 projects[publications][download][type] = ""
 projects[publications][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[publications][type] = "module"
-projects[publications][subdir] = "sites/balanceonline.org/modules/features/publications"
+projects[publications][subdir] = "sites/default/modules/features/publications"
 projects[publications][version] = "1.0"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
@@ -476,7 +477,7 @@ projects[publications][version] = "1.0"
 projects[videos][download][type] = "git"
 projects[videos][download][url] = "git://github.com/WI1/BALANCE_video.git"
 projects[videos][type] = "module"
-projects[videos][subdir] = "sites/balanceonline.org/modules/features/videos"
+projects[videos][subdir] = "sites/default/modules/features/videos"
 projects[videos][version] = "1.0"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
@@ -484,7 +485,7 @@ projects[videos][version] = "1.0"
 projects[wiki][download][type] = "git"
 projects[wiki][download][url] = "git://github.com/WI1/BALANCE_wiki.git"
 projects[wiki][type] = "module"
-projects[wiki][subdir] = "sites/balanceonline.org/modules/features/wiki"
+projects[wiki][subdir] = "sites/default/modules/features/wiki"
 projects[wiki][version] = "1.0"
 
 ;
