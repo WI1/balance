@@ -132,6 +132,8 @@ projects[jquery_ui][version] = "1.5"
 
 projects[link][version] = "2.9"
 
+projects[ldap_integration][version] = "1.0-beta2"
+
 projects[location][version] = "3.1"
 
 projects[masquerade][version] = "1.6"
