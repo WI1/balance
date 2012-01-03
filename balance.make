@@ -504,4 +504,5 @@ projects[ninesixtyrobots][version] = "2.1"
 projects[balance][download][type] = "git"
 projects[balance][download][url] = "git://github.com/WI1/BALANCE.git"
 projects[balance][type] = "theme"
+projects[balance][subdir] = "sites/balanceonline.org/themes"
 
