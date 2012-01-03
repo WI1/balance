@@ -12,10 +12,10 @@ $grid = array(
     <head>
         <?php print $head; ?>
         <title><?php print $head_title; ?></title>
-				<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-				<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/960.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-				<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/text.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-				<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/layout.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+				<link rel="stylesheet" href="/sites/all/themes/balance/css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+				<link rel="stylesheet" href="/sites/all/themes/balance/css/960.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+				<link rel="stylesheet" href="/sites/all/themes/balance/css/text.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+				<link rel="stylesheet" href="/sites/all/themes/balance/css/layout.css" type="text/css" media="screen" title="no title" charset="utf-8" />
         <?php print $styles; ?>
         <link href="/sites/balanceonline.org/themes/balance/css/profile.css?C" rel="stylesheet" type="text/css" />
     </head>

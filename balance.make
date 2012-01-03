@@ -429,52 +429,42 @@ projects[ur_mutualfriends][type] = "module"
 projects[wi1init][download][type] = "git"
 projects[wi1init][download][url] = "git://github.com/WI1/wi1init.git"
 projects[wi1init][type] = "module"
-projects[wi1init][subdir] = "sites/default/modules/features/wi1init"
 
 projects[activity][download][type] = "git"
 projects[activity][download][url] = "git://github.com/WI1/BALANCE_activity.git"
 projects[activity][type] = "module"
-projects[activity][subdir] = "sites/default/modules/features/activity"
 
 projects[balance_init][download][type] = "git"
 projects[balance_init][download][url] = "git://github.com/WI1/balance_init.git"
 projects[balance_init][type] = "module"
-projects[balance_init][subdir] = "sites/default/modules/features/balance_init"
 
 projects[events][download][type] = "git"
 projects[events][download][url] = "git://github.com/WI1/BALANCE_events.git"
 projects[events][type] = "module"
-projects[events][subdir] = "sites/default/modules/features/events"
 
 projects[groups][download][type] = "git"
 projects[groups][download][url] = "git://github.com/WI1/BALANCE_groups.git"
 projects[groups][type] = "module"
-projects[groups][subdir] = "sites/default/modules/features/groups"
 
 projects[map][download][type] = "git"
 projects[map][download][url] = "git://github.com/WI1/BALANCE_map.git"
 projects[map][type] = "module"
-projects[map][subdir] = "sites/default/modules/features/map"
 
 projects[pressclippings][download][type] = "git"
 projects[pressclippings][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[pressclippings][type] = "module"
-projects[pressclippings][subdir] = "sites/default/modules/features/pressclippings"
 
 projects[publications][download][type] = "git"
 projects[publications][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[publications][type] = "module"
-projects[publications][subdir] = "sites/default/modules/features/publications"
 
 projects[videos][download][type] = "git"
 projects[videos][download][url] = "git://github.com/WI1/BALANCE_video.git"
 projects[videos][type] = "module"
-projects[videos][subdir] = "sites/default/modules/features/videos"
 
 projects[wiki][download][type] = "git"
 projects[wiki][download][url] = "git://github.com/WI1/BALANCE_wiki.git"
 projects[wiki][type] = "module"
-projects[wiki][subdir] = "sites/default/modules/features/wiki"
 
 
 ;
@@ -484,5 +474,4 @@ projects[wiki][subdir] = "sites/default/modules/features/wiki"
 projects[balance][download][type] = "git"
 projects[balance][download][url] = "git://github.com/WI1/BALANCE.git"
 projects[balance][type] = "theme"
-projects[balance][subdir] = "sites/default/themes"
 
