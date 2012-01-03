@@ -68,15 +68,23 @@ projects[emfield][version] = "2.4"
 
 projects[event_views][version] = "2.4"
 
-projects[evoc][version] = "1.x-dev"
-
 projects[exhibit][version] = "1.x-dev"
 
 projects[extlink][version] = "1.11"
 
 projects[faq][version] = "1.12"
 
+projects[features_extra][subdir] = "sites/default/modules/contrib/features_extra"
+projects[features_extra][version] = "1.x-dev"
+
 projects[features][version] = "1.0"
+
+projects[features_override][version] = "1.0-beta2"
+
+projects[features_plumber][version] = "1.0-alpha1"
+
+projects[ftools][subdir] = "sites/default/modules/contrib/ftools"
+projects[ftools][version] = "1.3"
 
 projects[feedback][version] = "2.1"
 
