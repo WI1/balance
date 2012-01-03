@@ -481,10 +481,8 @@ projects[wiki][subdir] = "sites/default/modules/features/wiki"
 ; Themes
 ;
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
 projects[balance][download][type] = "git"
 projects[balance][download][url] = "git://github.com/WI1/BALANCE.git"
 projects[balance][type] = "theme"
-projects[balance][subdir] = "sites/balanceonline.org/themes"
+projects[balance][subdir] = "sites/default/themes"
 
