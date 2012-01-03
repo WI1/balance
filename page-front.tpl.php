@@ -5,10 +5,10 @@
 <head>
 <?php print $head; ?>
 <title><?php print $head_title; ?></title>
-<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/960.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/text.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-<link rel="stylesheet" href="/sites/balanceonline.org/themes/balance/css/layout.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+<link rel="stylesheet" href="/sites/default/themes/balance/css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+<link rel="stylesheet" href="/sites/default/themes/balance/css/960.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+<link rel="stylesheet" href="/sites/default/themes/balance/css/text.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+<link rel="stylesheet" href="/sites/default/themes/balance/css/layout.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 <?php print $styles; ?>
 
 </head>

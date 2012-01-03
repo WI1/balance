@@ -491,14 +491,6 @@ projects[wiki][version] = "1.0"
 ; Themes
 ;
 
-projects[ninesixtyfluid][subdir] = "sites/all/themes/ninesixtyfluid-6.x-1.4/ninesixtyfluid"
-projects[ninesixtyfluid][version] = "1.4"
-
-projects[acquia_marina][version] = "1.9"
-
-projects[ninesixtyrobots][subdir] = "sites/all/themes/ninesixtyrobots-6.x-2.1/ninesixtyrobots"
-projects[ninesixtyrobots][version] = "2.1"
-
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balance][download][type] = "git"
