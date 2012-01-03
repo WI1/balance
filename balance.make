@@ -68,14 +68,6 @@ projects[emfield][version] = "2.4"
 
 projects[event_views][version] = "2.4"
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[events][download][type] = ""
-projects[events][download][url] = ""
-projects[events][type] = "module"
-projects[events][subdir] = "sites/balanceonline.org/modules/features/events"
-projects[events][version] = "1.0"
-
 projects[evoc][version] = "1.x-dev"
 
 projects[exhibit][version] = "1.x-dev"
@@ -100,32 +92,9 @@ projects[heartbeat][version] = "4.9"
 
 projects[flexifilter][version] = "1.2"
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[footer_sitemap][download][type] = ""
-projects[footer_sitemap][download][url] = ""
-projects[footer_sitemap][type] = "module"
-projects[footer_sitemap][subdir] = "sites/balanceonline.org/modules/contrib/footer_sitemap"
-projects[footer_sitemap][version] = "0.1"
-
 projects[footnotes][version] = "2.5"
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[groups][download][type] = ""
-projects[groups][download][url] = ""
-projects[groups][type] = "module"
-projects[groups][subdir] = "sites/balanceonline.org/modules/features/groups"
-projects[groups][version] = "1.1"
-
 projects[headerimage][version] = "1.x-dev"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[Heartbeat Tab][download][type] = ""
-projects[Heartbeat Tab][download][url] = ""
-projects[Heartbeat Tab][type] = "module"
-projects[Heartbeat Tab][subdir] = "sites/all/modules/custom/heartbeat_tab"
 
 projects[hover_preview][version] = "1.0"
 
@@ -156,14 +125,6 @@ projects[jquery_ui][version] = "1.5"
 projects[link][version] = "2.9"
 
 projects[location][version] = "3.1"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[map][download][type] = ""
-projects[map][download][url] = ""
-projects[map][type] = "module"
-projects[map][subdir] = "sites/balanceonline.org/modules/features/map"
-projects[map][version] = "1.0"
 
 projects[masquerade][version] = "1.6"
 
@@ -197,10 +158,11 @@ projects[og][version] = "2.1"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
-projects[og_forum][download][type] = ""
-projects[og_forum][download][url] = ""
-projects[og_forum][type] = "module"
-projects[og_forum][version] = "2.2"
+; module abandoned if required by feature dep needs to be remove ###WI1###
+;projects[og_forum][download][type] = ""
+;projects[og_forum][download][url] = ""
+;projects[og_forum][type] = "module"
+;projects[og_forum][version] = "2.2"
 
 projects[og_user_roles][version] = "1.5"
 
@@ -226,38 +188,8 @@ projects[popups][version] = "2.0-alpha5"
 projects[prepopulate][subdir] = "sites/balanceonline.org/modules/contrib/prepopulate"
 projects[prepopulate][version] = "2.2"
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[pressclippings][download][type] = ""
-projects[pressclippings][download][url] = ""
-projects[pressclippings][type] = "module"
-projects[pressclippings][subdir] = "sites/balanceonline.org/modules/features/pressclippings"
-projects[pressclippings][version] = "1.0"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[private_upload][download][type] = ""
-projects[private_upload][download][url] = ""
-projects[private_upload][type] = "module"
 projects[private_upload][subdir] = "sites/balanceonline.org/modules/contrib/private_upload"
 projects[private_upload][version] = "1.x-dev"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[publications][download][type] = ""
-projects[publications][download][url] = ""
-projects[publications][type] = "module"
-projects[publications][subdir] = "sites/balanceonline.org/modules/features/publications"
-projects[publications][version] = "1.0"
-
-projects[rdf][version] = "1.0-alpha8"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[rdfcck][download][type] = ""
-projects[rdfcck][download][url] = ""
-projects[rdfcck][type] = "module"
-projects[rdfcck][version] = "2.x-dev"
 
 projects[realname][version] = "1.4"
 
@@ -315,14 +247,6 @@ projects[user_relationships][version] = "1.0"
 
 projects[vertical_tabs][version] = "1.0-rc2"
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[videos][download][type] = ""
-projects[videos][download][url] = ""
-projects[videos][type] = "module"
-projects[videos][subdir] = "sites/balanceonline.org/modules/features/videos"
-projects[videos][version] = "1.0"
-
 projects[viewfield][version] = "1.1"
 
 projects[views][version] = "3.x-dev"
@@ -347,19 +271,226 @@ projects[views_tabs][version] = "1.0-beta1"
 
 projects[vt_default][version] = "1.0-rc3"
 
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[wiki][download][type] = ""
-projects[wiki][download][url] = ""
-projects[wiki][type] = "module"
-projects[wiki][subdir] = "sites/balanceonline.org/modules/features/wiki"
-projects[wiki][version] = "1.0"
-
 projects[wikitools][version] = "1.2"
 
 projects[wysiwyg][version] = "2.4"
 
+
+;
+; Non-Drupal.org hosted Modules
+;
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[apachesolr_users][download][type] = "git"
+projects[apachesolr_users][download][url] = "git://github.com/SupermanScott/apachesolr_users.git"
+projects[apachesolr_users][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+;projects[imagemanager][download][type] = ""
+;projects[imagemanager][download][url] = ""
+;projects[imagemanager][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+;projects[panels_extra_layouts][download][type] = ""
+;projects[panels_extra_layouts][download][url] = ""
+;projects[panels_extra_layouts][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[wysiwyg_panels][download][type] = "git"
+projects[wysiwyg_panels][download][url] = "git://github.com/WI1/wysiwyg_panels.git"
+projects[wysiwyg_panels][type] = "module"
+
+;
+; Own modules
+;
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[balanceonline_contact_person][download][type] = "git"
+projects[balanceonline_contact_person][download][url] = "git://github.com/WI1/balanceonline_contact_person.git"
+projects[balanceonline_contact_person][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[balanceonline_custom_form][download][type] = "git"
+projects[balanceonline_custom_form][download][url] = "git://github.com/WI1/balanceonline_custom_form.git"
+projects[balanceonline_custom_form][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[balanceonline_eventform][download][type] = "git"
+projects[balanceonline_eventform][download][url] = "git://github.com/WI1/balanceonline_event_form.git"
+projects[balanceonline_eventform][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[balanceonline_og_like][download][type] = "git"
+projects[balanceonline_og_like][download][url] = "git://github.com/WI1/balanceonline_og_like.git"
+projects[balanceonline_og_like][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[biblio_mendeley][download][type] = "git"
+projects[biblio_mendeley][download][url] = "git://github.com/jakob-stoeck/drupal-biblio-mendeley.git"
+projects[biblio_mendeley][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+;projects[clicks_tracking][download][type] = ""
+;projects[clicks_tracking][download][url] = ""
+;projects[clicks_tracking][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[conftool_connect][download][type] = "git"
+projects[conftool_connect][download][url] = "git://github.com/jakob-stoeck/drupal-conftool.git"
+projects[conftool_connect][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[focus_groups][download][type] = "git"
+projects[focus_groups][download][url] = "git://github.com/WI1/focus_groups.git"
+projects[focus_groups][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[footer_sitemap][download][type] = "git"
+projects[footer_sitemap][download][url] = "git://github.com/WI1/footer_sitemap.git"
+projects[footer_sitemap][type] = "module"
+projects[footer_sitemap][subdir] = "sites/balanceonline.org/modules/contrib/footer_sitemap"
+projects[footer_sitemap][version] = "0.1"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[heartbeat_tab][download][type] = "git"
+projects[heartbeat_tab][download][url] = "git://github.com/WI1/heartbeat_tab.git"
+projects[heartbeat_tab][type] = "module"
+projects[heartbeat_tab][subdir] = "sites/all/modules/custom/heartbeat_tab"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[js_redirect][download][type] = "git"
+projects[js_redirect][download][url] = "git://github.com/jakob-stoeck/drupal-js-redirect.git"
+projects[js_redirect][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+; old dependency which is not needed anymore
+;projects[mendeley][download][type] = ""
+;projects[mendeley][download][url] = ""
+:projects[mendeley][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[node_heartbeat][download][type] = "git"
+projects[node_heartbeat][download][url] = "git://github.com/WI1/node_heartbeat.git"
+projects[node_heartbeat][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[nodehierarchy_downloads][download][type] = "git"
+projects[nodehierarchy_downloads][download][url] = "git://github.com/WI1/nodehierarchy_downloads.git"
+projects[nodehierarchy_downloads][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[og_invite][download][type] = "git"
+projects[og_invite][download][url] = "git://github.com/WI1/og_invite.git"
+projects[og_invite][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[projecttabs][download][type] = "git"
+projects[projecttabs][download][url] = "git://github.com/WI1/projecttabs.git"
+projects[projecttabs][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+; old dependency that couldn't be found anymore, skipped in favor of ur_mutualfriends
+;projects[ur_common_friends][download][type] = ""
+;projects[ur_common_friends][download][url] = ""
+;projects[ur_common_friends][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[ur_mutualfriends][download][type] = "git"
+projects[ur_mutualfriends][download][url] = "git://github.com/WI1/ur_mutualfriends.git"
+projects[ur_mutualfriends][type] = "module"
+
+;
+; Features
+;
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[activity][download][type] = "git"
+projects[activity][download][url] = "git://github.com/WI1/BALANCE_activity.git"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[events][download][type] = "git"
+projects[events][download][url] = "git://github.com/WI1/BALANCE_events.git"
+projects[events][type] = "module"
+projects[events][subdir] = "sites/balanceonline.org/modules/features/events"
+projects[events][version] = "1.0"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[groups][download][type] = "git"
+projects[groups][download][url] = "git://github.com/WI1/BALANCE_groups.git"
+projects[groups][type] = "module"
+projects[groups][subdir] = "sites/balanceonline.org/modules/features/groups"
+projects[groups][version] = "1.1"
+projects[map][version] = "1.0"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[map][download][type] = "git"
+projects[map][download][url] = "git://github.com/WI1/BALANCE_map.git"
+projects[map][type] = "module"
+projects[map][subdir] = "sites/balanceonline.org/modules/features/map"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[pressclippings][download][type] = "git"
+projects[pressclippings][download][url] = "git://github.com/WI1/BALANCE_publications.git"
+projects[pressclippings][type] = "module"
+projects[pressclippings][subdir] = "sites/balanceonline.org/modules/features/pressclippings"
+projects[pressclippings][version] = "1.0"
+projects[activity][type] = "module"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[publications][download][type] = ""
+projects[publications][download][url] = "git://github.com/WI1/BALANCE_publications.git"
+projects[publications][type] = "module"
+projects[publications][subdir] = "sites/balanceonline.org/modules/features/publications"
+projects[publications][version] = "1.0"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[videos][download][type] = "git"
+projects[videos][download][url] = "git://github.com/WI1/BALANCE_videos.git"
+projects[videos][type] = "module"
+projects[videos][subdir] = "sites/balanceonline.org/modules/features/videos"
+projects[videos][version] = "1.0"
+
+; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
+; and url is the url of the download.
+projects[wiki][download][type] = "git"
+projects[wiki][download][url] = "git://github.com/WI1/BALANCE_wiki.git"
+projects[wiki][type] = "module"
+projects[wiki][subdir] = "sites/balanceonline.org/modules/features/wiki"
+projects[wiki][version] = "1.0"
+
+;
 ; Themes
+;
+
 projects[ninesixtyfluid][subdir] = "sites/all/themes/ninesixtyfluid-6.x-1.4/ninesixtyfluid"
 projects[ninesixtyfluid][version] = "1.4"
 
@@ -368,137 +499,9 @@ projects[acquia_marina][version] = "1.9"
 projects[ninesixtyrobots][subdir] = "sites/all/themes/ninesixtyrobots-6.x-2.1/ninesixtyrobots"
 projects[ninesixtyrobots][version] = "2.1"
 
-; Modules
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
-projects[activity][download][type] = ""
-projects[activity][download][url] = ""
-projects[activity][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[apachesolr_users][download][type] = ""
-projects[apachesolr_users][download][url] = ""
-projects[apachesolr_users][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[balanceonline_contact_person][download][type] = ""
-projects[balanceonline_contact_person][download][url] = ""
-projects[balanceonline_contact_person][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[balanceonline_custom_form][download][type] = ""
-projects[balanceonline_custom_form][download][url] = ""
-projects[balanceonline_custom_form][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[balanceonline_eventform][download][type] = ""
-projects[balanceonline_eventform][download][url] = ""
-projects[balanceonline_eventform][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[balanceonline_og_like][download][type] = ""
-projects[balanceonline_og_like][download][url] = ""
-projects[balanceonline_og_like][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[biblio_mendeley][download][type] = ""
-projects[biblio_mendeley][download][url] = ""
-projects[biblio_mendeley][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[clicks_tracking][download][type] = ""
-projects[clicks_tracking][download][url] = ""
-projects[clicks_tracking][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[conftool_connect][download][type] = ""
-projects[conftool_connect][download][url] = ""
-projects[conftool_connect][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[focus_groups][download][type] = ""
-projects[focus_groups][download][url] = ""
-projects[focus_groups][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[imagemanager][download][type] = ""
-projects[imagemanager][download][url] = ""
-projects[imagemanager][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[js_redirect][download][type] = ""
-projects[js_redirect][download][url] = ""
-projects[js_redirect][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[mendeley][download][type] = ""
-projects[mendeley][download][url] = ""
-projects[mendeley][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[node_heartbeat][download][type] = ""
-projects[node_heartbeat][download][url] = ""
-projects[node_heartbeat][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[nodehierarchy_downloads][download][type] = ""
-projects[nodehierarchy_downloads][download][url] = ""
-projects[nodehierarchy_downloads][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[og_invite][download][type] = ""
-projects[og_invite][download][url] = ""
-projects[og_invite][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[panels_extra_layouts][download][type] = ""
-projects[panels_extra_layouts][download][url] = ""
-projects[panels_extra_layouts][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[projecttabs][download][type] = ""
-projects[projecttabs][download][url] = ""
-projects[projecttabs][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[ur_common_friends][download][type] = ""
-projects[ur_common_friends][download][url] = ""
-projects[ur_common_friends][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[ur_mutualfriends][download][type] = ""
-projects[ur_mutualfriends][download][url] = ""
-projects[ur_mutualfriends][type] = "module"
-
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[wysiwyg_panels][download][type] = ""
-projects[wysiwyg_panels][download][url] = ""
-projects[wysiwyg_panels][type] = "module"
-
-; Themes
-; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
-; and url is the url of the download.
-projects[balance][download][type] = ""
-projects[balance][download][url] = ""
+projects[balance][download][type] = "git"
+projects[balance][download][url] = "git://github.com/WI1/BALANCE.git"
 projects[balance][type] = "theme"
 
