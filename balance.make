@@ -282,14 +282,14 @@ projects[wysiwyg][version] = "2.4"
 projects[apachesolr_users][download][type] = "git"
 projects[apachesolr_users][download][url] = "git://github.com/SupermanScott/apachesolr_users.git"
 projects[apachesolr_users][type] = "module"
-projects[apachesolr_users][subdir] = "sites/all/modules/noncontrib/apachesolr_users"
+projects[apachesolr_users][subdir] = "sites/all/modules/noncontrib"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 ;projects[imagemanager][download][type] = ""
 ;projects[imagemanager][download][url] = ""
 ;projects[imagemanager][type] = "module"
-;projects[imagemanager][subdir] = "sites/all/modules/noncontrib/imagemanager"
+;projects[imagemanager][subdir] = "sites/all/modules/noncontrib"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -302,7 +302,7 @@ projects[apachesolr_users][subdir] = "sites/all/modules/noncontrib/apachesolr_us
 projects[wysiwyg_panels][download][type] = "git"
 projects[wysiwyg_panels][download][url] = "git://github.com/WI1/wysiwyg_panels.git"
 projects[wysiwyg_panels][type] = "module"
-projects[wysiwyg_panels][subdir] = "sites/all/modules/noncontrib/wysiwyg_panels"
+projects[wysiwyg_panels][subdir] = "sites/all/modules/noncontrib"
 
 ;
 ; Own modules
@@ -313,35 +313,35 @@ projects[wysiwyg_panels][subdir] = "sites/all/modules/noncontrib/wysiwyg_panels"
 projects[balanceonline_contact_person][download][type] = "git"
 projects[balanceonline_contact_person][download][url] = "git://github.com/WI1/balanceonline_contact_person.git"
 projects[balanceonline_contact_person][type] = "module"
-projects[balanceonline_contact_person][subdir] = "sites/all/modules/custom/balanceonline_contact_person"
+projects[balanceonline_contact_person][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balanceonline_custom_form][download][type] = "git"
 projects[balanceonline_custom_form][download][url] = "git://github.com/WI1/balanceonline_custom_form.git"
 projects[balanceonline_custom_form][type] = "module"
-projects[balanceonline_custom_form][subdir] = "sites/all/modules/custom/balanceonline_custom_form"
+projects[balanceonline_custom_form][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balanceonline_eventform][download][type] = "git"
 projects[balanceonline_eventform][download][url] = "git://github.com/WI1/balanceonline_event_form.git"
 projects[balanceonline_eventform][type] = "module"
-projects[balanceonline_eventform][subdir] = "sites/all/modules/custom/balanceonline_eventform"
+projects[balanceonline_eventform][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balanceonline_og_like][download][type] = "git"
 projects[balanceonline_og_like][download][url] = "git://github.com/WI1/balanceonline_og_like.git"
 projects[balanceonline_og_like][type] = "module"
-projects[balanceonline_og_like][subdir] = "sites/all/modules/custom/balanceonline_og_like"
+projects[balanceonline_og_like][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[biblio_mendeley][download][type] = "git"
 projects[biblio_mendeley][download][url] = "git://github.com/jakob-stoeck/drupal-biblio-mendeley.git"
 projects[biblio_mendeley][type] = "module"
-projects[biblio_mendeley][subdir] = "sites/all/modules/custom/biblio_mendeley"
+projects[biblio_mendeley][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -354,7 +354,7 @@ projects[biblio_mendeley][subdir] = "sites/all/modules/custom/biblio_mendeley"
 projects[conftool_connect][download][type] = "git"
 projects[conftool_connect][download][url] = "git://github.com/jakob-stoeck/drupal-conftool.git"
 projects[conftool_connect][type] = "module"
-projects[conftool_connect][subdir] = "sites/all/modules/custom/conftool_connect"
+projects[conftool_connect][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -368,21 +368,21 @@ projects[focus_groups][subdir] = "sites/all/modules/custom/focus_groups"
 projects[footer_sitemap][download][type] = "git"
 projects[footer_sitemap][download][url] = "git://github.com/WI1/footer_sitemap.git"
 projects[footer_sitemap][type] = "module"
-projects[footer_sitemap][subdir] = "sites/balanceonline.org/modules/custom/footer_sitemap"
+projects[footer_sitemap][subdir] = "sites/balanceonline.org/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[heartbeat_tab][download][type] = "git"
 projects[heartbeat_tab][download][url] = "git://github.com/WI1/heartbeat_tab.git"
 projects[heartbeat_tab][type] = "module"
-projects[heartbeat_tab][subdir] = "sites/all/modules/custom/heartbeat_tab"
+projects[heartbeat_tab][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[js_redirect][download][type] = "git"
 projects[js_redirect][download][url] = "git://github.com/jakob-stoeck/drupal-js-redirect.git"
 projects[js_redirect][type] = "module"
-projects[js_redirect][subdir] = "sites/all/modules/custom/js_redirect"
+projects[js_redirect][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -396,28 +396,28 @@ projects[js_redirect][subdir] = "sites/all/modules/custom/js_redirect"
 projects[node_heartbeat][download][type] = "git"
 projects[node_heartbeat][download][url] = "git://github.com/WI1/node_heartbeat.git"
 projects[node_heartbeat][type] = "module"
-projects[node_heartbeat][subdir] = "sites/all/modules/custom/node_heartbeat"
+projects[node_heartbeat][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[nodehierarchy_downloads][download][type] = "git"
 projects[nodehierarchy_downloads][download][url] = "git://github.com/WI1/nodehierarchy_downloads.git"
 projects[nodehierarchy_downloads][type] = "module"
-projects[nodehierarchy_downloads][subdir] = "sites/all/modules/custom/nodehierarchy_downloads"
+projects[nodehierarchy_downloads][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[og_invite][download][type] = "git"
 projects[og_invite][download][url] = "git://github.com/WI1/og_invite.git"
 projects[og_invite][type] = "module"
-projects[og_invite][subdir] = "sites/all/modules/custom/og_invite"
+projects[og_invite][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[projecttabs][download][type] = "git"
 projects[projecttabs][download][url] = "git://github.com/WI1/projecttabs.git"
 projects[projecttabs][type] = "module"
-projects[projecttabs][subdir] = "sites/all/modules/custom/projecttabs"
+projects[projecttabs][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -425,14 +425,14 @@ projects[projecttabs][subdir] = "sites/all/modules/custom/projecttabs"
 ;projects[ur_common_friends][download][type] = ""
 ;projects[ur_common_friends][download][url] = ""
 ;projects[ur_common_friends][type] = "module"
-;projects[ur_common_friends][subdir] = "sites/all/modules/custom/ur_common_friends"
+;projects[ur_common_friends][subdir] = "sites/all/modules/custom"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[ur_mutualfriends][download][type] = "git"
 projects[ur_mutualfriends][download][url] = "git://github.com/WI1/ur_mutualfriends.git"
 projects[ur_mutualfriends][type] = "module"
-projects[ur_mutualfriends][subdir] = "sites/all/modules/custom/ur_mutualfriends"
+projects[ur_mutualfriends][subdir] = "sites/all/modules/custom"
 
 
 
@@ -444,52 +444,52 @@ projects[ur_mutualfriends][subdir] = "sites/all/modules/custom/ur_mutualfriends"
 projects[wi1init][download][type] = "git"
 projects[wi1init][download][url] = "git://github.com/WI1/wi1init.git"
 projects[wi1init][type] = "module"
-projects[wi1init][subdir] = "sites/all/modules/features/wi1init"
+projects[wi1init][subdir] = "sites/all/modules/features"
 
 projects[activity][download][type] = "git"
 projects[activity][download][url] = "git://github.com/WI1/BALANCE_activity.git"
 projects[activity][type] = "module"
-projects[activity][subdir] = "sites/all/modules/features/activity"
+projects[activity][subdir] = "sites/all/modules/features"
 
 projects[balance_init][download][type] = "git"
 projects[balance_init][download][url] = "git://github.com/WI1/balance_init.git"
 projects[balance_init][type] = "module"
-projects[balance_init][subdir] = "sites/all/modules/features/balance_init"
+projects[balance_init][subdir] = "sites/all/modules/features"
 
 projects[events][download][type] = "git"
 projects[events][download][url] = "git://github.com/WI1/BALANCE_events.git"
 projects[events][type] = "module"
-projects[events][subdir] = "sites/all/modules/features/events"
+projects[events][subdir] = "sites/all/modules/features"
 
 projects[groups][download][type] = "git"
 projects[groups][download][url] = "git://github.com/WI1/BALANCE_groups.git"
 projects[groups][type] = "module"
-projects[groups][subdir] = "sites/all/modules/features/groups"
+projects[groups][subdir] = "sites/all/modules/features"
 
 projects[map][download][type] = "git"
 projects[map][download][url] = "git://github.com/WI1/BALANCE_map.git"
 projects[map][type] = "module"
-projects[map][subdir] = "sites/all/modules/features/map"
+projects[map][subdir] = "sites/all/modules/features"
 
 projects[pressclippings][download][type] = "git"
 projects[pressclippings][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[pressclippings][type] = "module"
-projects[pressclippings][subdir] = "sites/all/modules/features/pressclippings"
+projects[pressclippings][subdir] = "sites/all/modules/features"
 
 projects[publications][download][type] = "git"
 projects[publications][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[publications][type] = "module"
-projects[publications][subdir] = "sites/all/modules/features/publications"
+projects[publications][subdir] = "sites/all/modules/features"
 
 projects[videos][download][type] = "git"
 projects[videos][download][url] = "git://github.com/WI1/BALANCE_video.git"
 projects[videos][type] = "module"
-projects[videos][subdir] = "sites/all/modules/features/videos"
+projects[videos][subdir] = "sites/all/modules/features"
 
 projects[wiki][download][type] = "git"
 projects[wiki][download][url] = "git://github.com/WI1/BALANCE_wiki.git"
 projects[wiki][type] = "module"
-projects[wiki][subdir] = "sites/all/modules/features/wiki"
+projects[wiki][subdir] = "sites/all/modules/features"
 
 
 ;
