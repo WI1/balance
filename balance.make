@@ -28,10 +28,8 @@ projects[apachesolr_autocomplete][version] = "1.2"
 
 projects[apachesolr_biblio][version] = "1.x-dev"
 
-projects[auto_nodetitle][subdir] = "sites/balanceonline.org/modules/contrib/auto_nodetitle"
 projects[auto_nodetitle][version] = "1.2"
 
-projects[autoload][subdir] = "sites/balanceonline.org/modules/contrib/autoload"
 projects[autoload][version] = "1.4"
 
 projects[backreference][version] = "1.1"
@@ -64,7 +62,6 @@ projects[devel][version] = "1.26"
 
 projects[diff][version] = "2.1"
 
-projects[editablefields][subdir] = "sites/balanceonline.org/modules/contrib/editablefields"
 projects[editablefields][version] = "2.0"
 
 projects[emfield][version] = "2.4"
@@ -77,7 +74,6 @@ projects[extlink][version] = "1.11"
 
 projects[faq][version] = "1.12"
 
-projects[features_extra][subdir] = "sites/default/modules/contrib/features_extra"
 projects[features_extra][version] = "1.x-dev"
 
 projects[features][version] = "1.0"
@@ -86,7 +82,6 @@ projects[features_override][version] = "1.0-beta2"
 
 projects[features_plumber][version] = "1.0-alpha1"
 
-projects[ftools][subdir] = "sites/default/modules/contrib/ftools"
 projects[ftools][version] = "1.3"
 
 projects[feedback][version] = "2.1"
@@ -95,10 +90,8 @@ projects[filefield][version] = "3.10"
 
 projects[filter_perms][version] = "1.1"
 
-projects[flag][subdir] = "sites/balanceonline.org/modules/contrib/flag"
 projects[flag][version] = "1.3"
 
-projects[heartbeat][subdir] = "sites/balanceonline.org/modules/contrib/heartbeat"
 projects[heartbeat][version] = "4.9"
 
 projects[flexifilter][version] = "1.2"
@@ -117,7 +110,6 @@ projects[imageapi][version] = "1.10"
 
 projects[imagecache][version] = "2.0-beta10"
 
-projects[imagecache_actions][subdir] = "sites/balanceonline.org/modules/contrib/imagecache_actions"
 projects[imagecache_actions][version] = "1.7"
 
 projects[imagecache_profiles][version] = "1.3"
@@ -126,7 +118,6 @@ projects[imagefield][version] = "3.10"
 
 projects[insert_block][version] = "1.x-dev"
 
-projects[invite][subdir] = "sites/balanceonline.org/modules/contrib/invite"
 projects[invite][version] = "2.0-beta2"
 
 projects[javascript_aggregator][version] = "1.5"
@@ -195,13 +186,10 @@ projects[pathologic][version] = "3.4"
 
 projects[piwik][version] = "2.1"
 
-projects[popups][subdir] = "sites/balanceonline.org/modules/contrib/popups"
 projects[popups][version] = "2.0-alpha5"
 
-projects[prepopulate][subdir] = "sites/balanceonline.org/modules/contrib/prepopulate"
 projects[prepopulate][version] = "2.2"
 
-projects[private_upload][subdir] = "sites/balanceonline.org/modules/contrib/private_upload"
 projects[private_upload][version] = "1.x-dev"
 
 projects[realname][version] = "1.4"
@@ -240,12 +228,10 @@ projects[talk][version] = "1.6"
 
 projects[taxonomy_manager][version] = "2.2"
 
-projects[taxonomy_node][subdir] = "sites/balanceonline.org/modules/contrib/taxonomy_node"
 projects[taxonomy_node][version] = "1.0-beta3"
 
 projects[token][version] = "1.16"
 
-projects[token_profile][subdir] = "sites/balanceonline.org/modules/contrib/token_profile"
 projects[token_profile][version] = "1.0-beta1"
 
 projects[transliteration][version] = "3.0"
@@ -264,7 +250,6 @@ projects[viewfield][version] = "1.1"
 
 projects[views][version] = "3.x-dev"
 
-projects[views_hacks][subdir] = "sites/balanceonline.org/modules/contrib/views_hacks"
 projects[views_hacks][version] = "1.0-beta1"
 
 projects[views_attach][version] = "2.2"
@@ -277,7 +262,6 @@ projects[views_groupby][version] = "1.0-rc2"
 
 projects[views_or][version] = "1.x-dev"
 
-projects[views_slideshow][subdir] = "sites/balanceonline.org/modules/contrib/views_slideshow"
 projects[views_slideshow][version] = "3.0-beta1"
 
 projects[views_tabs][version] = "1.0-beta1"
@@ -298,12 +282,14 @@ projects[wysiwyg][version] = "2.4"
 projects[apachesolr_users][download][type] = "git"
 projects[apachesolr_users][download][url] = "git://github.com/SupermanScott/apachesolr_users.git"
 projects[apachesolr_users][type] = "module"
+projects[apachesolr_users][subdir] = "sites/all/modules/noncontrib/apachesolr_users"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 ;projects[imagemanager][download][type] = ""
 ;projects[imagemanager][download][url] = ""
 ;projects[imagemanager][type] = "module"
+;projects[imagemanager][subdir] = "sites/all/modules/noncontrib/imagemanager"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -316,6 +302,7 @@ projects[apachesolr_users][type] = "module"
 projects[wysiwyg_panels][download][type] = "git"
 projects[wysiwyg_panels][download][url] = "git://github.com/WI1/wysiwyg_panels.git"
 projects[wysiwyg_panels][type] = "module"
+projects[wysiwyg_panels][subdir] = "sites/all/modules/noncontrib/wysiwyg_panels"
 
 ;
 ; Own modules
@@ -326,30 +313,35 @@ projects[wysiwyg_panels][type] = "module"
 projects[balanceonline_contact_person][download][type] = "git"
 projects[balanceonline_contact_person][download][url] = "git://github.com/WI1/balanceonline_contact_person.git"
 projects[balanceonline_contact_person][type] = "module"
+projects[balanceonline_contact_person][subdir] = "sites/all/modules/custom/balanceonline_contact_person"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balanceonline_custom_form][download][type] = "git"
 projects[balanceonline_custom_form][download][url] = "git://github.com/WI1/balanceonline_custom_form.git"
 projects[balanceonline_custom_form][type] = "module"
+projects[balanceonline_custom_form][subdir] = "sites/all/modules/custom/balanceonline_custom_form"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balanceonline_eventform][download][type] = "git"
 projects[balanceonline_eventform][download][url] = "git://github.com/WI1/balanceonline_event_form.git"
 projects[balanceonline_eventform][type] = "module"
+projects[balanceonline_eventform][subdir] = "sites/all/modules/custom/balanceonline_eventform"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[balanceonline_og_like][download][type] = "git"
 projects[balanceonline_og_like][download][url] = "git://github.com/WI1/balanceonline_og_like.git"
 projects[balanceonline_og_like][type] = "module"
+projects[balanceonline_og_like][subdir] = "sites/all/modules/custom/balanceonline_og_like"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[biblio_mendeley][download][type] = "git"
 projects[biblio_mendeley][download][url] = "git://github.com/jakob-stoeck/drupal-biblio-mendeley.git"
 projects[biblio_mendeley][type] = "module"
+projects[biblio_mendeley][subdir] = "sites/all/modules/custom/biblio_mendeley"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -362,20 +354,21 @@ projects[biblio_mendeley][type] = "module"
 projects[conftool_connect][download][type] = "git"
 projects[conftool_connect][download][url] = "git://github.com/jakob-stoeck/drupal-conftool.git"
 projects[conftool_connect][type] = "module"
+projects[conftool_connect][subdir] = "sites/all/modules/custom/conftool_connect"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[focus_groups][download][type] = "git"
 projects[focus_groups][download][url] = "git://github.com/WI1/focus_groups.git"
 projects[focus_groups][type] = "module"
+projects[focus_groups][subdir] = "sites/all/modules/custom/focus_groups"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[footer_sitemap][download][type] = "git"
 projects[footer_sitemap][download][url] = "git://github.com/WI1/footer_sitemap.git"
 projects[footer_sitemap][type] = "module"
-projects[footer_sitemap][subdir] = "sites/balanceonline.org/modules/contrib/footer_sitemap"
-projects[footer_sitemap][version] = "0.1"
+projects[footer_sitemap][subdir] = "sites/balanceonline.org/modules/custom/footer_sitemap"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -389,6 +382,7 @@ projects[heartbeat_tab][subdir] = "sites/all/modules/custom/heartbeat_tab"
 projects[js_redirect][download][type] = "git"
 projects[js_redirect][download][url] = "git://github.com/jakob-stoeck/drupal-js-redirect.git"
 projects[js_redirect][type] = "module"
+projects[js_redirect][subdir] = "sites/all/modules/custom/js_redirect"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -402,24 +396,28 @@ projects[js_redirect][type] = "module"
 projects[node_heartbeat][download][type] = "git"
 projects[node_heartbeat][download][url] = "git://github.com/WI1/node_heartbeat.git"
 projects[node_heartbeat][type] = "module"
+projects[node_heartbeat][subdir] = "sites/all/modules/custom/node_heartbeat"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[nodehierarchy_downloads][download][type] = "git"
 projects[nodehierarchy_downloads][download][url] = "git://github.com/WI1/nodehierarchy_downloads.git"
 projects[nodehierarchy_downloads][type] = "module"
+projects[nodehierarchy_downloads][subdir] = "sites/all/modules/custom/nodehierarchy_downloads"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[og_invite][download][type] = "git"
 projects[og_invite][download][url] = "git://github.com/WI1/og_invite.git"
 projects[og_invite][type] = "module"
+projects[og_invite][subdir] = "sites/all/modules/custom/og_invite"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[projecttabs][download][type] = "git"
 projects[projecttabs][download][url] = "git://github.com/WI1/projecttabs.git"
 projects[projecttabs][type] = "module"
+projects[projecttabs][subdir] = "sites/all/modules/custom/projecttabs"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
@@ -427,12 +425,16 @@ projects[projecttabs][type] = "module"
 ;projects[ur_common_friends][download][type] = ""
 ;projects[ur_common_friends][download][url] = ""
 ;projects[ur_common_friends][type] = "module"
+;projects[ur_common_friends][subdir] = "sites/all/modules/custom/ur_common_friends"
 
 ; Please fill the following out. Type may be one of get, cvs, git, bzr or svn,
 ; and url is the url of the download.
 projects[ur_mutualfriends][download][type] = "git"
 projects[ur_mutualfriends][download][url] = "git://github.com/WI1/ur_mutualfriends.git"
 projects[ur_mutualfriends][type] = "module"
+projects[ur_mutualfriends][subdir] = "sites/all/modules/custom/ur_mutualfriends"
+
+
 
 
 ;
@@ -442,42 +444,52 @@ projects[ur_mutualfriends][type] = "module"
 projects[wi1init][download][type] = "git"
 projects[wi1init][download][url] = "git://github.com/WI1/wi1init.git"
 projects[wi1init][type] = "module"
+projects[wi1init][subdir] = "sites/all/modules/features/wi1init"
 
 projects[activity][download][type] = "git"
 projects[activity][download][url] = "git://github.com/WI1/BALANCE_activity.git"
 projects[activity][type] = "module"
+projects[activity][subdir] = "sites/all/modules/features/activity"
 
 projects[balance_init][download][type] = "git"
 projects[balance_init][download][url] = "git://github.com/WI1/balance_init.git"
 projects[balance_init][type] = "module"
+projects[balance_init][subdir] = "sites/all/modules/features/balance_init"
 
 projects[events][download][type] = "git"
 projects[events][download][url] = "git://github.com/WI1/BALANCE_events.git"
 projects[events][type] = "module"
+projects[events][subdir] = "sites/all/modules/features/events"
 
 projects[groups][download][type] = "git"
 projects[groups][download][url] = "git://github.com/WI1/BALANCE_groups.git"
 projects[groups][type] = "module"
+projects[groups][subdir] = "sites/all/modules/features/groups"
 
 projects[map][download][type] = "git"
 projects[map][download][url] = "git://github.com/WI1/BALANCE_map.git"
 projects[map][type] = "module"
+projects[map][subdir] = "sites/all/modules/features/map"
 
 projects[pressclippings][download][type] = "git"
 projects[pressclippings][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[pressclippings][type] = "module"
+projects[pressclippings][subdir] = "sites/all/modules/features/pressclippings"
 
 projects[publications][download][type] = "git"
 projects[publications][download][url] = "git://github.com/WI1/BALANCE_publications.git"
 projects[publications][type] = "module"
+projects[publications][subdir] = "sites/all/modules/features/publications"
 
 projects[videos][download][type] = "git"
 projects[videos][download][url] = "git://github.com/WI1/BALANCE_video.git"
 projects[videos][type] = "module"
+projects[videos][subdir] = "sites/all/modules/features/videos"
 
 projects[wiki][download][type] = "git"
 projects[wiki][download][url] = "git://github.com/WI1/BALANCE_wiki.git"
 projects[wiki][type] = "module"
+projects[wiki][subdir] = "sites/all/modules/features/wiki"
 
 
 ;
